@@ -695,7 +695,7 @@ DocType: Warehouse,A logical Warehouse against which stock entries are made.,Sto
 DocType: Sales Invoice Timesheet,Sales Invoice Timesheet,Satış Faturası Çizelgesi
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +107,Reference No & Reference Date is required for {0},Referans No ve Referans Tarihi gereklidir {0}
 DocType: Process Payroll,Select Payment Account to make Bank Entry,Seç Ödeme Hesabı Banka girişi yapmak için
-apps/erpnext/erpnext/support/doctype/issue/issue.js +24,Add to Knowledge Base,Bilgi Bankası&#39;ndaki ekle
+apps/erpnext/erpnext/support/doctype/issue/issue.js +24,Add to Knowledge Base,Bilgi Bankası'na ekle
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +149,Proposal Writing,Teklifi Yazma
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +149,Proposal Writing,Teklifi Yazma
 DocType: Payment Entry Deduction,Payment Entry Deduction,Ödeme Giriş Kesintisi
@@ -1060,7 +1060,7 @@ DocType: Naming Series,Update Series,Seriyi Güncelle
 DocType: Supplier Quotation,Is Subcontracted,Taşerona verilmiş
 DocType: Item Attribute,Item Attribute Values,Ürün Özellik Değerler
 DocType: Examination Result,Examination Result,Sınav Sonucu
-apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +743,Purchase Receipt,Satın Alma makbuzu
+apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +743,Purchase Receipt,Satın Alma İrsaliyesi
 ,Received Items To Be Billed,Faturalanacak  Alınan Malzemeler
 DocType: Employee,Ms,Bayan
 DocType: Employee,Ms,Bayan
@@ -3845,7 +3845,7 @@ DocType: Payment Reconciliation,To Invoice Date,Tarihi Faturaya
 DocType: Supplier,Contact HTML,İletişim HTML
 ,Inactive Customers,Etkin olmayan müşteriler
 DocType: Landed Cost Voucher,LCV,LCV
-DocType: Landed Cost Voucher,Purchase Receipts,Satınalma Makbuzlar
+DocType: Landed Cost Voucher,Purchase Receipts,Satın Alma İrsaliyeleri
 apps/erpnext/erpnext/accounts/doctype/pricing_rule/pricing_rule.js +27,How Pricing Rule is applied?,Fiyatlandırma Kuralı Nasıl Uygulanır?
 DocType: Stock Entry,Delivery Note No,İrsaliye No
 DocType: Production Planning Tool,"If checked, only Purchase material requests for final raw materials will be included in the Material Requests. Otherwise, Material Requests for parent items will be created","Seçili ise, sadece son hammadde malzeme talepleri Malzeme İstekler dahil edilecektir satın alın. Aksi takdirde, ana öğeleri Malzeme talepleri oluşturulacak"
@@ -4901,7 +4901,7 @@ DocType: SMS Parameter,SMS Parameter,SMS Parametresi
 DocType: SMS Parameter,SMS Parameter,SMS Parametresi
 apps/erpnext/erpnext/config/accounts.py +197,Budget and Cost Center,Bütçe ve Maliyet Merkezi
 DocType: Vehicle Service,Half Yearly,Yarım Yıllık
-DocType: Lead,Blog Subscriber,Blog Abone
+DocType: Lead,Blog Subscriber,Blog Abonesi
 DocType: Lead,Blog Subscriber,Blog Abone
 DocType: Guardian,Alternate Number,alternatif Numara
 apps/erpnext/erpnext/config/setup.py +83,Create rules to restrict transactions based on values.,Değerlere dayalı işlemleri kısıtlamak için kurallar oluşturun.

@@ -1801,7 +1801,7 @@ DocType: Period Closing Voucher,"The account head under Liability or Equity, in 
 apps/erpnext/erpnext/config/projects.py +25,Gantt chart of all tasks.,සියලු කාර්යයන් Gantt සටහන.
 DocType: Opportunity,Mins to First Response,පළමු ප්රතිචාර සඳහා මිනිත්තු
 DocType: Pricing Rule,Margin Type,ආන්තිකය වර්ගය
-apps/erpnext/erpnext/projects/doctype/project/project_dashboard.html +15,{0} hours,{0} පැය
+apps/erpnext/erpnext/projects/doctype/project/project_dashboard.html +15,{0} hours,පැය {0}
 DocType: Appraisal,For Employee Name,සේවක නම සඳහා
 DocType: Holiday List,Clear Table,පැහැදිලි ව ව
 DocType: C-Form Invoice Detail,Invoice No,ඉන්වොයිසිය නොමැත

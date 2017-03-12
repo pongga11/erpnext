@@ -85,7 +85,7 @@ apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py 
 DocType: Timesheet,Total Costing Amount,Jumlah Total Biaya
 DocType: Delivery Note,Vehicle No,Nomor Kendaraan
 apps/erpnext/erpnext/manufacturing/doctype/bom/bom.py +139,Please select Price List,Silakan pilih Daftar Harga
-DocType: Production Order Operation,Work In Progress,Work In Progress
+DocType: Production Order Operation,Work In Progress,Pekerjaan dalam proses
 apps/erpnext/erpnext/schools/report/absent_student_report/absent_student_report.py +13,Please select date,Silakan pilih tanggal
 DocType: Employee,Holiday List,List Hari Libur
 apps/erpnext/erpnext/public/js/setup_wizard.js +205,Accountant,Akuntan
@@ -437,7 +437,7 @@ DocType: Account,Cost of Goods Sold,Harga Pokok Penjualan
 DocType: Purchase Invoice,Yearly,Tahunan
 apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py +226,Please enter Cost Center,Harap Masukan Jenis Biaya Pusat
 DocType: Journal Entry Account,Sales Order,Order Penjualan
-apps/erpnext/erpnext/accounts/report/gross_profit/gross_profit.py +68,Avg. Selling Rate,Average Harga Jual
+apps/erpnext/erpnext/accounts/report/gross_profit/gross_profit.py +68,Avg. Selling Rate,Harga Jual Rata-rata
 DocType: Assessment,Examiner Name,Nama pemeriksa
 apps/erpnext/erpnext/utilities/transaction_base.py +149,Quantity cannot be a fraction in row {0},Kuantitas tidak bisa menjadi fraksi di baris {0}
 DocType: Purchase Invoice Item,Quantity and Rate,Jumlah dan Tingkat Harga
@@ -798,7 +798,7 @@ DocType: Company,Default Cost of Goods Sold Account,Standar Harga Pokok Penjuala
 apps/erpnext/erpnext/stock/get_item_details.py +274,Price List not selected,Daftar Harga tidak dipilih
 DocType: Employee,Family Background,Latar Belakang Keluarga
 DocType: Request for Quotation Supplier,Send Email,Kirim Email
-apps/erpnext/erpnext/stock/doctype/item/item.py +204,Warning: Invalid Attachment {0},Peringatan: tidak valid Lampiran {0}
+apps/erpnext/erpnext/stock/doctype/item/item.py +204,Warning: Invalid Attachment {0},Peringatan: Lampiran tidak valid {0}
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +731,No Permission,Tidak ada Izin
 DocType: Company,Default Bank Account,Standar Rekening Bank
 apps/erpnext/erpnext/accounts/report/general_ledger/general_ledger.py +50,"To filter based on Party, select Party Type first","Untuk menyaring berdasarkan Party, pilih Partai Ketik terlebih dahulu"
@@ -1055,7 +1055,7 @@ DocType: Lead,Organization Name,Nama Organisasi
 DocType: Tax Rule,Shipping State,Negara Pengirim
 ,Projected Quantity as Source,Proyeksi Jumlah sebagai Sumber
 apps/erpnext/erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.py +62,Item must be added using 'Get Items from Purchase Receipts' button,Item harus ditambahkan dengan menggunakan 'Dapatkan Produk dari Pembelian Penerimaan' tombol
-DocType: Employee,A-,SEBUAH-
+DocType: Employee,A-,A-
 DocType: Production Planning Tool,Include non-stock items,Termasuk item non-saham
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +115,Sales Expenses,Beban Penjualan
 apps/erpnext/erpnext/patches/v4_0/create_price_list_if_missing.py +18,Standard Buying,Standar Pembelian
@@ -1929,7 +1929,7 @@ DocType: Employee,Date of Birth,Tanggal Lahir
 apps/erpnext/erpnext/controllers/sales_and_purchase_return.py +123,Item {0} has already been returned,Item {0} telah dikembalikan
 DocType: Fiscal Year,**Fiscal Year** represents a Financial Year. All accounting entries and other major transactions are tracked against **Fiscal Year**.,** Tahun Anggaran ** mewakili Tahun Keuangan. Semua entri akuntansi dan transaksi besar lainnya dilacak terhadap Tahun Anggaran ** **.
 DocType: Opportunity,Customer / Lead Address,Konsumen / Alamat Kesempatan
-apps/erpnext/erpnext/stock/doctype/item/item.py +208,Warning: Invalid SSL certificate on attachment {0},Peringatan: sertifikat SSL tidak valid pada lampiran {0}
+apps/erpnext/erpnext/stock/doctype/item/item.py +208,Warning: Invalid SSL certificate on attachment {0},Peringatan: Sertifikat SSL tidak valid pada lampiran {0}
 DocType: Student Admission,Eligibility,kelayakan
 DocType: Production Order Operation,Actual Operation Time,Waktu Operasi Aktual
 DocType: Authorization Rule,Applicable To (User),Berlaku Untuk (User)
@@ -2246,7 +2246,7 @@ apps/erpnext/erpnext/setup/doctype/authorization_rule/authorization_rule.py +32,
 DocType: Stock Entry Detail,Basic Rate (as per Stock UOM),Nilai dasar (seperti per Stok UOM)
 DocType: SMS Log,No of Requested SMS,Tidak ada dari Diminta SMS
 apps/erpnext/erpnext/hr/doctype/salary_slip/salary_slip.py +229,Leave Without Pay does not match with approved Leave Application records,Tinggalkan Tanpa Bayar tidak sesuai dengan catatan Cuti Aplikasi disetujui
-DocType: Campaign,Campaign-.####,Promosi-.# # # #
+DocType: Campaign,Campaign-.####,Promosi-.####
 apps/erpnext/erpnext/setup/page/welcome_to_erpnext/welcome_to_erpnext.html +21,Next Steps,Langkah selanjutnya
 apps/erpnext/erpnext/buying/doctype/request_for_quotation/request_for_quotation.js +703,Please supply the specified items at the best possible rates,Silakan memasok barang-barang tertentu dengan tarif terbaik
 apps/erpnext/erpnext/public/js/financial_statements.js +81,End Year,akhir Tahun
@@ -3035,7 +3035,7 @@ apps/erpnext/erpnext/accounts/doctype/account/account_tree.js +26,Name of new Ac
 DocType: BOM Replace Tool,BOM Replace Tool,BOM Replace Tool
 apps/erpnext/erpnext/config/setup.py +37,Country wise default Address Templates,Negara bijaksana Alamat bawaan Template
 DocType: Sales Order Item,Supplier delivers to Customer,Supplier memberikan kepada Konsumen
-apps/erpnext/erpnext/utilities/bot.py +34,[{0}](#Form/Item/{0}) is out of stock,[{0}] (# Form / Item / {0}) adalah keluar dari saham
+apps/erpnext/erpnext/utilities/bot.py +34,[{0}](#Form/Item/{0}) is out of stock,[{0}] (# Form/Item/{0}) habis persediaannya
 apps/erpnext/erpnext/controllers/recurring_document.py +174,Next Date must be greater than Posting Date,Tanggal berikutnya harus lebih besar dari Tanggal Posting
 apps/erpnext/erpnext/public/js/controllers/transaction.js +878,Show tax break-up,Tampilkan pajak break-up
 apps/erpnext/erpnext/accounts/party.py +308,Due / Reference Date cannot be after {0},Karena / Referensi Tanggal tidak boleh setelah {0}
@@ -3614,7 +3614,7 @@ DocType: Request for Quotation Item,Request for Quotation Item,Permintaan Quotat
 DocType: Purchase Order,To Bill,Bill
 DocType: Material Request,% Ordered,Tersusun %
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +62,Piecework,Pekerjaan yg dibayar menurut hasil yg dikerjakan
-apps/erpnext/erpnext/accounts/report/gross_profit/gross_profit.py +69,Avg. Buying Rate,Avg. Tingkat Membeli
+apps/erpnext/erpnext/accounts/report/gross_profit/gross_profit.py +69,Avg. Buying Rate,Harga Beli Rata-rata
 DocType: Task,Actual Time (in Hours),Waktu Aktual (dalam Jam)
 DocType: Employee,History In Company,Sejarah Dalam Perusahaan
 apps/erpnext/erpnext/config/learn.py +112,Newsletters,Newsletter
@@ -3759,7 +3759,7 @@ apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +36,Motion Picture & Vi
 apps/erpnext/erpnext/buying/doctype/supplier_quotation/supplier_quotation_list.js +5,Ordered,Ordered
 DocType: Salary Detail,Component,Komponen
 apps/erpnext/erpnext/accounts/doctype/asset/asset.py +71,Opening Accumulated Depreciation must be less than equal to {0},Membuka Penyusutan Akumulasi harus kurang dari sama dengan {0}
-DocType: Warehouse,Warehouse Name,Gudang Nama
+DocType: Warehouse,Warehouse Name,Nama Gudang
 DocType: Naming Series,Select Transaction,Pilih Transaksi
 apps/erpnext/erpnext/setup/doctype/authorization_rule/authorization_rule.py +30,Please enter Approving Role or Approving User,Entrikan Menyetujui Peran atau Menyetujui Pengguna
 DocType: Journal Entry,Write Off Entry,Menulis Off Entri
@@ -4154,7 +4154,7 @@ DocType: Grade Interval,Grade Interval,kelas Interval
 apps/erpnext/erpnext/accounts/doctype/fiscal_year/fiscal_year.py +88,Fiscal Year Start Date and Fiscal Year End Date are already set in Fiscal Year {0},Tahun Anggaran Tanggal Mulai dan Akhir Tahun Fiskal Tanggal sudah ditetapkan pada Tahun Anggaran {0}
 apps/erpnext/erpnext/accounts/doctype/bank_reconciliation/bank_reconciliation.py +94,Clearance Date updated,Cukai Tanggal diperbarui
 apps/erpnext/erpnext/accounts/doctype/payment_reconciliation/payment_reconciliation.py +131,Successfully Reconciled,Berhasil Direkonsiliasi
-DocType: Request for Quotation Supplier,Download PDF,Download PDF
+DocType: Request for Quotation Supplier,Download PDF,Unduh PDF
 DocType: Production Order,Planned End Date,Tanggal Akhir Planning
 apps/erpnext/erpnext/config/stock.py +179,Where items are stored.,Dimana Item Disimpan
 DocType: Request for Quotation,Supplier Detail,pemasok Detil

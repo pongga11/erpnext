@@ -800,7 +800,7 @@ DocType: Payment Reconciliation,Minimum Invoice Amount,Mindste Faktura Beløb
 apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +107,{0} {1}: Cost Center {2} does not belong to Company {3},{0} {1}: Cost center {2} ikke tilhører Company {3}
 apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +84,{0} {1}: Account {2} cannot be a Group,{0} {1}: Konto {2} kan ikke være en gruppe
 apps/erpnext/erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.py +64,Item Row {idx}: {doctype} {docname} does not exist in above '{doctype}' table,Item Row {IDX}: {doctype} {DOCNAME} findes ikke i ovenstående &#39;{doctype}&#39; tabel
-apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +262,Timesheet {0} is already completed or cancelled,Timesheet {0} er allerede afsluttet eller annulleret
+apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +262,Timesheet {0} is already completed or cancelled,Timeseddel {0} er allerede afsluttet eller annulleret
 DocType: Purchase Invoice,"The day of the month on which auto invoice will be generated e.g. 05, 28 etc","Den dag i den måned, hvor auto faktura vil blive genereret f.eks 05, 28 osv"
 DocType: Asset,Opening Accumulated Depreciation,Åbning Akkumulerede afskrivninger
 apps/erpnext/erpnext/hr/doctype/appraisal/appraisal.js +49,Score must be less than or equal to 5,Score skal være mindre end eller lig med 5
@@ -1698,7 +1698,7 @@ DocType: Packing Slip,To Package No.,At pakke No.
 DocType: Production Planning Tool,Material Requests,Materiale Anmodning
 DocType: Warranty Claim,Issue Date,Udstedelsesdagen
 DocType: Activity Cost,Activity Cost,Aktivitet Omkostninger
-DocType: Sales Invoice Timesheet,Timesheet Detail,timeseddel Detail
+DocType: Sales Invoice Timesheet,Timesheet Detail,Timeseddel Detaljer
 DocType: Purchase Receipt Item Supplied,Consumed Qty,Forbrugt Antal
 apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +52,Telecommunications,Telekommunikation
 DocType: Packing Slip,Indicates that the package is a part of this delivery (Only Draft),"Angiver, at pakken er en del af denne leverance (Kun Udkast)"
@@ -1852,7 +1852,7 @@ DocType: Production Order,Use Multi-Level BOM,Brug Multi-Level BOM
 DocType: Bank Reconciliation,Include Reconciled Entries,Medtag Afstemt Angivelser
 DocType: Leave Control Panel,Leave blank if considered for all employee types,Lad stå tomt hvis det anses for alle typer medarbejderaktier
 DocType: Landed Cost Voucher,Distribute Charges Based On,Distribuere afgifter baseret på
-apps/erpnext/erpnext/templates/pages/projects.html +48,Timesheets,timesedler
+apps/erpnext/erpnext/templates/pages/projects.html +48,Timesheets,Timeseddel
 DocType: HR Settings,HR Settings,HR-indstillinger
 apps/erpnext/erpnext/hr/doctype/expense_claim/expense_claim.js +117,Expense Claim is pending approval. Only the Expense Approver can update status.,Expense krav afventer godkendelse. Kun Expense Godkender kan opdatere status.
 DocType: Email Digest,New Expenses,Nye udgifter
@@ -3021,7 +3021,7 @@ DocType: Hub Settings,Publish Availability,Offentliggøre Tilgængelighed
 DocType: Company,Create Chart Of Accounts Based On,Opret kontoplan baseret på
 apps/erpnext/erpnext/hr/doctype/employee/employee.py +104,Date of Birth cannot be greater than today.,Fødselsdato kan ikke være større end i dag.
 ,Stock Ageing,Stock Ageing
-apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.js +128,Timesheet,timeseddel
+apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.js +128,Timesheet,Timeseddel
 apps/erpnext/erpnext/controllers/accounts_controller.py +241,{0} '{1}' is disabled,{0} &#39;{1}&#39; er deaktiveret
 apps/erpnext/erpnext/crm/doctype/opportunity/opportunity_list.js +13,Set as Open,Sæt som Open
 DocType: Cheque Print Template,Scanned Cheque,scannede Cheque

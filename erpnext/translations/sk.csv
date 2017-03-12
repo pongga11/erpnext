@@ -61,7 +61,7 @@ DocType: Mode of Payment Account,Mode of Payment Account,Způsob platby účtu
 apps/erpnext/erpnext/stock/doctype/item/item.js +52,Show Variants,Zobraziť Varianty
 DocType: Academic Term,Academic Term,akademický Term
 apps/erpnext/erpnext/projects/doctype/project/project_dashboard.py +14,Material,Materiál
-apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +624,Quantity,Množství
+apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +624,Quantity,Množstvo
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +529,Accounts table cannot be blank.,Účty tabuľka nemôže byť prázdne.
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +151,Loans (Liabilities),Úvěry (závazky)
 DocType: Employee Education,Year of Passing,Rok Passing
@@ -188,7 +188,7 @@ apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standar
 DocType: Journal Entry,Contra Entry,Contra Entry
 DocType: Journal Entry Account,Credit in Company Currency,Úverové spoločnosti v mene
 DocType: Delivery Note,Installation Status,Stav instalace
-apps/erpnext/erpnext/controllers/buying_controller.py +316,Accepted + Rejected Qty must be equal to Received quantity for Item {0},Schválené + Zamítnuté množství se musí rovnat množství Přijaté u položky {0}
+apps/erpnext/erpnext/controllers/buying_controller.py +316,Accepted + Rejected Qty must be equal to Received quantity for Item {0},Schválené + Zamietnuté množstvo sa musí rovnať Prijatému množstvu pre položku {0}
 DocType: Request for Quotation,RFQ-,RFQ-
 DocType: Item,Supply Raw Materials for Purchase,Dodávky suroviny pre nákup
 apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +131,At least one mode of payment is required for POS invoice.,pre POS faktúru je nutná aspoň jeden spôsob platby.
@@ -439,8 +439,8 @@ apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py 
 DocType: Journal Entry Account,Sales Order,Predajné objednávky
 apps/erpnext/erpnext/accounts/report/gross_profit/gross_profit.py +68,Avg. Selling Rate,Avg. Prodej Rate
 DocType: Assessment,Examiner Name,Meno Examiner
-apps/erpnext/erpnext/utilities/transaction_base.py +149,Quantity cannot be a fraction in row {0},Množství nemůže být zlomek na řádku {0}
-DocType: Purchase Invoice Item,Quantity and Rate,Množstvo a sadzba
+apps/erpnext/erpnext/utilities/transaction_base.py +149,Quantity cannot be a fraction in row {0},Množstvo nemôže byť zlomok v riadku {0}
+DocType: Purchase Invoice Item,Quantity and Rate,Množstvo a Sadzba
 DocType: Delivery Note,% Installed,% Inštalovaných
 apps/erpnext/erpnext/public/js/setup_wizard.js +378,Classrooms/ Laboratories etc where lectures can be scheduled.,"Učebne / etc laboratória, kde môžu byť naplánované prednášky."
 apps/erpnext/erpnext/accounts/doctype/cost_center/cost_center.js +46,Please enter company name first,"Prosím, zadajte najprv názov spoločnosti"
@@ -698,7 +698,7 @@ apps/erpnext/erpnext/accounts/doctype/account/account.py +25,Company {0} does no
 apps/erpnext/erpnext/buying/page/purchase_analytics/purchase_analytics.js +88,Tree Type,Tree Type
 DocType: BOM Explosion Item,Qty Consumed Per Unit,Množství spotřebované na jednotku
 DocType: Serial No,Warranty Expiry Date,Záruka Datum vypršení platnosti
-DocType: Material Request Item,Quantity and Warehouse,Množství a sklad
+DocType: Material Request Item,Quantity and Warehouse,Množstvo a sklad
 DocType: Sales Invoice,Commission Rate (%),Výška provízie (%)
 DocType: Project,Estimated Cost,odhadované náklady
 apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +7,Aerospace,Aerospace
@@ -1346,7 +1346,7 @@ DocType: Purchase Invoice,Contact Person,Kontaktná osoba
 apps/erpnext/erpnext/projects/doctype/task/task.py +37,'Expected Start Date' can not be greater than 'Expected End Date',"""Očakávaný Dátum Začiatku"" nemôže byť väčší ako ""Očakávaný Dátum Ukončenia"""
 DocType: Course Scheduling Tool,Course End Date,Koniec Samozrejme Dátum
 DocType: Holiday List,Holidays,Prázdniny
-DocType: Sales Order Item,Planned Quantity,Plánované Množství
+DocType: Sales Order Item,Planned Quantity,Plánované Množstvo
 DocType: Purchase Invoice Item,Item Tax Amount,Částka Daně Položky
 DocType: Item,Maintain Stock,Udržiavať Zásoby
 apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py +203,Stock Entries already created for Production Order ,Fotky Položky již vytvořené pro výrobní zakázku
@@ -1501,7 +1501,7 @@ apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py +359,Not allowed t
 apps/erpnext/erpnext/hr/doctype/leave_control_panel/leave_control_panel.py +59,Leaves Allocated Successfully for {0},Listy Přidělené úspěšně za {0}
 apps/erpnext/erpnext/stock/doctype/packing_slip/packing_slip.py +40,No Items to pack,Žádné položky k balení
 DocType: Shipping Rule Condition,From Value,Od hodnoty
-apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py +554,Manufacturing Quantity is mandatory,Výrobní množství je povinné
+apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py +554,Manufacturing Quantity is mandatory,Výrobné množstvo je povinné
 DocType: Products Settings,"If checked, the Home page will be the default Item Group for the website","Ak je zaškrtnuté, domovská stránka bude východiskový bod skupina pre webové stránky"
 DocType: Quality Inspection Reading,Reading 4,Čtení 4
 apps/erpnext/erpnext/config/hr.py +127,Claims for company expense.,Nároky na náklady firmy.
@@ -1575,7 +1575,7 @@ apps/erpnext/erpnext/schools/doctype/student_group/student_group.py +36,Cannot e
 apps/erpnext/erpnext/accounts/doctype/asset_category/asset_category.py +15,{0} must be greater than 0,{0} musí byť väčšia ako 0
 DocType: Manufacturing Settings,Capacity Planning For (Days),Plánovanie kapacít Pro (dni)
 apps/erpnext/erpnext/buying/doctype/supplier/supplier_dashboard.py +10,Procurement,Obstarávanie
-apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py +64,None of the items have any change in quantity or value.,Žiadny z týchto položiek má žiadnu zmenu v množstve alebo hodnote.
+apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py +64,None of the items have any change in quantity or value.,Žiadna z týchto položiek nemá zmenu v množstve alebo hodnote.
 apps/erpnext/erpnext/maintenance/doctype/maintenance_visit/maintenance_visit.js +32,Warranty Claim,Záruční reklamace
 ,Lead Details,Podrobnosti Obchodnej iniciatívy
 DocType: Vehicle Log,Service_Details,Service_Details
@@ -1604,7 +1604,7 @@ DocType: Payment Entry,Paid Amount (Company Currency),Zaplatená suma (Company m
 DocType: Purchase Invoice,Additional Discount,Ďalšie zľavy
 DocType: Selling Settings,Selling Settings,Nastavenia pre Predaj
 apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +39,Online Auctions,Aukce online
-apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py +98,Please specify either Quantity or Valuation Rate or both,"Uveďte prosím buď Množství nebo ocenění Cena, nebo obojí"
+apps/erpnext/erpnext/stock/doctype/stock_reconciliation/stock_reconciliation.py +98,Please specify either Quantity or Valuation Rate or both,"Uveďte prosím buď Množstvo alebo Pomer ocenenia, alebo obidve."
 apps/erpnext/erpnext/selling/doctype/sales_order/sales_order_dashboard.py +14,Fulfillment,splnenie
 apps/erpnext/erpnext/templates/generators/item.html +67,View in Cart,Zobraziť Košík
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +101,Marketing Expenses,Marketingové náklady
@@ -1792,7 +1792,7 @@ DocType: Website Item Group,Website Item Group,Website Item Group
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +147,Duties and Taxes,Odvody a dane
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +343,Please enter Reference date,"Prosím, zadejte Referenční den"
 apps/erpnext/erpnext/accounts/report/payment_period_based_on_invoice_date/payment_period_based_on_invoice_date.py +44,{0} payment entries can not be filtered by {1},{0} platobné položky nemôžu byť filtrované podľa {1}
-DocType: Item Website Specification,Table for Item that will be shown in Web Site,"Tabulka k bodu, který se zobrazí na webových stránkách"
+DocType: Item Website Specification,Table for Item that will be shown in Web Site,"Tabuľka k Položke, která sa zobrazí na webových stránkách"
 DocType: Purchase Order Item Supplied,Supplied Qty,Dodávané Množstvo
 DocType: Purchase Order Item,Material Request Item,Materiál Žádost o bod
 apps/erpnext/erpnext/config/selling.py +75,Tree of Item Groups.,Strom skupiny položek.
@@ -1986,7 +1986,7 @@ apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +12,Banking,Bankovnictv
 DocType: Vehicle Service,Service Item,servis Položka
 apps/erpnext/erpnext/maintenance/doctype/maintenance_schedule/maintenance_schedule.py +39,Please click on 'Generate Schedule' to get schedule,"Prosím, klikněte na ""Generovat Schedule"", aby se plán"
 apps/erpnext/erpnext/schools/doctype/course_scheduling_tool/course_scheduling_tool.py +55,There were errors while deleting following schedules:,Došlo k chybám počas odstraňovania tejto schémy:
-DocType: Bin,Ordered Quantity,Objednané množství
+DocType: Bin,Ordered Quantity,Objednané množstvo
 apps/erpnext/erpnext/public/js/setup_wizard.js +52,"e.g. ""Build tools for builders""","napríklad ""Nástroje pre stavbárov """
 apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +121,{0} {1}: Accounting Entry for {2} can only be made in currency: {3},{0} {1}: Účtovné Vstup pre {2} môžu vykonávať len v mene: {3}
 DocType: Production Order,In Process,V procesu
@@ -2065,7 +2065,7 @@ DocType: Vehicle Log,VLOG.,Vlog.
 DocType: Branch,Branch,Větev
 DocType: Guardian,Mobile Number,Telefónne číslo
 apps/erpnext/erpnext/config/setup.py +61,Printing and Branding,Tisk a identita
-DocType: Bin,Actual Quantity,Skutečné Množství
+DocType: Bin,Actual Quantity,Skutočné Množstvo
 DocType: Shipping Rule,example: Next Day Shipping,Příklad: Next Day Shipping
 apps/erpnext/erpnext/maintenance/doctype/maintenance_schedule/maintenance_schedule.py +188,Serial No {0} not found,Pořadové číslo {0} nebyl nalezen
 apps/erpnext/erpnext/schools/report/student_batch_wise_attendance/student_batch_wise_attendance.py +41,Student Batch,študent Batch
@@ -2304,7 +2304,7 @@ DocType: Homepage,Homepage,Úvodné
 DocType: Purchase Receipt Item,Recd Quantity,Recd Množství
 apps/erpnext/erpnext/schools/doctype/program_enrollment/program_enrollment.py +56,Fee Records Created - {0},Fee Records Vytvoril - {0}
 DocType: Asset Category Account,Asset Category Account,Asset Kategórie Account
-apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.py +105,Cannot produce more Item {0} than Sales Order quantity {1},Nelze produkují více položku {0} než prodejní objednávky množství {1}
+apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.py +105,Cannot produce more Item {0} than Sales Order quantity {1},Nie je možné vyrobiť viac Položiek {0} ako je množstvo na predajnej objednávke {1}
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +522,Stock Entry {0} is not submitted,Sklad Entry {0} nie je predložená
 DocType: Payment Reconciliation,Bank / Cash Account,Bank / Peněžní účet
 DocType: Tax Rule,Billing City,Fakturácia City
@@ -2528,7 +2528,7 @@ apps/erpnext/erpnext/schools/doctype/discussion/discussion.py +33,Discussions,di
 DocType: BOM Item,Scrap %,Scrap%
 apps/erpnext/erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.js +45,"Charges will be distributed proportionately based on item qty or amount, as per your selection","Poplatky budou rozděleny úměrně na základě položky Množství nebo částkou, dle Vašeho výběru"
 DocType: Maintenance Visit,Purposes,Cíle
-apps/erpnext/erpnext/controllers/sales_and_purchase_return.py +105,Atleast one item should be entered with negative quantity in return document,Aspon jedna položka by mala byť zadaná s negatívnym množstvo vo vratnom dokumente
+apps/erpnext/erpnext/controllers/sales_and_purchase_return.py +105,Atleast one item should be entered with negative quantity in return document,Aspoň jedna položka by mala byť zadaná s negatívnym množstvom vo vratnom dokumente
 apps/erpnext/erpnext/manufacturing/doctype/workstation/workstation.py +71,"Operation {0} longer than any available working hours in workstation {1}, break down the operation into multiple operations","Prevádzka {0} dlhšie, než všetkých dostupných pracovných hodín v pracovnej stanici {1}, rozložiť prevádzku do niekoľkých operácií"
 ,Requested,Požadované
 apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py +84,No Remarks,Žiadne poznámky
@@ -2892,7 +2892,7 @@ DocType: Purchase Order Item Supplied,Stock UOM,Skladová MJ
 apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py +218,Purchase Order {0} is not submitted,Vydaná objednávka {0} není odeslána
 apps/erpnext/erpnext/stock/doctype/item/item.js +33,Projected,Plánovaná
 apps/erpnext/erpnext/stock/doctype/serial_no/serial_no.py +218,Serial No {0} does not belong to Warehouse {1},Pořadové číslo {0} nepatří do skladu {1}
-apps/erpnext/erpnext/controllers/status_updater.py +161,Note: System will not check over-delivery and over-booking for Item {0} as quantity or amount is 0,Poznámka: Systém nebude kontrolovat přes dobírku a over-rezervace pro item {0} jako množství nebo částka je 0
+apps/erpnext/erpnext/controllers/status_updater.py +161,Note: System will not check over-delivery and over-booking for Item {0} as quantity or amount is 0,"Poznámka: Systém nebude kontrolovať nad-dodávku a nad-rezerváciu pre Položku {0} , keďže množstvo alebo čiastka je 0"
 DocType: Notification Control,Quotation Message,Správa k ponuke
 DocType: Issue,Opening Date,Datum otevření
 apps/erpnext/erpnext/schools/api.py +66,Attendance has been marked successfully.,Účasť bola úspešne označená.
@@ -3236,7 +3236,7 @@ DocType: BOM Replace Tool,The new BOM after replacement,Nový BOM po výměně
 apps/erpnext/erpnext/accounts/page/pos/pos.js +631,Point of Sale,Místo Prodeje
 DocType: Payment Entry,Received Amount,prijatej Suma
 DocType: Payment Entry,Party Name,Meno Party
-DocType: Production Planning Tool,"Create for full quantity, ignoring quantity already on order","Vytvorte pre plnú množstvo, ignorovať množstvo už na objednávku"
+DocType: Production Planning Tool,"Create for full quantity, ignoring quantity already on order","Vytvorte pre celkové množstvo, ignorujte množstvo už na objednávke"
 DocType: Account,Tax,Daň
 apps/erpnext/erpnext/schools/report/student_batch_wise_attendance/student_batch_wise_attendance.py +45,Not Marked,neoznačený
 DocType: Production Planning Tool,Production Planning Tool,Plánování výroby Tool
@@ -3248,7 +3248,7 @@ apps/erpnext/erpnext/public/js/setup_wizard.js +299,Gram,gram
 apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.py +378,Quantity to Manufacture must be greater than 0.,"Množstvo, ktoré má výroba musí byť väčšia ako 0 ° C."
 apps/erpnext/erpnext/config/maintenance.py +17,Visit report for maintenance call.,Navštivte zprávu pro volání údržby.
 DocType: Stock Entry,Update Rate and Availability,Obnovovaciu rýchlosť a dostupnosť
-DocType: Stock Settings,Percentage you are allowed to receive or deliver more against the quantity ordered. For example: If you have ordered 100 units. and your Allowance is 10% then you are allowed to receive 110 units.,"Procento máte možnost přijímat nebo dodávat více proti objednaného množství. Například: Pokud jste si objednali 100 kusů. a váš příspěvek je 10%, pak máte možnost získat 110 jednotek."
+DocType: Stock Settings,Percentage you are allowed to receive or deliver more against the quantity ordered. For example: If you have ordered 100 units. and your Allowance is 10% then you are allowed to receive 110 units.,"Percento, ktoré máte možnosť prijať alebo dodať naviac oproti objednanému množstvu. Napríklad: Keď ste si objednali 100 kusov a váša tolerancia je 10%, tak máte možnosť prijať 110 kusov."
 DocType: POS Customer Group,Customer Group,Zákazník Group
 apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py +186,Expense account is mandatory for item {0},Účtet nákladů je povinný pro položku {0}
 DocType: Item,Website Description,Popis webu
@@ -3404,7 +3404,7 @@ apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standar
 apps/erpnext/erpnext/selling/doctype/sales_order/sales_order.py +192,Sales Invoice {0} must be cancelled before cancelling this Sales Order,Prodejní faktury {0} musí být zrušena před zrušením této prodejní objednávky
 apps/erpnext/erpnext/accounts/report/payment_period_based_on_invoice_date/payment_period_based_on_invoice_date.py +60,Age,Věk
 DocType: Sales Invoice Timesheet,Billing Amount,Fakturácia Suma
-apps/erpnext/erpnext/stock/doctype/packing_slip/packing_slip.js +84,Invalid quantity specified for item {0}. Quantity should be greater than 0.,Neplatný množství uvedené na položku {0}. Množství by mělo být větší než 0.
+apps/erpnext/erpnext/stock/doctype/packing_slip/packing_slip.js +84,Invalid quantity specified for item {0}. Quantity should be greater than 0.,Neplatné množstvo uvedené pre položku {0}. Množstvo by malo byť väčšie než 0.
 apps/erpnext/erpnext/config/hr.py +60,Applications for leave.,Žádosti o dovolenou.
 apps/erpnext/erpnext/accounts/doctype/account/account.py +202,Account with existing transaction can not be deleted,Účet s transakcemi nemůže být smazán
 DocType: Vehicle,Last Carbon Check,Posledné Carbon Check
@@ -3678,7 +3678,7 @@ DocType: BOM Scrap Item,BOM Scrap Item,BOM Scrap Item
 apps/erpnext/erpnext/accounts/doctype/account/account.py +117,"Account balance already in Debit, you are not allowed to set 'Balance Must Be' as 'Credit'","Zůstatek na účtu již v inkasa, není dovoleno stanovit ""Balance musí být"" jako ""úvěru"""
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +77,Quality Management,Řízení kvality
 apps/erpnext/erpnext/accounts/doctype/asset/asset.py +40,Item {0} has been disabled,Item {0} bol zakázaný
-apps/erpnext/erpnext/buying/doctype/purchase_common/purchase_common.py +47,Please enter quantity for Item {0},"Zadejte prosím množství produktů, bod {0}"
+apps/erpnext/erpnext/buying/doctype/purchase_common/purchase_common.py +47,Please enter quantity for Item {0},Zadajte prosím množstvo pre Položku {0}
 DocType: Employee External Work History,Employee External Work History,Zaměstnanec vnější práce History
 DocType: Tax Rule,Purchase,Nákup
 apps/erpnext/erpnext/stock/report/batch_wise_balance_history/batch_wise_balance_history.py +36,Balance Qty,Zůstatek Množství
@@ -3805,7 +3805,7 @@ apps/erpnext/erpnext/stock/doctype/warehouse/warehouse.py +216,Warehouses with c
 DocType: BOM,Manage cost of operations,Správa nákladů na provoz
 DocType: Notification Control,"When any of the checked transactions are ""Submitted"", an email pop-up automatically opened to send an email to the associated ""Contact"" in that transaction, with the transaction as an attachment. The user may or may not send the email.","Když některý z kontrolovaných operací je ""Odesláno"", email pop-up automaticky otevřeny poslat e-mail na přidružené ""Kontakt"" v této transakci, s transakcí jako přílohu. Uživatel může, ale nemusí odeslat e-mail."
 apps/erpnext/erpnext/config/setup.py +14,Global Settings,Globálne nastavenia
-DocType: Employee Education,Employee Education,Vzdělávání zaměstnanců
+DocType: Employee Education,Employee Education,Vzdelávanie zamestnancov
 apps/erpnext/erpnext/accounts/doctype/pos_profile/pos_profile.py +46,Duplicate item group found in the item group table,Duplicitné skupinu položiek uvedené v tabuľke na položku v skupine
 apps/erpnext/erpnext/public/js/controllers/transaction.js +894,It is needed to fetch Item Details.,"Je potrebné, aby priniesla Detaily položky."
 DocType: Salary Slip,Net Pay,Net Pay
@@ -4083,7 +4083,7 @@ DocType: Item,"Example: ABCD.#####
 If series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.","Příklad:. ABCD ##### 
  Je-li série nastavuje a pořadové číslo není uvedeno v transakcích, bude vytvořen poté automaticky sériové číslo na základě této série. Pokud chcete vždy výslovně uvést pořadová čísla pro tuto položku. ponechte prázdné."
 DocType: Upload Attendance,Upload Attendance,Nahráť Dochádzku
-apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.js +113,BOM and Manufacturing Quantity are required,BOM a výroba množstva sú povinné
+apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.js +113,BOM and Manufacturing Quantity are required,BOM a Výrobné množstvo sú povinné
 apps/erpnext/erpnext/accounts/report/accounts_payable/accounts_payable.js +44,Ageing Range 2,Stárnutí rozsah 2
 DocType: SG Creation Tool Course,Max Strength,Max Sila
 apps/erpnext/erpnext/manufacturing/doctype/bom_replace_tool/bom_replace_tool.py +21,BOM replaced,BOM nahradil
@@ -4119,7 +4119,7 @@ DocType: Account,Equity,Hodnota majetku
 apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +74,{0} {1}: 'Profit and Loss' type account {2} not allowed in Opening Entry,{0} {1}: &quot;výkaz ziskov a strát&quot; typ účtu {2} nie je povolený vstup do Otváracia Entry
 DocType: Sales Order,Printing Details,Tlač detailov
 DocType: Task,Closing Date,Uzávěrka Datum
-DocType: Sales Order Item,Produced Quantity,Produkoval Množství
+DocType: Sales Order Item,Produced Quantity,Vyrobené Množstvo
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +85,Engineer,Inženýr
 DocType: Journal Entry,Total Amount Currency,Celková suma Mena
 apps/erpnext/erpnext/stock/report/bom_search/bom_search.js +38,Search Sub Assemblies,Vyhľadávanie Sub Assemblies
@@ -4230,7 +4230,7 @@ apps/erpnext/erpnext/config/setup.py +83,Create rules to restrict transactions b
 DocType: HR Settings,"If checked, Total no. of Working Days will include holidays, and this will reduce the value of Salary Per Day","Pokud je zaškrtnuto, Total no. pracovních dnů bude zahrnovat dovolenou, a to sníží hodnotu platu za každý den"
 DocType: Purchase Invoice,Total Advance,Total Advance
 apps/erpnext/erpnext/schools/doctype/academic_term/academic_term.py +22,The Term End Date cannot be earlier than the Term Start Date. Please correct the dates and try again.,Termínovaný Dátum ukončenia nesmie byť starší ako Počiatočný dátum doby platnosti. Opravte dáta a skúste to znova.
-DocType: Stock Reconciliation Item,Quantity Difference,množstvo Rozdiel
+DocType: Stock Reconciliation Item,Quantity Difference,Množstvo Rozdiel
 apps/erpnext/erpnext/config/hr.py +268,Processing Payroll,Spracovanie miezd
 DocType: Opportunity Item,Basic Rate,Základná sadzba
 DocType: GL Entry,Credit Amount,Výška úveru
@@ -4264,9 +4264,9 @@ apps/erpnext/erpnext/buying/doctype/request_for_quotation/request_for_quotation.
 apps/erpnext/erpnext/accounts/report/financial_statements.py +87,End Year cannot be before Start Year,Koniec roka nemôže byť pred uvedením do prevádzky roku
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +177,Employee Benefits,Zamestnanecké benefity
 DocType: Sales Invoice,Is POS,Je POS
-apps/erpnext/erpnext/stock/doctype/delivery_note/delivery_note.py +234,Packed quantity must equal quantity for Item {0} in row {1},Balíčky množství se musí rovnat množství pro položku {0} v řadě {1}
+apps/erpnext/erpnext/stock/doctype/delivery_note/delivery_note.py +234,Packed quantity must equal quantity for Item {0} in row {1},Balené množstvo se musí rovnať množstvu pre položku {0} v riadku {1}
 DocType: Production Order,Manufactured Qty,Vyrobeno Množství
-DocType: Purchase Receipt Item,Accepted Quantity,Schválené Množství
+DocType: Purchase Receipt Item,Accepted Quantity,Schválené Množstvo
 apps/erpnext/erpnext/hr/doctype/employee/employee.py +230,Please set a default Holiday List for Employee {0} or Company {1},Prosím nastaviť predvolené Holiday List pre zamestnancov {0} alebo {1} Company
 apps/erpnext/erpnext/accounts/party.py +25,{0}: {1} does not exists,{0}: {1} neexistuje
 apps/erpnext/erpnext/config/accounts.py +12,Bills raised to Customers.,Směnky vznesené zákazníkům.
@@ -4284,7 +4284,7 @@ apps/erpnext/erpnext/hr/doctype/salary_slip/salary_slip.py +250,Employee relieve
 DocType: Item,"Selecting ""Yes"" will give a unique identity to each entity of this item which can be viewed in the Serial No master.","Výběrem ""Yes"" dá jedinečnou identitu každého subjektu této položky, které lze zobrazit v sériové číslo mistra."
 DocType: Guardian,Guardian,poručník
 apps/erpnext/erpnext/hr/doctype/appraisal/appraisal.py +39,Appraisal {0} created for Employee {1} in the given date range,Posouzení {0} vytvořil pro zaměstnance {1} v daném časovém období
-DocType: Employee,Education,Vzdělání
+DocType: Employee,Education,Vzdelanie
 DocType: Selling Settings,Campaign Naming By,Kampaň Pojmenování By
 DocType: Employee,Current Address Is,Aktuální adresa je
 apps/erpnext/erpnext/accounts/doctype/account/account_tree.js +51,"Optional. Sets company's default currency, if not specified.","Voliteľné. Nastaví východiskovej mene spoločnosti, ak nie je uvedené."

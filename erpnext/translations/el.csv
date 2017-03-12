@@ -962,7 +962,7 @@ apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py +615,
 DocType: Purchase Invoice Item,Purchase Order Item,Είδος παραγγελίας αγοράς
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +130,Indirect Income,Έμμεσα έσοδα
 DocType: Student Attendance Tool,Student Attendance Tool,Εργαλείο φοίτηση μαθητή
-DocType: Cheque Print Template,Date Settings,ημερομηνία Ρυθμίσεις
+DocType: Cheque Print Template,Date Settings,Ρυθμίσεις ημερομηνίας
 apps/erpnext/erpnext/accounts/report/budget_variance_report/budget_variance_report.py +48,Variance,Διακύμανση
 ,Company Name,Όνομα εταιρείας
 DocType: SMS Center,Total Message(s),Σύνολο μηνυμάτων

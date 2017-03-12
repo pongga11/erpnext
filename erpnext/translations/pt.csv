@@ -207,7 +207,7 @@ DocType: Depreciation Schedule,Make Depreciation Entry,Efetuar Registo de Deprec
 DocType: Appraisal Template Goal,KRA,ACR
 DocType: Lead,Request Type,Tipo de Solicitação
 DocType: Leave Application,Reason,Motivo
-apps/erpnext/erpnext/hr/doctype/offer_letter/offer_letter.js +15,Make Employee,Tornar Funcionário
+apps/erpnext/erpnext/hr/doctype/offer_letter/offer_letter.js +15,Make Employee,Crie um Funcionário
 apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +14,Broadcasting,Transmissão
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +150,Execution,Execução
 apps/erpnext/erpnext/config/manufacturing.py +62,Details of the operations carried out.,Os dados das operações realizadas.
@@ -584,7 +584,7 @@ DocType: Training Result Employee,Training Result Employee,Resultado treinamento
 DocType: Warehouse,A logical Warehouse against which stock entries are made.,Um Armazém lógico no qual são feitos lançamentos de estoque.
 DocType: Sales Invoice Timesheet,Sales Invoice Timesheet,Vendas Fatura quadro de horários
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +107,Reference No & Reference Date is required for {0},O Nº de Referência e a Data de Referência são necessários para {0}
-DocType: Process Payroll,Select Payment Account to make Bank Entry,Seleccione Conta de pagamento para fazer Banco Entry
+DocType: Process Payroll,Select Payment Account to make Bank Entry,Seleccione Conta de pagamento para fazer Registo Bancário
 apps/erpnext/erpnext/support/doctype/issue/issue.js +24,Add to Knowledge Base,Adicionar à Base de Conhecimento
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +149,Proposal Writing,Elaboração de Proposta
 DocType: Payment Entry Deduction,Payment Entry Deduction,Dedução de Registo de Pagamento
@@ -1609,7 +1609,7 @@ apps/erpnext/erpnext/templates/generators/item.html +67,View in Cart,Ver Carrinh
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +101,Marketing Expenses,Despesas de Marketing
 ,Item Shortage Report,Comunicação de Falta de Item
 apps/erpnext/erpnext/stock/doctype/item/item.js +232,"Weight is mentioned,\nPlease mention ""Weight UOM"" too","Peso é mencionado, \n Mencione ""Peso UOM"" também"
-DocType: Stock Entry Detail,Material Request used to make this Stock Entry,Solicitação de Material utilizada para efetuar este Registo de Stock
+DocType: Stock Entry Detail,Material Request used to make this Stock Entry,Solicitação de Material utilizado para efetuar este Registo de Stock
 apps/erpnext/erpnext/accounts/doctype/asset/asset.py +67,Next Depreciation Date is mandatory for new asset,É obrigatório colocar a Próxima Data de Depreciação para novos ativos
 apps/erpnext/erpnext/config/support.py +32,Single unit of an Item.,Única unidade de um item.
 DocType: Fee Category,Fee Category,Categoria de Propina
@@ -2995,7 +2995,7 @@ apps/erpnext/erpnext/accounts/utils.py +432,Journal Entries {0} are un-linked,Os
 apps/erpnext/erpnext/config/crm.py +74,"Record of all communications of type email, phone, chat, visit, etc.","Registar todas as comunicações do tipo de email, telefone, chat, visita, etc."
 DocType: Manufacturer,Manufacturers used in Items,Fabricantes utilizados nos Itens
 apps/erpnext/erpnext/accounts/general_ledger.py +140,Please mention Round Off Cost Center in Company,"Por favor, mencione o Centro de Custo de Arredondamentos na Empresa"
-DocType: Purchase Invoice,Terms,Voorwaarden
+DocType: Purchase Invoice,Terms,Termos
 DocType: Academic Term,Term Name,Nome prazo
 DocType: Buying Settings,Purchase Order Required,Ordem de Compra Obrigatória
 ,Item-wise Sales History,Histórico de Vendas de Item Inteligente
@@ -3526,7 +3526,7 @@ Updated via 'Time Log'",em Minutos Atualizado através do 'Registo de Tempo'
 DocType: Customer,From Lead,Do Potencial Cliente
 apps/erpnext/erpnext/config/manufacturing.py +13,Orders released for production.,Pedidos dispensados para a produção.
 apps/erpnext/erpnext/public/js/account_tree_grid.js +67,Select Fiscal Year...,Selecione o ano fiscal ...
-apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +512,POS Profile required to make POS Entry,É necessário colocar o Perfil POS para efetuar um Regito POS
+apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +512,POS Profile required to make POS Entry,É necessário colocar o Perfil POS para efetuar um Registo POS
 DocType: Program Enrollment Tool,Enroll Students,Matricular Estudantes
 DocType: Hub Settings,Name Token,Nome do Token
 apps/erpnext/erpnext/patches/v4_0/create_price_list_if_missing.py +21,Standard Selling,venda padrão
@@ -4408,7 +4408,7 @@ apps/erpnext/erpnext/controllers/status_updater.py +196,"To allow over-billing o
 DocType: Global Defaults,Do not show any symbol like $ etc next to currencies.,Não mostrar qualquer símbolo como $ ao lado das moedas.
 apps/erpnext/erpnext/hr/doctype/leave_application/leave_application.py +435, (Half Day),(Meio Dia)
 DocType: Supplier,Credit Days,Dias de Crédito
-DocType: Student Batch Creation Tool,Make Student Batch,Faça Lote Student
+DocType: Student Batch Creation Tool,Make Student Batch,Faça um Lote de Estudante
 DocType: Leave Type,Is Carry Forward,É para Continuar
 apps/erpnext/erpnext/stock/doctype/material_request/material_request.js +725,Get Items from BOM,Obter itens da LDM
 apps/erpnext/erpnext/stock/report/itemwise_recommended_reorder_level/itemwise_recommended_reorder_level.py +41,Lead Time Days,Dias para Chegar ao Armazém
