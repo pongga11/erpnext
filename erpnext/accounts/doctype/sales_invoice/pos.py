@@ -143,11 +143,17 @@ def get_items_list(pos_profile):
 		select
 			name, item_code, item_name, description, item_group, expense_account, has_batch_no,
 			has_serial_no, expense_account, selling_cost_center, stock_uom, image, 
-			default_warehouse, is_stock_item, barcode, brand
+			default_warehouse, is_stock_item, barcode, brand, tabItem.*,
+			(
+				SELECT count(SI.idx)
+				FROM `tabSales Invoice Item` SI 
+    				WHERE tabItem.item_code = SI.item_code
+    				AND date(SI.creation) BETWEEN date(date_add(now(), INTERVAL -30 day)) AND date(now())
+			) AS `sum`
 		from
 			tabItem
 		where
-			disabled = 0 and has_variants = 0 and is_sales_item = 1 and {cond}
+			disabled = 0 and has_variants = 0 and is_sales_item = 1 and {cond} ORDER BY `sum` DESC, tabItem.item_code
 		""".format(cond=cond), tuple(item_groups), as_dict=1)
 
 def get_item_groups(pos_profile):

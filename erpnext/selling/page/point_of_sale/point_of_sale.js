@@ -220,6 +220,8 @@ erpnext.pos.PointOfSale = class PointOfSale {
 	}
 
 	update_cart_data(item) {
+
+		console.log(item);
 		this.cart.add_item(item);
 		this.cart.update_taxes_and_totals();
 		this.cart.update_grand_total();
@@ -274,6 +276,8 @@ erpnext.pos.PointOfSale = class PointOfSale {
 					});
 
 					this.toggle_editing();
+					console.log('Print Now!!!');
+					this.print_now();
 					this.set_form_action();
 				}
 			});
@@ -388,9 +392,18 @@ erpnext.pos.PointOfSale = class PointOfSale {
 		});
 	}
 
+	print_now() {
+		if (this.pos_profile && this.pos_profile.print_format_for_online) {
+                    this.frm.meta.default_print_format = this.pos_profile.print_format_for_online
+                   }
+                this.frm.print_preview.printit(true);
+	
+	}
+
 	set_form_action() {
 		if(this.frm.doc.docstatus !== 1) return;
 
+		
 		this.page.set_secondary_action(__("Print"), () => {
 			if (this.pos_profile && this.pos_profile.print_format_for_online) {
 				this.frm.meta.default_print_format = this.pos_profile.print_format_for_online;
@@ -1002,6 +1015,9 @@ class POSItems {
 	}
 
 	set_item_in_the_cart(items, serial_no, batch_no, barcode) {
+
+		console.log(items);
+
 		if (serial_no) {
 			this.events.update_cart(items[0].item_code,
 				'serial_no', serial_no);

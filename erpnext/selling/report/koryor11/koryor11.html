@@ -1,0 +1,164 @@
+
+<style>
+    .print-format table, .print-format tr,
+    .print-format td, .print-format div, .print-format p {
+        font-family: Monospace;
+        line-height: 200%;
+        vertical-align: middle;
+    }
+
+    @media screen {
+        .print-format {
+            max-width: 13in;
+            padding: 0.25in;
+            min-height: 8.5in;
+        }
+    }
+</style>
+
+
+
+{% for(var i=0, l=data.length; i<l; i++) { %}
+
+
+	{% if (i==0 || (data[i][__("item_name")] != data[i-1][__("item_name")])) && i != data.length-1 %}
+
+         {% var c=1; %}
+
+            <h5 class="text-right" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">แบบ ข.ย. ๑๑</h5>
+            <h3 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บัญชีการขายยาอันตราย เฉพาะรายการยาที่เลขาธิการคณะกรรมการอาหารและยากำหนด</h3>
+            <h4 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บ้านยายิ้ม</h4>
+
+             <div style="margin-left: 20mm">
+
+                <p>ชื่อยา.....................{%= data[i][__("item_name")]  %} - {%= data[i][__("generic_name")] %} .........................................</p>
+                <p>ชื่อผู้ผลิต / ผู้นำเข้า...................................เลขที่หรืออักษรของครั้งที่ผลิต....................ขนาดบรรจุ..........{%= data[i][__("uom")] %}..........</p>
+                <p>ได้มาจาก..........{%= data[i][__("supplier")] %}..........จำนวนรับ............................วันที่รับ...............................</p>
+            </div>
+            <hr>
+            <table class="table table-bordered">
+                    <thead>
+                            <tr>
+                                    <th style="width: 5%; text-align: center;">ลำดับที่</th>
+                                    <th style="width: 15%; text-align: center;">วันที่</th>
+                                    <th style="width: 20%; text-align: center;">จำนวน/ปริมาณที่ขาย</th>
+                                    <th style="width: 20%; text-align: center;">ชื่อ สกุล ผู้ซื้อ</th>
+                                    <th style="width: 20%; text-align: center;">ลายมือชื่อผู้มีหน้าที่ปฏิบัติการ</th>
+                                    <th style="width: 20%; text-align: center;">หมายเหตุ</th>
+                                    
+                            </tr>
+                    </thead>
+                    <tbody>
+	{% endif %}
+
+            	<tr>
+            		<td style="text-align: center;"> {%= c %} </td>
+            		<td style="text-align: center;"> {%=  dateutil.str_to_user( data[i][__("creation_date")] )  %} </td>
+            		<td style="text-align: center;"> {%= data[i][__("qty")] %} {%= data[i][__("uom")] %}</td>
+            		<td style="text-align: center;"> {%= data[i][__("customer")] %} </td>
+            		<td style="text-align: center;"> </td>
+            		<td style="text-align: center;"> </td>
+            		
+            		
+            	</tr>
+                {% var c=c+1; %}
+
+	
+	{% if i != data.length-1  && data[i][__("item_name")] != data[i+1][__("item_name")] %}
+                    </tbody>
+
+            </table>
+
+        <p style="page-break-before: always">
+	{% endif %}
+
+    {% if i == data.length-1  %}
+                    </tbody>
+
+            </table>
+
+        <p style="page-break-before: always">
+    {% endif %}
+        
+{% } %}
+
+
+{% for(var i=0, l=data.length; i<l; i++) { %}
+    {% if (i==0 || (data[i][__("item_name")] != data[i-1][__("item_name")])) && i != data.length-1 %}
+
+        {% var c=1; %}
+
+        <h5 class="text-right" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">แบบ ข.ย. ๑๓</h5>
+        <h3 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">รายงานการขายยาตามที่เลขาธิการคณะกรรมการอาหารและยากำหนด</h3>
+        <h4 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บ้านยายิ้ม</h4>
+        <h5 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">146 ม.22 ต.นอกเมือง อ.เมือง จ.สุรินทร์</h5>
+
+        <div style="margin-left: 20mm">
+            
+            <p>ชื่อยา.....................{%= data[i][__("item_name")]  %} - {%= data[i][__("generic_name")] %} .........................................</p>
+            <p>ชื่อผู้ผลิต / ผู้นำเข้า...................................เลขที่หรืออักษรของครั้งที่ผลิต....................ขนาดบรรจุ..........{%= data[i][__("uom")] %}..........</p>
+            <p>ได้มาจาก..........{%= data[i][__("supplier")] %}..........จำนวนรับ............................วันที่รับ...............................</p>
+
+        </div>
+
+        <table class="table table-bordered">
+                <thead>
+                        <tr>
+                                <th rowspan="2" style="width: 5%; text-align: center;">ลำดับที่</th>
+                                <th rowspan="2" style="width: 15%; text-align: center;">วัน เดือน ปี ที่ขาย</th>
+                                <th colspan="2" style="width: 20%; text-align: center;">จ่ายไปให้</th>
+                                <th colspan="2" style="width: 20%; text-align: center;">จำนวน/ปริมาณ</th>
+                                <th rowspan="2" style="width: 20%; text-align: center;">หมายเหตุ</th>
+
+                        </tr>
+                         <tr>
+                                
+                                <th style="width: 20%; text-align: center;">ชื่อและที่อยู่</th>
+                                <th style="width: 20%; text-align: center;">ประเภท</th>
+                                <th style="width: 20%; text-align: center;">ขาย(หน่วยนับ)</th>
+                                <th style="width: 20%; text-align: center;">คงเหลือ(หน่วยนับ)</th>
+
+                        </tr>
+
+                </thead>
+        	   <tbody>
+    {% endif %}
+                    <tr>
+                        <td style="text-align: center;"> {%= c %}  </td>
+                        <td style="text-align: center;"> {%=  dateutil.str_to_user( data[i][__("creation_date")] )  %} </td>
+    			        <td style="text-align: center;"> {%= data[i][__("customer")] %} </td>
+    			        <td style="text-align: center;">  </td>
+                        <td style="text-align: center;"> {%= data[i][__("qty")] %} {%= data[i][__("uom")] %}</td>
+    			        <td style="text-align: center;"> {%= data[i][__("actual_qty")] %} {%= data[i][__("uom")] %}</td>
+                        <td style="text-align: center;"> </td>
+                    </tr>
+
+                         {% var c=c+1; %}
+    {% if i != data.length-1  && data[i][__("item_name")] != data[i+1][__("item_name")] %}
+            </tbody>
+
+        </table>
+
+
+        <h5 style="margin-left: 60%">(ลายมือชื่อ)...............................................ผู้รับอนุญาต</h5>
+        <h5 style="margin-left: 60%">(ลายมือชื่อ)...............................................ผู้มีหน้าที่ปฏิบัติการ</h5>
+
+        <p style="page-break-before: always">
+    {% endif %}
+
+     {% if i == data.length-1  %}
+        </tbody>
+
+        </table>
+
+
+        <h5 style="margin-left: 60%">(ลายมือชื่อ)...............................................ผู้รับอนุญาต</h5>
+        <h5 style="margin-left: 60%">(ลายมือชื่อ)...............................................ผู้มีหน้าที่ปฏิบัติการ</h5>
+
+        <p style="page-break-before: always">
+     {% endif %}
+
+{% } %}
+
+
+

@@ -13,7 +13,16 @@ erpnext.payments = erpnext.stock.StockController.extend({
 		this.$body = this.dialog.body;
 		this.set_payment_primary_action();
 		this.make_keyboard();
-		this.select_text()
+
+                if(this.frm.doc.outstanding_amount > 0 ) {
+
+                        $('.modal-dialog').find('.btn.btn-primary.btn-sm').hide();
+                }
+                else {
+                        $('.modal-dialog').find('.btn.btn-primary.btn-sm').show();
+                }
+
+		this.select_text();
 	},
 
 	select_text: function(){
@@ -136,7 +145,17 @@ erpnext.payments = erpnext.stock.StockController.extend({
 	bind_numeric_keys_event: function(){
 		var me = this;
 		$(this.$body).find('.pos-keyboard-key').click(function(){
-			me.payment_val += $(this).text();
+			
+			var txtNewPaid = $(this).text();
+			if( txtNewPaid.length > 1) {
+				var currentPaid = parseFloat( (me.payment_val) ? me.payment_val : 0 );
+				var newPaid = parseFloat( txtNewPaid );
+				me.payment_val = currentPaid + newPaid;
+			}
+			else {
+				me.payment_val += txtNewPaid;
+			}
+
 			me.selected_mode.val(format_currency(me.payment_val, me.frm.doc.currency))
 			me.idx = me.selected_mode.attr("idx")
 			me.update_paid_amount()
@@ -229,5 +248,12 @@ erpnext.payments = erpnext.stock.StockController.extend({
 		$(this.$body).find('.change_amount').val(format_currency(this.frm.doc.change_amount, this.frm.doc.currency))
 		$(this.$body).find('.outstanding_amount').text(format_currency(this.frm.doc.outstanding_amount, frappe.get_doc(":Company", this.frm.doc.company).default_currency))
 		this.update_invoice();
+		if(this.frm.doc.outstanding_amount > 0 ) {
+		
+			$('.modal-dialog').find('.btn.btn-primary.btn-sm').hide();
+		}
+		else {
+			$('.modal-dialog').find('.btn.btn-primary.btn-sm').show();
+		}
 	}
 })

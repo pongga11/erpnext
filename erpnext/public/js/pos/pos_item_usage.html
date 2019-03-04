@@ -1,0 +1,68 @@
+<form>
+        <div class="form-group col-md-12">
+                <label for="indication">ข้อบ่งใช้</label>
+                <textarea class="form-control" id="indication" rows="2">{%= indication %}</textarea>
+        </div>
+        <div class="form-group col-md-12">
+                
+                <div class="form-group col-md-6">
+                        <label for="dosage">{%= applyby %}</label>
+                        <input type="text" class="form-control" id="dosage" value="{%= dosage %}" >
+                </div>
+                <div class="form-group col-md-6">
+                        <label for="dosageUnit">หน่วย</label>
+			<input type="text" class="form-control" id="dosage" value="{%= dosage_unit %}" >
+                </div>
+        </div>
+        <div class="form-group col-md-12">
+                <div class="form-check form-check-inline col-md-4">
+                        <input class="form-check-input" type="radio" name="meal" id="beforeMeal" value="1" {% if meal == "ก่อนอาหาร" %} checked="checked" {% endif %} >
+                        <label class="form-check-label" for="beforeMeal">ก่อนอาหาร</label>
+                </div>
+                <div class="form-check form-check-inline col-md-4">
+                        <input class="form-check-input" type="radio" name="meal" id="afterMeal" value="2" {% if meal == "หลังอาหาร" %} checked="checked" {% endif %} >
+                        <label class="form-check-label" for="afterMeal">หลังอาหาร</label>
+                </div>
+
+        </div>
+        <div class="form-group col-md-12">
+                <div class="form-check form-check-inline col-md-3">
+                        <input class="form-check-input" type="checkbox" id="breakfast" value="1" {% if breakfast == 1 %} checked="checked" {% endif %}>
+                        <label class="form-check-label" for="breakfast">เช้า</label>
+                </div>
+                <div class="form-check form-check-inline col-md-3">
+                        <input class="form-check-input" type="checkbox" id="lunch" value="1" {% if lunch == 1 %} checked="checked" {% endif %} >
+                        <label class="form-check-label" for="lunch">กลางวัน</label>
+                </div>
+                <div class="form-check form-check-inline col-md-3">
+                        <input class="form-check-input" type="checkbox" id="dinner" value="1" {% if dinner == 1 %} checked="checked" {% endif %}>
+                        <label class="form-check-label" for="dinner">เย็น</label>
+                </div>
+                <div class="form-check form-check-inline col-md-3">
+                        <input class="form-check-input" type="checkbox" id="bedtime" value="1"{% if bedtime == 1 %} checked="checked" {% endif %}>
+                        <label class="form-check-label" for="bedtime">ก่อนนอน</label>
+                </div>
+
+        </div>
+        <div class="form-group col-md-12">
+                <div class="form-group col-md-4">
+                        <label for="dosage">หรือทุก</label>
+                        <input type="text" class="form-control" id="every" value="{%= or_every %}" >
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="dosageUnit">หน่วย</label>
+			<input type="text" class="form-control" id="dosage" value="{%= every_unit %}" >
+                </div>
+		<div class="form-group col-md-4">
+                        <label for="dosageUnit">เมื่อ</label>
+                	<input type="text" class="form-control" id="symptom" value="{%= symptom %}">
+		</div>
+        </div>
+        <div class="form-group col-md-12">
+                <label for="specialInstruction">คำแนะนำ</label>
+        	<textarea class="form-control" id="specialInstruction" rows="2">{%= special_instruction %}</textarea>
+		
+	</div>
+
+</form>
+

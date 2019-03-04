@@ -372,6 +372,7 @@ def get_pos_profile_item_details(company, args, pos_profile=None):
 
 @frappe.whitelist()
 def get_pos_profile(company):
+	#company = "BaanYaYim";
 	pos_profile = frappe.db.sql("""select * from `tabPOS Profile` where user = %s
 		 and company = %s""", (frappe.session['user'], company), as_dict=1)
 

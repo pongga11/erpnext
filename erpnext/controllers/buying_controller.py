@@ -407,17 +407,19 @@ class BuyingController(StockController):
 					"warehouse": self.supplier_warehouse,
 					"actual_qty": -1*flt(d.consumed_qty),
 				}))
-
 	def validate_schedule_date(self):
-		if not self.schedule_date:
-			self.schedule_date = min([d.schedule_date for d in self.get("items")])
+                if not self.schedule_date:
+                        self.schedule_date = min([d.schedule_date for d in self.get("items")])
 
-		if self.schedule_date:
-			for d in self.get('items'):
-				if not d.schedule_date:
-					d.schedule_date = self.schedule_date
+                if self.schedule_date:
+                        for d in self.get('items'):
+                                if not d.schedule_date:
+                                        d.schedule_date = self.schedule_date
 
-				if d.schedule_date and getdate(d.schedule_date) < getdate(self.transaction_date):
-					frappe.throw(_("Expected Date cannot be before Transaction Date"))
-		else:
-			frappe.throw(_("Please enter Schedule Date"))
+                                if d.schedule_date and getdate(d.schedule_date) < getdate(self.transaction_date):
+                                        frappe.throw(_("Expected Date cannot be before Transaction Date"))
+                else:
+                        frappe.throw(_("Please enter Schedule Date"))
+
+
+

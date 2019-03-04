@@ -1,28 +1,32 @@
 <div class="pos_payment row">
-	<div class="row" style="padding: 0px 30px;">
-		<h3>{{ __("Total Amount") }}: <span class="label label-default" style="font-size:20px;padding:5px">{%= format_currency(grand_total, currency) %}</span></h3>
-	</div>
 	<div class="row amount-row">
-		<div class="col-xs-6 col-sm-3 text-center">
+		<div class="col-xs-6 col-sm-4 text-center">
+			<p class="amount-label"> {{ __("Total Amount") }} <h2 style="color:red; font-weight: bold;">{%= format_currency(grand_total, currency) %}</h2></p>
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
 			<p class="amount-label"> {{ __("Paid") }} <h3 class="paid_amount">{%= format_currency(paid_amount, currency) %}</h3></p>
 		</div>
-		<div class="col-xs-6 col-sm-3 text-center">
-			<p class="amount-label"> {{ __("Outstanding") }} <h3 class="outstanding_amount">{%= format_currency(outstanding_amount, currency) %} </h3></p>
-		</div>
-		<div class="col-xs-6 col-sm-3 text-center">
-			<p class="amount-label"> {{ __("Change") }} <input class="form-control text-right change_amount bold" type="text" idx="change_amount" value="{{format_number(change_amount, null, 2)}}">
-			</p>
-		</div>
-		<div class="col-xs-6 col-sm-3 text-center">
-			<p class="amount-label"> {{ __("Write off") }} <input class="form-control text-right write_off_amount bold" type="text" idx="write_off_amount" value="{{format_number(write_off_amount, null, 2)}}">
+		<div class="col-xs-6 col-sm-4 text-center">
+			<p class="amount-label"> {{ __("Change") }} <input style="font-weight: bold; color: blue;font-size: large;" class="form-control text-right change_amount bold" type="text" idx="change_amount" value="{{format_number(change_amount, null, 2)}}">
 			</p>
 		</div>
 	</div>
+
 	<hr>
 	<div class="row">
 		<div class="col-sm-6 ">
 			<div class ="row multimode-payments">
 			</div>
+		
+			<div class="row">
+				<div class="col-sm-6"><button style="width: 100%; background: url(/files/1000.gif); background-size: 164px;" type="button"  class="btn btn-default pos-keyboard-key">1000</button></div>
+				<div class="col-sm-6"><button style="width: 100%; background: url(/files/500.jpg); background-size: 164px;" type="button"  class="btn btn-default pos-keyboard-key">500</button></div>
+				<div class="col-sm-6"><button style="width: 100%; background: url(/files/100.jpg); background-size: 164px;" type="button"  class="btn btn-default pos-keyboard-key">100</button></div>
+				<div class="col-sm-6"><button style="width: 100%; background: url(/files/50.jpg); background-size: 164px;" type="button"  class="btn btn-default pos-keyboard-key">50</button></div>
+				<div class="col-sm-6"><button style="width: 100%; background: url(/files/20.jpg); background-size: 164px;" type="button"  class="btn btn-default pos-keyboard-key">20</button></div>
+				<div class="col-sm-6"><button style="width: 100%;" type="button"  class="btn btn-default pos-keyboard-key">10</button></div>
+			</div>
+
 		</div>
 		<div class="col-sm-6 payment-toolbar">
 			{% for(var i=0; i<3; i++) { %}
@@ -37,6 +41,8 @@
 				<button type="button"  class="btn btn-default pos-keyboard-key">0</button>
 				<button type="button"  class="btn btn-default pos-keyboard-key">.</button>
 			</div>
-        </div>
+       		 </div>
 	</div>
+
+
 </div>

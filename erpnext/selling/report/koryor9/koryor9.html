@@ -1,0 +1,60 @@
+
+<style>
+    .print-format table, .print-format tr,
+    .print-format td, .print-format div, .print-format p {
+        font-family: Monospace;
+        line-height: 200%;
+        vertical-align: middle;
+    }
+
+    @media screen {
+        .print-format {
+            max-width: 13in;
+            padding: 0.25in;
+            min-height: 8.5in;
+        }
+    }
+</style>
+
+<h5 class="text-right" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">แบบ ข.ย. ๙</h5>
+<h3 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บัญชีการซื้อยา</h3>
+<h4 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บ้านยายิ้ม</h4>
+
+<hr>
+<table class="table table-bordered">
+        <thead>
+                <tr>
+                        <th style="width: 5%; text-align: center;">ลำดับที่</th>
+                        <th style="width: 15%; text-align: center;">วัน เดือน ปี ที่ซื้อ</th>
+                        <th style="width: 15%; text-align: center;">ชื่อผู้ขาย</th>
+                        <th style="width: 25%; text-align: center;">ชื่อยา</th>
+                        <th style="width: 10%; text-align: center;">เลขที่หรืออักษรของครั้งที่ผลิต</th>
+                        <th style="width: 10%; text-align: center;">จำนวน / ปริมาณ</th>
+                        <th style="width: 10%; text-align: center;">ลายมือชื่อผู้มีหน้าที่ปฏิบัติการ</th>
+                        <th style="width: 10%; text-align: center;">หมายเหตุ</th>
+                        
+                </tr>
+        </thead>
+        <tbody>
+            {% for(var i=0, l=data.length; i<l; i++) { %}
+            <tr>
+                <td style="text-align: center;"> {%= i+1 %} </td>
+                <td style="text-align: center;"> {%=  data[i][__("creation_date")] %} </td>
+                <td style="text-align: center;"> {%=  data[i][__("supplier")] %} </td>
+                <td style="text-align: center;"> {%=  data[i][__("item_name")] %} </td>
+                <td style="text-align: center;"> {%=  data[i][__("lot_no")] %} </td>
+                <td style="text-align: center;"> {%= data[i][__("qty")] %} {%= data[i][__("uom")] %}</td>
+                <td style="text-align: center;"> </td>
+                <td style="text-align: center;"> </td>
+                
+                
+            </tr>
+            {% } %}
+
+
+
+        </tbody>
+
+</table>
+
+

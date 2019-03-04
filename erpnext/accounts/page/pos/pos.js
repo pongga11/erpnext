@@ -94,6 +94,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 		// for mobile
 		this.page.add_menu_item(__("Pay"), function () {
+
 			me.validate();
 			me.update_paid_amount_status(true);
 			me.create_invoice();
@@ -1235,15 +1236,18 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	clear_selected_row: function() {
 		$(this.wrapper).find('.selected-item').empty();
+		$(this.wrapper).find('.item-usage').empty();
 	},
 
 	render_selected_item: function() {
 		this.child_doc = this.get_child_item(this.item_code);
 		$(this.wrapper).find('.selected-item').empty();
+		$(this.wrapper).find('.item-usage').empty();
 		if(this.child_doc.length) {
 			this.child_doc[0]["allow_user_to_edit_rate"] = this.pos_profile_data["allow_user_to_edit_rate"] ? true : false,
 			this.selected_row = $(frappe.render_template("pos_selected_item", this.child_doc[0]))
 			$(this.wrapper).find('.selected-item').html(this.selected_row)
+			$(this.wrapper).find('.item-usage').html($(frappe.render_template("pos_item_usage", this.child_doc[0])))	
 		}
 
 		$(this.selected_row).find('.form-control').click(function(){
@@ -1253,6 +1257,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	get_child_item: function(item_code) {
 		var me = this;
+
 		return $.map(me.frm.doc.items, function(doc){
 			if(doc.item_code == item_code) {
 				return doc
@@ -1342,6 +1347,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		if (!this.frm.doc.customer || this.party_field.get_value() == "") {
 			frappe.throw(__("Please select customer"))
 		}
+
 	},
 
 	add_to_cart: function () {
@@ -1403,6 +1409,23 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.child.serial_no = (this.item_serial_no[this.child.item_code]
 			? this.item_serial_no[this.child.item_code][0] : '');
 		this.child.item_tax_rate = JSON.stringify(this.tax_data[this.child.item_code]);
+
+		this.child.indication = this.items[0].indication;
+		this.child.dosage_unit = this.items[0].dosage_unit;
+		this.child.dosage = this.items[0].dosage;
+		this.child.applyby = this.items[0].applyby;
+		this.child.special_instruction = this.items[0].special_instruction;
+		this.child.meal = this.items[0].meal;
+		this.child.breakfast = this.items[0].breakfast;
+		this.child.lunch = this.items[0].lunch;
+		this.child.dinner = this.items[0].dinner;
+		this.child.bedtime = this.items[0].bedtime;
+		this.child.or_every = this.items[0].or_every;
+		this.child.every_unit = this.items[0].every_unit;
+		this.child.symptom = this.items[0].symptom;
+		this.child.is_khoryor = this.items[0].is_khoryor	
+
+	
 	},
 
 	update_paid_amount_status: function (update_paid_amount) {
@@ -1500,16 +1523,66 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	set_primary_action: function () {
 		var me = this;
-		this.page.set_primary_action(__("New Cart"), function () {
-			me.make_new_cart()
-			me.make_menu_list()
+
+		this.page.set_primary_action('Pay', function () {
+			me.validate();
+			var has_khoryor = 0;
+			for(var i=0; i < me.frm.doc.items.length; i++ ) {
+				if( me.frm.doc.items[i].is_khoryor) {
+					has_khoryor = 1;
+				}
+			}
+			if(has_khoryor) {
+				me.khoryor_dialog = new frappe.ui.Dialog({
+                        		title: "บันทึก ขย.",
+                        		fields: [{label: "ชื่อคนไข้", fieldtype:"Link", reqd: 0, fieldname:"patient", options:"Koryor Patient" },
+						//{fieldtype:'Link', fieldname:'account_currency', label:__('Currency'), options:"Item"}
+						],
+                        		primary_action_label: __("OK"),
+                        		primary_action: function() {
+						me.khoryor_dialog.hide();
+						me.frm.doc.patient = me.khoryor_dialog.get_value('patient');
+						me.update_paid_amount_status(true);
+                        			me.create_invoice();
+                        			me.make_payment();
+                       		 	}
+                		});
+
+                		me.khoryor_dialog.show()
+			}
+			else {
+				me.update_paid_amount_status(true);
+				me.create_invoice();
+				me.make_payment();
+			}
 		}, "fa fa-plus")
+	
+		this.page.set_secondary_action('New', function () {
+                        me.make_new_cart()
+                        me.make_menu_list()
+			me.make_item_list()
+			me.set_missing_values()
+                }, "fa fa-plus")
+	
 
 		if (this.frm.doc.docstatus == 1) {
+
+			this.page.set_primary_action('New', function () {
+                        	me.make_new_cart()
+                        	me.make_menu_list()
+                	}, "fa fa-plus")
+			
+
 			this.page.set_secondary_action(__("Print"), function () {
-				var html = frappe.render(me.print_template_data, me.frm.doc)
+                              var html = frappe.render(me.print_template_data, me.frm.doc)
+                              me.print_document(html)
+                        })			
+
+			this.page.add_menu_item(__("Print"), function () {
+                                var html = frappe.render(me.print_template_data, me.frm.doc)
 				me.print_document(html)
-			})
+                        })
+
 			this.page.add_menu_item(__("Email"), function () {
 				me.email_prompt()
 			})
@@ -1523,7 +1596,10 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.create_new();
 		this.refresh();
 		this.toggle_input_field();
+		this.make_item_list();
+                this.set_missing_values();
 		this.render_list_customers();
+		this.serach_item.$input.val("");
 		this.set_focus();
 	},
 
@@ -1531,10 +1607,18 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		var me = this;
 
 		this.msgprint = frappe.msgprint(
-			`<a class="btn btn-primary print_doc"
-				style="margin-right: 5px;">${__('Print')}</a>
-			<a class="btn btn-default new_doc">${__('New')}</a>`);
-
+			`<div class="row amount-row">
+                		<div class="col-xs-6 col-sm-4 text-center">
+                        		<p class="amount-label">Total<h2 style="color:red; font-weight: bold;">` + me.frm.doc.grand_total + `</h2></p>
+                		</div>
+                		<div class="col-xs-6 col-sm-4 text-center">
+                        		<p class="amount-label">Paid<h2 class="paid_amount">` + me.frm.doc.paid_amount + `</h2></p>
+                		</div>
+                		<div class="col-xs-6 col-sm-4 text-center">
+                        		<p class="amount-label">Change<h2 style="color:blue; font-weight: bold;" class="paid_amount">` + me.frm.doc.change_amount + `</h2></p>
+                		</div>
+        		</div> <a class="btn btn-primary new_doc">${__('New')}</a>`);
+		
 		$('.print_doc').click(function () {
 			var html = frappe.render(me.print_template_data, me.frm.doc)
 			me.print_document(html)
@@ -1546,6 +1630,107 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		})
 	},
 
+	stringLenTH: function(str) {
+		var ignoreCharArray = [3633,3636,3637,3638,3639,3640,3641,3655,3656,3657,3658,3659,3660];
+		var count = 0;
+		for(var i=0; i < str.length; i++) {
+			var char = str.charAt(i);
+			var charCode = str.charCodeAt(i);
+			
+			if( !ignoreCharArray.includes(charCode)) {
+				count++;
+			}
+			
+		}
+		return count;
+	},
+
+	subStringTH: function(str, len) {
+		
+		var ignoreCharArray = [3633,3636,3637,3638,3639,3640,3641,3655,3656,3657,3658,3659,3660];
+		var result = '';
+		var count = '';
+		for(var i=0; i < str.length; i++) {
+			var char = str.charAt(i);
+			var charCode = str.charCodeAt(i);
+			if( !ignoreCharArray.includes(charCode)) {
+				count++;
+			}
+
+			result += char;
+			if(count == len) {
+				return result;
+			}	
+		}
+
+		for(var i = count; i < len; i++) {
+			result += ' ';
+		}
+		return result;
+
+
+	},
+
+	print_now: function() {
+		var me = this;
+		if(this.pos_profile_data['print_now']) {
+			//var html = frappe.render(me.print_template_data, me.frm.doc)
+	                //console.log(me.frm.doc);
+			// me.print_document(html)
+			var data = "                 BaanYaYim \n";
+			var posdata = me.frm.doc;
+			data = data + "        Tel. 097-356-5915, 087-963-5676 \n";
+			data = data + "       LINE: @baanyayim.rx, FB: BaanYaYim \n";
+		        data = data + '  POS No: ' + posdata.offline_pos_name + " Date: " + posdata.posting_date  + "\n";
+                        data = data + '  Staff: ' + posdata.owner + "\n";
+                        data = data + "\n";
+
+                        data = data + "Item                      Qty    Price   Amount\n";
+			data = data + "-----------------------------------------------\n";
+			for(i=0; i < posdata.items.length; i++) {
+				item = posdata.items[i];
+				item_code = this.subStringTH(item.item_code, 26);
+
+				qty = item.qty.toString();
+				for(j=qty.length; j< 7; j++) {
+					qty = qty + " ";
+				} 
+
+				price = item.rate.toString();
+				for(j=price.length; j< 8; j++) {
+                                        price = price + " ";
+                                }
+				
+				data = data + item_code + ' ' + qty + price + item.amount + "\n";			
+			}
+
+			data = data + "-----------------------------------------------\n";
+			if (posdata.discount_amount > 0) {
+				data = data + "                          Total: " + posdata.total + " บาท \n";
+				data = data + "                       Discount: " + posdata.discount_amount + " บาท \n";
+			}
+			data = data + "                    Grand Total: " + posdata.grand_total + " บาท \n";
+			data = data + "                    Paid Amount: " + posdata.paid_amount + " บาท \n";
+			if( posdata.change_amount > 0) {
+				data = data + "                  Change Amount: " + posdata.change_amount + " บาท \n";
+			}
+			data= data + "              แพ้ยากรุณาแจ้งเภสัชกร \n";
+			data= data + "               บ้านยายิ้มขอบคุณค่ะ \n";
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json; charset=utf-8",
+				url: this.pos_profile_data['print_now_ip'],
+				data: JSON.stringify({'html': data, 'openCashDrawer': this.pos_profile_data['open_cash_drawer'], 'printReceipt': this.pos_profile_data['print_receipt'] }),
+				dataType: "json"
+					
+			});
+		
+
+		}	
+
+	},
+
 	print_document: function (html) {
 		var w = window.open();
 		w.document.write(html);
@@ -1553,7 +1738,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		setTimeout(function () {
 			w.print();
 			w.close();
-		}, 1000)
+		}, 500)
 	},
 
 	submit_invoice: function () {
@@ -1561,6 +1746,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.change_status();
 		this.update_serial_no()
 		if (this.frm.doc.docstatus == 1) {
+			this.print_now();
 			this.print_dialog()
 		}
 	},

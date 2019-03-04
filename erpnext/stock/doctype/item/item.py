@@ -750,6 +750,7 @@ def _msgprint(msg, verbose):
 		raise frappe.ValidationError(msg)
 
 
+@frappe.whitelist()
 def get_last_purchase_details(item_code, doc_name=None, conversion_rate=1.0):
 	"""returns last purchase details in stock uom"""
 	# get last purchase order item details

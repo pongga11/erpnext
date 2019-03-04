@@ -31,7 +31,7 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 					var fiscal_year = query_report.get_values().fiscal_year;
 					if (!fiscal_year) {
 						return;
-					}
+				}
 					frappe.model.with_doc("Fiscal Year", fiscal_year, function(r) {
 						var fy = frappe.model.get_doc("Fiscal Year", fiscal_year);
 						frappe.query_report_filters_by_name.from_date.set_input(fy.year_start_date);
@@ -44,13 +44,13 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 				"fieldname": "from_date",
 				"label": __("From Date"),
 				"fieldtype": "Date",
-				"default": frappe.defaults.get_user_default("year_start_date"),
+				"default": frappe.datetime.get_today(),
 			},
 			{
 				"fieldname": "to_date",
 				"label": __("To Date"),
 				"fieldtype": "Date",
-				"default": frappe.defaults.get_user_default("year_end_date"),
+				"default": frappe.datetime.get_today(),
 			},
 			{
 				"fieldname": "show_zero_values",
