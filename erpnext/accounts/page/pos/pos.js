@@ -322,6 +322,8 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.load_data(true);
 		this.setup();
 		this.set_default_customer()
+		var socket = io('http://erpnext.baanyayim.com:3000');
+                socket.emit('pos-cart', 'new');
 	},
 
 	load_data: function (load_doc) {
@@ -591,6 +593,9 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.remove_item.push(idx)
 		this.remove_zero_qty_item()
 		this.update_paid_amount_status(false)
+		var socket = io('http://erpnext.baanyayim.com:3000');
+        	var itemsJson = JSON.stringify(this.frm.doc);
+        	socket.emit('pos-cart', itemsJson);
 	},
 
 	render_list_customers: function () {
@@ -1294,7 +1299,10 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			this.remove_zero_qty_item();
 		}
 
-		this.update_paid_amount_status(false)
+		this.update_paid_amount_status(false);
+		var socket = io('http://erpnext.baanyayim.com:3000');
+                var itemsJson = JSON.stringify(this.frm.doc);
+                socket.emit('pos-cart', itemsJson);
 	},
 
 	remove_zero_qty_item: function () {
@@ -1384,6 +1392,10 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 		this.update_paid_amount_status(false)
 		this.wrapper.find(".item-cart-items").scrollTop(1000);
+
+		var socket = io('http://erpnext.baanyayim.com:3000');
+       		var itemsJson = JSON.stringify(me.frm.doc);
+        	socket.emit('pos-cart', itemsJson);
 	},
 
 	add_new_item_to_grid: function () {
