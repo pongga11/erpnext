@@ -28,6 +28,7 @@ def get_pos_data():
 	update_multi_mode_option(doc, pos_profile)
 	default_print_format = pos_profile.get('print_format') or "Point of Sale"
 	print_template = frappe.db.get_value('Print Format', default_print_format, 'html')
+	print_label_format = frappe.db.get_value('Print Format', pos_profile.get('print_label_format'), 'html')
 	customers = get_customers_list(pos_profile)
 
 	return {
@@ -45,6 +46,7 @@ def get_pos_data():
 		'bin_data': get_bin_data(pos_profile),
 		'pricing_rules': get_pricing_rule_data(doc),
 		'print_template': print_template,
+		'print_label_format': print_label_format,
 		'pos_profile': pos_profile,
 		'meta': get_meta()
 	}

@@ -2111,7 +2111,10 @@ apps/erpnext/erpnext/config/projects.py +30,Gantt chart of all tasks.,සිය�
 DocType: Opportunity,Mins to First Response,පළමු ප්රතිචාර සඳහා මිනිත්තු
 DocType: Pricing Rule,Margin Type,ආන්තිකය වර්ගය
 apps/erpnext/erpnext/projects/doctype/project/project_dashboard.html +15,{0} hours,පැය {0}
+<<<<<<< HEAD
 DocType: Course,Default Grading Scale,පෙරනිමි ශ්රේණිගත පරිමාණ
+=======
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Appraisal,For Employee Name,සේවක නම සඳහා
 DocType: Holiday List,Clear Table,පැහැදිලි ව ව
 apps/erpnext/erpnext/healthcare/doctype/patient_appointment/patient_appointment.js +98,Available slots,ලබාගත හැකි ස්ලට්

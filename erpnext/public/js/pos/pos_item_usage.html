@@ -1,45 +1,70 @@
-<form>
+<button class="btn btn-secondary btn-default btn-sm" id="print-usage"><i class="visible-xs fa fa-plus"></i><span class="hidden-xs">พิมพ์ฉลาก</span></button>
+<form id="usage-data-form">
+	<div class="form-group col-md-12">
+                <label for="indication">ชื่อยา</label>
+		<input type="text" class="form-control" id="medicine" name="medicine" value="{%= description %}" >
+        </div>
         <div class="form-group col-md-12">
                 <label for="indication">ข้อบ่งใช้</label>
-                <textarea class="form-control" id="indication" rows="2">{%= indication %}</textarea>
+                <textarea class="form-control" id="indication" name="indication" rows="1">{%= indication %}</textarea>
         </div>
         <div class="form-group col-md-12">
                 
-                <div class="form-group col-md-6">
-                        <label for="dosage">{%= applyby %}</label>
-                        <input type="text" class="form-control" id="dosage" value="{%= dosage %}" >
+                <div class="form-group col-md-4">
+                        <label for="apply_by">วิธีใช้</label>
+                       <!-- <input type="text" class="form-control" id="apply_by" name="apply_by" value="{%= applyby %}" > -->
+			<select class="form-control" id="apply_by" name="apply_by" data-fieldtype="Select">
+				<option value="รับประทาน" {% if applyby == "รับประทาน" %} selected {%endif%}  >รับประทาน</option>
+				<option value="ทาบริเวณที่เป็น" {% if applyby == "ทาบริเวณที่เป็น" %} selected {%endif%}>ทาบริเวณที่เป็น</option>
+                                <option value="หยอด" {% if applyby == "หยอด" %} selected {%endif%}>หยอด</option>
+                                <option value="หยด" {% if applyby == "หยด" %} selected {%endif%}>หยด</option>
+                                <option value="พ่น" {% if applyby == "พ่น" %} selected {%endif%}>พ่น</option>
+			</select>
                 </div>
-                <div class="form-group col-md-6">
+		<div class="form-group col-md-4">
+                        <label for="dosage">ขนาด</label>
+                        <input type="text" class="form-control" id="dosage" name="dosage" value="{%= dosage %}" >
+                </div>
+                <div class="form-group col-md-4">
                         <label for="dosageUnit">หน่วย</label>
-			<input type="text" class="form-control" id="dosage" value="{%= dosage_unit %}" >
+			<!-- <input type="text" class="form-control" id="dosage_unit" name="dosage_unit" value="{%= dosage_unit %}" > -->
+			<select class="form-control" id="dosage_unit" name="dosage_unit" data-fieldtype="Select">
+                                <option value="เม็ด" {% if dosage_unit == "เม็ด" %} selected {%endif%}  >เม็ด</option>
+				<option value="ซีซี" {% if dosage_unit == "ซีซี" %} selected {%endif%}  >ซีซี</option>
+                                <option value="ช้อนชา" {% if dosage_unit == "ช้อนชา" %} selected {%endif%}  >ช้อนชา</option>
+                                <option value="ช้อนโต๊ะ" {% if dosage_unit == "ช้อนโต๊ะ" %} selected {%endif%}  >ช้อนโต๊ะ</option>
+                                <option value="ซอง" {% if dosage_unit == "ซอง" %} selected {%endif%}  >ซอง</option>
+                                <option value="หยด" {% if dosage_unit == "หยด" %} selected {%endif%}  >หยด</option>
+                                <option value="ครั้ง" {% if dosage_unit == "ครั้ง" %} selected {%endif%}  >ครั้ง</option>
+                        </select>
                 </div>
         </div>
         <div class="form-group col-md-12">
                 <div class="form-check form-check-inline col-md-4">
-                        <input class="form-check-input" type="radio" name="meal" id="beforeMeal" value="1" {% if meal == "ก่อนอาหาร" %} checked="checked" {% endif %} >
-                        <label class="form-check-label" for="beforeMeal">ก่อนอาหาร</label>
+                        <input class="form-check-input" type="checkbox" name="before_meal" id="before_meal" value="1" {% if meal == "ก่อนอาหาร" %} checked="checked" {% endif %} >
+                        <label class="form-check-label" for="before_meal">ก่อนอาหาร</label>
                 </div>
                 <div class="form-check form-check-inline col-md-4">
-                        <input class="form-check-input" type="radio" name="meal" id="afterMeal" value="2" {% if meal == "หลังอาหาร" %} checked="checked" {% endif %} >
+                        <input class="form-check-input" type="checkbox" name="after_meal" id="after_meal" value="2" {% if meal == "หลังอาหาร" %} checked="checked" {% endif %} >
                         <label class="form-check-label" for="afterMeal">หลังอาหาร</label>
                 </div>
 
         </div>
         <div class="form-group col-md-12">
                 <div class="form-check form-check-inline col-md-3">
-                        <input class="form-check-input" type="checkbox" id="breakfast" value="1" {% if breakfast == 1 %} checked="checked" {% endif %}>
+                        <input class="form-check-input" type="checkbox" id="breakfast" name="breakfast" value="1" {% if breakfast == 1 %} checked="checked" {% endif %}>
                         <label class="form-check-label" for="breakfast">เช้า</label>
                 </div>
                 <div class="form-check form-check-inline col-md-3">
-                        <input class="form-check-input" type="checkbox" id="lunch" value="1" {% if lunch == 1 %} checked="checked" {% endif %} >
+                        <input class="form-check-input" type="checkbox" id="lunch" name="lunch" value="1" {% if lunch == 1 %} checked="checked" {% endif %} >
                         <label class="form-check-label" for="lunch">กลางวัน</label>
                 </div>
                 <div class="form-check form-check-inline col-md-3">
-                        <input class="form-check-input" type="checkbox" id="dinner" value="1" {% if dinner == 1 %} checked="checked" {% endif %}>
+                        <input class="form-check-input" type="checkbox" id="dinner" name="diner" value="1" {% if dinner == 1 %} checked="checked" {% endif %}>
                         <label class="form-check-label" for="dinner">เย็น</label>
                 </div>
                 <div class="form-check form-check-inline col-md-3">
-                        <input class="form-check-input" type="checkbox" id="bedtime" value="1"{% if bedtime == 1 %} checked="checked" {% endif %}>
+                        <input class="form-check-input" type="checkbox" id="bedtime" name="bedtime" value="1"{% if bedtime == 1 %} checked="checked" {% endif %}>
                         <label class="form-check-label" for="bedtime">ก่อนนอน</label>
                 </div>
 
@@ -47,20 +72,35 @@
         <div class="form-group col-md-12">
                 <div class="form-group col-md-4">
                         <label for="dosage">หรือทุก</label>
-                        <input type="text" class="form-control" id="every" value="{%= or_every %}" >
+                        <input type="text" class="form-control" id="or_every" name="or_every" value="{%= or_every %}" >
                 </div>
                 <div class="form-group col-md-4">
                         <label for="dosageUnit">หน่วย</label>
-			<input type="text" class="form-control" id="dosage" value="{%= every_unit %}" >
+			<input type="text" class="form-control" id="every_unit" name="every_unit" value="{%= every_unit %}" >
                 </div>
 		<div class="form-group col-md-4">
                         <label for="dosageUnit">เมื่อ</label>
-                	<input type="text" class="form-control" id="symptom" value="{%= symptom %}">
+                	<input type="text" class="form-control" id="symptom" name="symptom" value="{%= symptom %}">
 		</div>
         </div>
         <div class="form-group col-md-12">
+                <div class="form-check form-check-inline col-md-4">
+                        <input class="form-check-input" type="checkbox" id="special_instruction_1" name="special_instruction_1" value="1" >
+                        <label class="form-check-label" for="special_instruction_1">ยานี้อาจทำให้ง่วง</label>
+                </div>
+                <div class="form-check form-check-inline col-md-4">
+                        <input class="form-check-input" type="checkbox" id="special_instruction_2" name="special_instruction_2" value="1" >
+                        <label class="form-check-label" for="special_instruction_1">หลังอาหารทันที</label>
+                </div>
+                <div class="form-check form-check-inline col-md-4">
+                        <input class="form-check-input" type="checkbox" id="special_instruction_3" name="special_instruction_3" value="1" >
+                        <label class="form-check-label" for="special_instruction_1">ติดต่อกันจนหมด</label>
+                </div>
+
+        </div>
+        <div class="form-group col-md-12">
                 <label for="specialInstruction">คำแนะนำ</label>
-        	<textarea class="form-control" id="specialInstruction" rows="2">{%= special_instruction %}</textarea>
+        	<textarea class="form-control" id="special_instruction_text" name="special_instruction_text" rows="1">{%= special_instruction %}</textarea>
 		
 	</div>
 

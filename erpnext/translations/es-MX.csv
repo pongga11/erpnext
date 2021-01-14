@@ -1,6 +1,7 @@
 DocType: Timesheet,Total Costing Amount,Monto Total Calculado
 DocType: Student Group Student,Student Group Student,Alumno de Grupo de Estudiantes
 DocType: Delivery Note,% Installed,% Instalado
+<<<<<<< HEAD
 DocType: Company,Gain/Loss Account on Asset Disposal,Cuenta de ganancia/pérdida en la disposición de activos
 apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +467,Please enter Account for Change Amount,"Por favor, introduzca la Vuenta para el Cambio Monto"
 DocType: Sales Order,SO-,OV-
@@ -12,6 +13,35 @@ apps/erpnext/erpnext/accounts/doctype/asset/depreciation.py +190,Please set 'Gai
 apps/erpnext/erpnext/hr/doctype/leave_allocation/leave_allocation.py +44,Leave Type {0} cannot be allocated since it is leave without pay,Tipo de Permiso {0} no puede ser asignado ya que es un Permiso sin paga
 apps/erpnext/erpnext/hr/doctype/salary_structure/salary_structure.js +446,Show Salary Slip,Mostrar Recibo de Nómina
 apps/erpnext/erpnext/hr/doctype/salary_slip/salary_slip.py +243,Leave Without Pay does not match with approved Leave Application records,Permiso sin sueldo no coincide con los registros de Solicitud de Permiso aprobadas
+=======
+apps/erpnext/erpnext/stock/dashboard/item_dashboard.js +150,Source and target warehouse must be different,El almacén de origen debe ser diferente al de destino
+DocType: Item,Standard Selling Rate,Tarifa de venta estándar
+DocType: Address Template,"<h4>Default Template</h4>
+<p>Uses <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>
+<pre><code>{{ address_line1 }}&lt;br&gt;
+{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}
+{{ city }}&lt;br&gt;
+{% if state %}{{ state }}&lt;br&gt;{% endif -%}
+{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}
+{{ country }}&lt;br&gt;
+{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}
+{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}
+{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}
+</code></pre>","<h4> Por defecto la plantilla <!-- h4--> 
+ <p> <a href=""http://jinja.pocoo.org/docs/templates/""> Jinja Templating </a> y todos los campos de la Dirección ( incluyendo campos personalizados en su caso) estará disponible <!-- p--> 
+ </p><pre> <code> {{address_line1}} &amp; lt; br &amp; gt; 
+ {% if address_line2%} {{address_line2}} &amp; lt; br &amp; gt; { endif% -%} 
+ {{ciudad}} &amp; lt; br &amp; gt; 
+ {% if%} Estado {{Estado}} &amp; lt; br &amp; gt; {% endif -%} {% if 
+ código PIN%} PIN: {{código PIN}} &amp; lt; br &amp; gt; {% endif -%} 
+ {{país}} &amp; lt; br &amp; gt; 
+ {% if teléfono%} Teléfono: {{teléfono}} &amp; lt; br &amp; gt; { % endif -%} 
+ {% if fax%} Fax: {{fax}} &amp; lt; br &amp; gt; {% endif -%} 
+ {% if email_ID%} Email: {{email_ID}} &amp; lt; br &amp; gt ; {% endif -%} 
+ <!-- code--> <!-- pre--></code></pre></h4>"
+DocType: Currency Exchange,Specify Exchange Rate to convert one currency into another,Especificar el tipo de cambio para convertir de una moneda a otra
+apps/erpnext/erpnext/hr/doctype/salary_structure/salary_structure.js +437,Show Salary Slip,Mostrar recibo de nómina
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Purchase Taxes and Charges Template,"Standard tax template that can be applied to all Purchase Transactions. This template can contain list of tax heads and also other expense heads like ""Shipping"", ""Insurance"", ""Handling"" etc.
 
 #### Note
@@ -53,6 +83,7 @@ La tasa impositiva que se defina aquí será la tasa de gravamen predeterminada 
  8. Línea de referencia: Si se basa en ""Línea anterior al total"" se puede seleccionar el número de la fila que será tomado como base para este cálculo (por defecto es la fila anterior).
  9. Considerar impuesto o cargo para: En esta sección se puede especificar si el impuesto / cargo es sólo para la valoración (no una parte del total) o sólo para el total (no agrega valor al elemento) o para ambos.
  10. Añadir o deducir: Si usted quiere añadir o deducir el impuesto."
+<<<<<<< HEAD
 apps/erpnext/erpnext/hr/doctype/leave_allocation/leave_allocation.py +123,Leave Type {0} cannot be carry-forwarded,Tipo de Permiso {0} no se puede arrastar o trasladar
 apps/erpnext/erpnext/hr/doctype/process_payroll/process_payroll.py +268,Accural Journal Entry for salaries from {0} to {1},Entrada de Diario de Cuentas por Pagar para salarios de {0} a {1}
 apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified/standard_chart_of_accounts.py +123,Gain/Loss on Asset Disposal,Ganancia/Pérdida por la venta de activos
@@ -71,3 +102,7 @@ DocType: School Settings,"For Course based Student Group, the Course will be val
 DocType: School Settings,"For Batch based Student Group, the Student Batch will be validated for every Student from the Program Enrollment.","Para grupo de estudiantes por lotes, el lote de estudiantes se validará para cada estudiante de la inscripción del programa."
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +71,Leave Encashment,Cobro de Permiso
 apps/erpnext/erpnext/selling/doctype/sales_order/sales_order.js +988,Select Items based on Delivery Date,Seleccionar Artículos según la fecha de entrega
+=======
+DocType: Stock Entry,Customer or Supplier Details,Detalle de cliente o proveedor
+DocType: Sales Order,SO-,OV-
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021

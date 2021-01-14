@@ -290,6 +290,10 @@ apps/erpnext/erpnext/accounts/report/cash_flow/cash_flow.py +39,Net Cash from Fi
 apps/erpnext/erpnext/accounts/page/pos/pos.js +2329,"LocalStorage is full , did not save",localStorage的滿了，沒救
 DocType: Lead,Address & Contact,地址及聯絡方式
 DocType: Leave Allocation,Add unused leaves from previous allocations,從以前的分配添加未使用的休假
+<<<<<<< HEAD
+=======
+apps/erpnext/erpnext/controllers/recurring_document.py +227,Next Recurring {0} will be created on {1},下一循環{0}將上創建{1}
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Sales Partner,Partner website,合作夥伴網站
 apps/erpnext/erpnext/stock/dashboard/item_dashboard.js +105,Add Item,新增項目
 DocType: Lab Test,Custom Result,自定義結果
@@ -1719,7 +1723,12 @@ apps/erpnext/erpnext/hr/doctype/employee/employee_dashboard.py +10,Leave and Att
 DocType: Leave Type,Include holidays within leaves as leaves,休假中包含節日做休假
 DocType: Sales Invoice,Packed Items,盒裝項目
 apps/erpnext/erpnext/config/support.py +27,Warranty Claim against Serial No.,針對序列號保修索賠
+<<<<<<< HEAD
 apps/erpnext/erpnext/accounts/report/accounts_receivable/accounts_receivable.html +65,'Total','總數'
+=======
+DocType: BOM Replace Tool,"Replace a particular BOM in all other BOMs where it is used. It will replace the old BOM link, update cost and regenerate ""BOM Explosion Item"" table as per new BOM",在它使用的所有其他材料明細表替換特定的BOM。它將取代舊的BOM鏈接，更新成本和再生“BOM展開項目”表按照新的BOM
+apps/erpnext/erpnext/accounts/report/accounts_receivable/accounts_receivable.html +59,'Total','總數'
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Shopping Cart Settings,Enable Shopping Cart,啟用購物車
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +260,"Advance paid against {0} {1} cannot be greater \
 						than Grand Total {2}",推動打擊{0} {1}不能大於付出\超過總計{2}
@@ -3158,11 +3167,16 @@ apps/erpnext/erpnext/schools/api.py +80,Attendance has been marked successfully.
 DocType: Journal Entry,Remark,備註
 DocType: Healthcare Settings,Avoid Confirmation,避免確認
 DocType: Purchase Receipt Item,Rate and Amount,率及金額
+<<<<<<< HEAD
 apps/erpnext/erpnext/accounts/doctype/payment_entry/payment_entry.py +165,Account Type for {0} must be {1},帳戶類型為{0}必須{1}
 DocType: Healthcare Settings,Default income accounts to be used if not set in Physician to book Consultation charges.,如果沒有在醫師中設置默認收入帳戶來預訂諮詢費用。
 apps/erpnext/erpnext/config/hr.py +55,Leaves and Holiday,休假及假日
 DocType: School Settings,Current Academic Term,當前學術期限
 DocType: School Settings,Current Academic Term,當前學術期限
+=======
+apps/erpnext/erpnext/accounts/doctype/payment_entry/payment_entry.py +146,Account Type for {0} must be {1},帳戶類型為{0}必須{1}
+apps/erpnext/erpnext/config/hr.py +55,Leaves and Holiday,休假及假日
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Sales Order,Not Billed,不發單
 apps/erpnext/erpnext/stock/doctype/warehouse/warehouse.py +75,Both Warehouse must belong to same Company,這兩個倉庫必須屬於同一個公司
 apps/erpnext/erpnext/public/js/templates/contact_list.html +34,No contacts added yet.,尚未新增聯絡人。
@@ -3516,9 +3530,14 @@ apps/erpnext/erpnext/config/accounts.py +113,Accounting Statements,會計報表
 DocType: Drug Prescription,Hour,小時
 apps/erpnext/erpnext/stock/doctype/serial_no/serial_no.py +29,New Serial No cannot have Warehouse. Warehouse must be set by Stock Entry or Purchase Receipt,新的序列號不能有倉庫。倉庫必須由存貨分錄或採購入庫單進行設定
 DocType: Lead,Lead Type,引線型
+<<<<<<< HEAD
 apps/erpnext/erpnext/hr/doctype/leave_application/leave_application.py +133,You are not authorized to approve leaves on Block Dates,在限制的日期，您無權批准休假
 apps/erpnext/erpnext/stock/doctype/delivery_note/delivery_note.py +383,All these items have already been invoiced,所有這些項目已開具發票
 DocType: Company,Monthly Sales Target,每月銷售目標
+=======
+apps/erpnext/erpnext/hr/doctype/leave_application/leave_application.py +131,You are not authorized to approve leaves on Block Dates,在限制的日期，您無權批准休假
+apps/erpnext/erpnext/stock/doctype/delivery_note/delivery_note.py +362,All these items have already been invoiced,所有這些項目已開具發票
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 apps/erpnext/erpnext/setup/doctype/authorization_control/authorization_control.py +37,Can be approved by {0},可以通過{0}的批准
 DocType: Item,Default Material Request Type,默認材料請求類型
 DocType: Supplier Scorecard,Evaluation Period,評估期
@@ -3618,10 +3637,16 @@ apps/erpnext/erpnext/config/projects.py +45,Types of activities for Time Logs,�
 DocType: Tax Rule,Sales,銷售
 DocType: Stock Entry Detail,Basic Amount,基本金額
 DocType: Training Event,Exam,考試
+<<<<<<< HEAD
 apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +451,Warehouse required for stock Item {0},倉庫需要現貨產品{0}
 DocType: Leave Allocation,Unused leaves,未使用的休假
 DocType: Patient,Alcohol Past Use,酒精過去使用
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.js +179,Cr,鉻
+=======
+apps/erpnext/erpnext/stock/doctype/delivery_note/delivery_note.py +165,Warehouse required for stock Item {0},倉庫需要現貨產品{0}
+DocType: Leave Allocation,Unused leaves,未使用的休假
+apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.js +154,Cr,鉻
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Tax Rule,Billing State,計費狀態
 apps/erpnext/erpnext/accounts/doctype/asset/asset.js +287,Transfer,轉讓
 apps/erpnext/erpnext/stock/doctype/material_request/material_request.js +882,Fetch exploded BOM (including sub-assemblies),取得爆炸BOM（包括子組件）
@@ -4766,11 +4791,18 @@ apps/erpnext/erpnext/stock/report/itemwise_recommended_reorder_level/itemwise_re
 apps/erpnext/erpnext/controllers/accounts_controller.py +556,Row #{0}: Posting Date must be same as purchase date {1} of asset {2},行＃{0}：過帳日期必須是相同的購買日期{1}資產的{2}
 DocType: Program Enrollment,Check this if the Student is residing at the Institute's Hostel.,如果學生住在學院的旅館，請檢查。
 apps/erpnext/erpnext/manufacturing/doctype/production_planning_tool/production_planning_tool.py +129,Please enter Sales Orders in the above table,請在上表中輸入銷售訂單
+<<<<<<< HEAD
 apps/erpnext/erpnext/hr/doctype/process_payroll/process_payroll.py +182,Not Submitted Salary Slips,未提交工資單
 ,Stock Summary,股票摘要
 apps/erpnext/erpnext/config/accounts.py +280,Transfer an asset from one warehouse to another,從一個倉庫轉移資產到另一
 apps/erpnext/erpnext/config/learn.py +217,Bill of Materials,材料清單
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +103,Row {0}: Party Type and Party is required for Receivable / Payable account {1},行{0}：黨的類型和黨的需要應收/應付帳戶{1}
+=======
+,Stock Summary,股票摘要
+apps/erpnext/erpnext/config/accounts.py +236,Transfer an asset from one warehouse to another,從一個倉庫轉移資產到另一
+apps/erpnext/erpnext/config/learn.py +222,Bill of Materials,材料清單
+apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +92,Row {0}: Party Type and Party is required for Receivable / Payable account {1},行{0}：黨的類型和黨的需要應收/應付帳戶{1}
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 apps/erpnext/erpnext/accounts/report/bank_reconciliation_statement/bank_reconciliation_statement.py +94,Ref Date,參考日期
 DocType: Employee,Reason for Leaving,離職原因
 DocType: BOM Operation,Operating Cost(Company Currency),營業成本（公司貨幣）

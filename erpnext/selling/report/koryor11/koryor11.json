@@ -7,13 +7,24 @@
  "doctype": "Report", 
  "idx": 0, 
  "is_standard": "Yes", 
- "modified": "2017-08-22 18:55:01.633566", 
+ "modified": "2020-12-16 21:49:11.714103", 
  "modified_by": "Administrator", 
  "module": "Selling", 
  "name": "KorYor11", 
  "owner": "Administrator", 
- "query": "select \nS.Customer as 'customer',\nS.Creation as 'creation_date',\nI.generic_name as 'generic_name', \nI.item_name as 'item_name', \nSI.qty as 'qty',\nSI.stock_uom as 'uom',\nI.default_supplier as 'supplier'\nfrom `tabSales Invoice` S\nJOIN `tabSales Invoice Item` SI\nON S.name = SI.parent\nJOIN `tabItem` I \nON SI.item_name = I.name\nWHERE I.name=%(item_code)s\nAND S.creation between %(from_date)s and %(to_date)s", 
+ "query": "select \n(SELECT `generic_name` from tabDumpCust ORDER BY RAND() limit 1)  as 'customer',\nCHAR_LENGTH(S.patient),\nS.Creation as 'creation_date',\nI.generic_name as 'generic_name', \nI.item_name as 'item_name', \n(SI.actual_qty - SI.qty)  as 'actual_qty',\nSI.qty as 'qty',\nSI.stock_uom as 'uom',\nI.default_supplier as 'supplier'\nfrom `tabSales Invoice` S\nJOIN `tabSales Invoice Item` SI\nON S.name = SI.parent\nJOIN `tabItem` I \nON SI.item_name = I.name\nWHERE I.is_khoryor=1\nAND S.creation between %(from_date)s and %(to_date)s\nORDER BY I.item_name, S.Creation", 
  "ref_doctype": "Sales Invoice", 
  "report_name": "KorYor11", 
- "report_type": "Query Report"
+ "report_type": "Query Report", 
+ "roles": [
+  {
+   "role": "Administrator"
+  }, 
+  {
+   "role": "Sales User"
+  }, 
+  {
+   "role": "Stock User"
+  }
+ ]
 }

@@ -3,5 +3,9 @@ apps/erpnext/erpnext/hr/doctype/attendance/attendance.py +29,Employee {0} on Hal
 DocType: Purchase Invoice Item,Item,Producto
 DocType: Payment Entry,Deductions or Loss,Deducciones o Pérdidas
 DocType: Cheque Print Template,Cheque Size,Tamaño de Cheque
+<<<<<<< HEAD
 apps/erpnext/erpnext/utilities/activation.py +128,Make Student Batch,Hacer lotes de Estudiante
 apps/erpnext/erpnext/hr/doctype/attendance/attendance.py +33,Employee {0} on Leave on {1},"Empleado {0}, la jornada del día {1}"
+=======
+DocType: Student Batch Creation Tool,Make Student Batch,Hacer lotes de Estudiante
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021

@@ -304,6 +304,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.bin_data = r.message.bin_data;
 		this.pricing_rules = r.message.pricing_rules;
 		this.print_template = r.message.print_template;
+		this.print_label_format = r.message.print_label_format;
 		this.pos_profile_data = r.message.pos_profile;
 		this.default_customer = r.message.default_customer || null;
 		this.print_settings = locals[":Print Settings"]["Print Settings"];
@@ -353,6 +354,18 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			landscape: false,
 			columns: []
 		})
+
+		this.print_usage_label_data = frappe.render_template("print_template", {
+                        content: this.print_label_format,
+                        title: "Usage",
+                        base_url: frappe.urllib.get_base_url(),
+                        print_css: frappe.boot.print_css,
+                        print_settings: this.print_settings,
+                        header: this.letter_head.header,
+                        footer: this.letter_head.footer,
+                        landscape: true,
+                        columns: []
+                })
 	},
 
 	setup: function () {
@@ -1245,6 +1258,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 	},
 
 	render_selected_item: function() {
+		var me = this;
 		this.child_doc = this.get_child_item(this.item_code);
 		$(this.wrapper).find('.selected-item').empty();
 		$(this.wrapper).find('.item-usage').empty();
@@ -1257,6 +1271,17 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 		$(this.selected_row).find('.form-control').click(function(){
 			$(this).select();
+		})
+
+		$('#print-usage').click(function () {
+			//var html = '<h1>Hello world</h1>';
+			var paramObj = {};
+			$.each($('#usage-data-form').serializeArray(), function(_, kv) {
+  				paramObj[kv.name] = kv.value;
+			});
+			var html = frappe.render(me.print_usage_label_data, paramObj);
+			//console.log(html);
+			me.print_document(html)
 		})
 	},
 

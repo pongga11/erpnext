@@ -6,129 +6,55 @@ from frappe import _
 def get_data():
 	return [
 		{
-			"module_name": "Item",
-			"_doctype": "Item",
-			"color": "#f39c12",
-			"icon": "octicon octicon-package",
-			"type": "link",
-			"link": "List/Item"
-		},
-		{
-			"module_name": "Customer",
-			"_doctype": "Customer",
-			"color": "#1abc9c",
-			"icon": "octicon octicon-tag",
-			"type": "link",
-			"link": "List/Customer"
-		},
-		{
-			"module_name": "Supplier",
-			"_doctype": "Supplier",
-			"color": "#c0392b",
-			"icon": "octicon octicon-briefcase",
-			"type": "link",
-			"link": "List/Supplier"
-		},
-		{
-			"_doctype": "Employee",
-			"module_name": "Employee",
-			"color": "#2ecc71",
-			"icon": "octicon octicon-organization",
-			"type": "link",
-			"link": "List/Employee"
-		},
-		{
-			"module_name": "Project",
-			"_doctype": "Project",
-			"color": "#8e44ad",
-			"icon": "octicon octicon-rocket",
-			"type": "link",
-			"link": "List/Project"
-		},
-		{
-			"module_name": "Issue",
-			"color": "#2c3e50",
-			"icon": "octicon octicon-issue-opened",
-			"_doctype": "Issue",
-			"type": "link",
-			"link": "List/Issue"
-		},
-		{
-			"module_name": "Lead",
-			"icon": "octicon octicon-broadcast",
-			"type": "module",
-			"_doctype": "Lead",
-			"type": "link",
-			"link": "List/Lead"
-		},
-		{
-			"module_name": "Profit and Loss Statement",
-			"_doctype": "Account",
-			"color": "#3498db",
-			"icon": "octicon octicon-repo",
-			"type": "link",
-			"link": "query-report/Profit and Loss Statement"
-		},
-
-		# old
-		{
 			"module_name": "Accounts",
-			"color": "#3498db",
+			"color": "#183A60",
 			"icon": "octicon octicon-repo",
-			"type": "module",
-			"hidden": 1
-		},
-		{
-			"module_name": "Stock",
-			"color": "#f39c12",
-			"icon": "fa fa-truck",
-			"icon": "octicon octicon-package",
-			"type": "module",
-			"hidden": 1
+			"label": _("Accounts"),
+			"type": "module"
 		},
 		{
 			"module_name": "CRM",
-			"color": "#EF4DB6",
+			"color": "#183A60",
 			"icon": "octicon octicon-broadcast",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "Selling",
-			"color": "#1abc9c",
-			"icon": "fa fa-tag",
+			"color": "#183A60",
+			"icon": "icon-tag",
 			"icon": "octicon octicon-tag",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "Buying",
-			"color": "#c0392b",
-			"icon": "fa fa-shopping-cart",
+			"color": "#183A60",
+			"icon": "icon-shopping-cart",
 			"icon": "octicon octicon-briefcase",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "HR",
-			"color": "#2ecc71",
-			"icon": "fa fa-group",
+			"color": "#183A60",
+			"icon": "icon-group",
 			"icon": "octicon octicon-organization",
 			"label": _("Human Resources"),
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "Manufacturing",
-			"color": "#7f8c8d",
-			"icon": "fa fa-cogs",
+			"color": "#183A60",
+			"icon": "icon-cogs",
 			"icon": "octicon octicon-tools",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "POS",
+<<<<<<< HEAD
 			"color": "#589494",
+=======
+			"color": "#183A60",
+			"icon": "icon-th",
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 			"icon": "octicon octicon-credit-card",
 			"type": "page",
 			"link": "pos",
@@ -136,26 +62,32 @@ def get_data():
 		},
 		{
 			"module_name": "Projects",
-			"color": "#8e44ad",
-			"icon": "fa fa-puzzle-piece",
+			"color": "#183A60",
+			"icon": "icon-puzzle-piece",
 			"icon": "octicon octicon-rocket",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
+		},
+		{
+			"module_name": "Stock",
+			"color": "#183A60",
+			"icon": "icon-truck",
+			"icon": "octicon octicon-package",
+			"type": "module"
 		},
 		{
 			"module_name": "Support",
-			"color": "#2c3e50",
-			"icon": "fa fa-phone",
+			"color": "#183A60",
+			"icon": "icon-phone",
 			"icon": "octicon octicon-issue-opened",
-			"type": "module",
-			"hidden": 1
+			"type": "module"
 		},
 		{
 			"module_name": "Learn",
-			"color": "#FF888B",
+			"color": "#183A60",
 			"icon": "octicon octicon-device-camera-video",
 			"type": "module",
 			"is_help": True,
+<<<<<<< HEAD
 			"label": _("Learn"),
 			"hidden": 1
 		},
@@ -293,5 +225,8 @@ def get_data():
 			"_doctype": "Restaurant",
 			"link": "List/Restaurant",
 			"label": _("Restaurant")
+=======
+			"label": _("Learn")
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 		}
 	]

@@ -813,10 +813,16 @@ apps/erpnext/erpnext/schools/doctype/fee_schedule/fee_schedule.js +59,Total Outs
 DocType: Sales Invoice Timesheet,Sales Invoice Timesheet,Satış Faturası Çizelgesi
 apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py +118,Reference No & Reference Date is required for {0},Referans No ve Referans Tarihi gereklidir {0}
 DocType: Process Payroll,Select Payment Account to make Bank Entry,Seç Ödeme Hesabı Banka girişi yapmak için
+<<<<<<< HEAD
 apps/erpnext/erpnext/utilities/activation.py +136,"Create Employee records to manage leaves, expense claims and payroll","Yaprakları, harcama talepleri ve bordro yönetmek için Çalışan kaydı oluşturma"
 apps/erpnext/erpnext/config/healthcare.py +118,Prescription Period,Reçete Dönemi
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +186,Proposal Writing,Teklifi Yazma
 apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +186,Proposal Writing,Teklifi Yazma
+=======
+apps/erpnext/erpnext/support/doctype/issue/issue.js +24,Add to Knowledge Base,Bilgi Bankası'na ekle
+apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +149,Proposal Writing,Teklifi Yazma
+apps/erpnext/erpnext/setup/setup_wizard/install_fixtures.py +149,Proposal Writing,Teklifi Yazma
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Payment Entry Deduction,Payment Entry Deduction,Ödeme Giriş Kesintisi
 apps/erpnext/erpnext/setup/doctype/sales_person/sales_person.py +35,Another Sales Person {0} exists with the same Employee id,Başka Satış Kişi {0} aynı Çalışan kimliği ile var
 DocType: Production Planning Tool,"If checked, raw materials for items that are sub-contracted will be included in the Material Requests","Malzeme İstekler dahil edilecek taşeronluk olan öğeler için, hammadde işaretli ise"
@@ -1233,7 +1239,11 @@ DocType: Naming Series,Update Series,Seriyi Güncelle
 DocType: Supplier Quotation,Is Subcontracted,Taşerona verilmiş
 DocType: Item Attribute,Item Attribute Values,Ürün Özellik Değerler
 DocType: Examination Result,Examination Result,Sınav Sonucu
+<<<<<<< HEAD
 apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +817,Purchase Receipt,Satın Alma İrsaliyesi
+=======
+apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.js +743,Purchase Receipt,Satın Alma İrsaliyesi
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 ,Received Items To Be Billed,Faturalanacak  Alınan Malzemeler
 apps/erpnext/erpnext/hr/doctype/process_payroll/process_payroll.py +173,Submitted Salary Slips,Ekleyen Maaş Fiş
 apps/erpnext/erpnext/config/accounts.py +311,Currency exchange rate master.,Ana Döviz Kuru.
@@ -4448,7 +4458,11 @@ DocType: Supplier,Contact HTML,İletişim HTML
 ,Inactive Customers,Etkin olmayan müşteriler
 DocType: Landed Cost Voucher,LCV,LCV
 DocType: Landed Cost Voucher,Purchase Receipts,Satın Alma İrsaliyeleri
+<<<<<<< HEAD
 apps/erpnext/erpnext/accounts/doctype/pricing_rule/pricing_rule.js +29,How Pricing Rule is applied?,Fiyatlandırma Kuralı Nasıl Uygulanır?
+=======
+apps/erpnext/erpnext/accounts/doctype/pricing_rule/pricing_rule.js +27,How Pricing Rule is applied?,Fiyatlandırma Kuralı Nasıl Uygulanır?
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Stock Entry,Delivery Note No,İrsaliye No
 DocType: Production Planning Tool,"If checked, only Purchase material requests for final raw materials will be included in the Material Requests. Otherwise, Material Requests for parent items will be created","Seçili ise, sadece son hammadde malzeme talepleri Malzeme İstekler dahil edilecektir satın alın. Aksi takdirde, ana öğeleri Malzeme talepleri oluşturulacak"
 DocType: Cheque Print Template,Message to show,Mesaj göstermek

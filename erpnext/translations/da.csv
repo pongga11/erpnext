@@ -946,6 +946,7 @@ DocType: SMS Center,All Customer Contact,Alle kundekontakter
 apps/erpnext/erpnext/config/stock.py +158,Upload stock balance via csv.,Upload lager balance via csv.
 DocType: Warehouse,Tree Details,Tree Detaljer
 DocType: Training Event,Event Status,begivenhed status
+<<<<<<< HEAD
 ,Support Analytics,Supportanalyser
 apps/erpnext/erpnext/accounts/doctype/payment_request/payment_request.py +352,"If you have any questions, please get back to us.","Hvis du har spørgsmål, er du velkommen til at kontakte os."
 DocType: Item,Website Warehouse,Hjemmeside-lager
@@ -955,6 +956,15 @@ apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +88,{0} {1}: Account 
 apps/erpnext/erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.py +63,Item Row {idx}: {doctype} {docname} does not exist in above '{doctype}' table,Item Row {IDX}: {doctype} {DOCNAME} findes ikke i ovenstående &#39;{doctype}&#39; tabel
 apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +289,Timesheet {0} is already completed or cancelled,Tidsregistreringskladde {0} er allerede afsluttet eller annulleret
 apps/erpnext/erpnext/templates/pages/projects.html +42,No tasks,Ingen opgaver
+=======
+,Support Analytics,Support Analytics
+DocType: Item,Website Warehouse,Website Warehouse
+DocType: Payment Reconciliation,Minimum Invoice Amount,Mindste Faktura Beløb
+apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +107,{0} {1}: Cost Center {2} does not belong to Company {3},{0} {1}: Cost center {2} ikke tilhører Company {3}
+apps/erpnext/erpnext/accounts/doctype/gl_entry/gl_entry.py +84,{0} {1}: Account {2} cannot be a Group,{0} {1}: Konto {2} kan ikke være en gruppe
+apps/erpnext/erpnext/stock/doctype/landed_cost_voucher/landed_cost_voucher.py +64,Item Row {idx}: {doctype} {docname} does not exist in above '{doctype}' table,Item Row {IDX}: {doctype} {DOCNAME} findes ikke i ovenstående &#39;{doctype}&#39; tabel
+apps/erpnext/erpnext/accounts/doctype/sales_invoice/sales_invoice.py +262,Timesheet {0} is already completed or cancelled,Timeseddel {0} er allerede afsluttet eller annulleret
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Purchase Invoice,"The day of the month on which auto invoice will be generated e.g. 05, 28 etc","Den dag i den måned, hvor auto faktura vil blive genereret f.eks 05, 28 osv"
 DocType: Item Variant Settings,Copy Fields to Variant,Kopier felt til variant
 DocType: Asset,Opening Accumulated Depreciation,Åbning Akkumulerede afskrivninger
@@ -1973,7 +1983,11 @@ DocType: Packing Slip,To Package No.,Til pakkenr.
 DocType: Patient Relation,Family,Familie
 DocType: Production Planning Tool,Material Requests,Materialeanmodninger
 DocType: Warranty Claim,Issue Date,Udstedelsesdagen
+<<<<<<< HEAD
 DocType: Activity Cost,Activity Cost,Aktivitetsomkostninger
+=======
+DocType: Activity Cost,Activity Cost,Aktivitet Omkostninger
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: Sales Invoice Timesheet,Timesheet Detail,Timeseddel Detaljer
 DocType: Purchase Receipt Item Supplied,Consumed Qty,Forbrugt Antal
 apps/erpnext/erpnext/setup/setup_wizard/industry_type.py +52,Telecommunications,Telekommunikation
@@ -2152,7 +2166,11 @@ DocType: Bank Reconciliation,Include Reconciled Entries,Medtag Afstemt Angivelse
 DocType: Course,"Parent Course (Leave blank, if this isn't part of Parent Course)","Overordnet kursus (markér ikke, hvis dette ikke er en del af et overordnet kursus)"
 DocType: Leave Control Panel,Leave blank if considered for all employee types,"Lad feltet stå tomt, hvis det skal gælde for alle medarbejdertyper"
 DocType: Landed Cost Voucher,Distribute Charges Based On,Distribuere afgifter baseret på
+<<<<<<< HEAD
 apps/erpnext/erpnext/hooks.py +131,Timesheets,Tidsregistreringskladder
+=======
+apps/erpnext/erpnext/templates/pages/projects.html +48,Timesheets,Timeseddel
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 DocType: HR Settings,HR Settings,HR-indstillinger
 DocType: Salary Slip,net pay info,nettoløn info
 DocType: Lab Test Template,This value is updated in the Default Sales Price List.,Denne værdi opdateres i standard salgsprislisten.
@@ -3543,10 +3561,15 @@ DocType: Hub Settings,Publish Availability,Offentliggøre Tilgængelighed
 DocType: Company,Create Chart Of Accounts Based On,Opret kontoplan baseret på
 apps/erpnext/erpnext/hr/doctype/employee/employee.py +107,Date of Birth cannot be greater than today.,Fødselsdato kan ikke være større end i dag.
 ,Stock Ageing,Stock Ageing
+<<<<<<< HEAD
 apps/erpnext/erpnext/schools/doctype/student/student.py +38,Student {0} exist against student applicant {1},Student {0} findes mod studerende ansøger {1}
 DocType: Purchase Invoice,Rounding Adjustment (Company Currency),Afrundingsjustering (Company Valuta)
 apps/erpnext/erpnext/projects/doctype/task/task.js +31,Timesheet,Tidsregistrering
 apps/erpnext/erpnext/controllers/accounts_controller.py +233,{0} '{1}' is disabled,{0} &#39;{1}&#39; er deaktiveret
+=======
+apps/erpnext/erpnext/manufacturing/doctype/production_order/production_order.js +128,Timesheet,Timeseddel
+apps/erpnext/erpnext/controllers/accounts_controller.py +241,{0} '{1}' is disabled,{0} &#39;{1}&#39; er deaktiveret
+>>>>>>> 3b8b91020a496cfa1cbe728a755aa3cf61c80021
 apps/erpnext/erpnext/crm/doctype/opportunity/opportunity_list.js +13,Set as Open,Sæt som Open
 DocType: Cheque Print Template,Scanned Cheque,Anvendes ikke
 DocType: Notification Control,Send automatic emails to Contacts on Submitting transactions.,Sende automatiske e-mails til Kontakter på Indsendelse transaktioner.
