@@ -1,6 +1,11 @@
 {
     "css/erpnext.css": [
-        "public/css/erpnext.css"
+        "public/css/erpnext.css",
+        "public/css/pos_v2/variables.css",
+        "public/css/pos_v2/layout.css",
+        "public/css/pos_v2/components.css",
+        "public/css/pos_v2/animations.css",
+        "public/css/pos_v2/responsive.css"
     ],
     "js/erpnext-web.min.js": [
         "public/js/website_utils.js",
@@ -21,7 +26,7 @@
         "public/js/pos/pos.html",
         "public/js/pos/pos_bill_item.html",
         "public/js/pos/pos_bill_item_new.html",
-	"public/js/pos/pos_selected_item.html",
+        "public/js/pos/pos_selected_item.html",
         "public/js/pos/pos_item.html",
         "public/js/pos/pos_tax_row.html",
         "public/js/pos/customer_toolbar.html",
@@ -33,7 +38,10 @@
         "public/js/help_links.js",
         "public/js/schools/student_button.html",
         "public/js/schools/assessment_result_tool.html",
-	"public/js/pos/pos_item_usage.html"
+        "public/js/pos/pos_item_usage.html",
+        "public/js/pos_v2/pos_v2_layout.html",
+        "public/js/pos_v2/pos_v2_item_card.html",
+        "public/js/pos_v2/pos_v2_cart_item.html"
     ],
     "js/item-dashboard.min.js": [
         "stock/dashboard/item_dashboard.html",
