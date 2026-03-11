@@ -1162,9 +1162,17 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		if (key) {
 			return $.grep(this.items_list, function (item) {
 				if (search_status) {
-					if (in_list(me.batch_no_data[item.item_code], me.serach_item.$input.val())) {
+					// Check if search input matches any batch number
+					var batch_list = me.batch_no_data[item.item_code] || [];
+					var search_val = me.serach_item.$input.val();
+					var found_batch = batch_list.find(function(b) {
+						return b.batch_no == search_val;
+					});
+					
+					if (found_batch) {
 						search_status = false;
-						return me.item_batch_no[item.item_code] = me.serach_item.$input.val()
+						me.item_batch_no[item.item_code] = found_batch.batch_no;
+						return true;
 					} else if (me.serial_no_data[item.item_code]
 						&& in_list(Object.keys(me.serial_no_data[item.item_code]), me.serach_item.$input.val())) {
 						search_status = false;
@@ -2368,12 +2376,36 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 	mandatory_batch_no: function () {
 		var me = this;
 		if (this.items[0].has_batch_no && !this.item_batch_no[this.items[0].item_code]) {
+			var batch_list = this.batch_no_data[this.items[0].item_code] || [];
+			
+			// Filter out zero-quantity batches
+			var available_batches = batch_list.filter(function(b) {
+				return b.qty > 0;
+			});
+			
+			// Check if any batches available
+			if (available_batches.length === 0) {
+				frappe.msgprint(__('No batches with available quantity for this item'));
+				return;
+			}
+			
+			// Format options with quantity and expiry date
+			var batch_options = available_batches.map(function(b) {
+				var expiry = b.expiry_date ? ' (Exp: ' + frappe.datetime.str_to_user(b.expiry_date) + ')' : '';
+				return {
+					label: b.batch_no + ' - Qty: ' + b.qty + expiry,
+					value: b.batch_no
+				};
+			});
+			
+			// Show dialog with formatted options
 			frappe.prompt([{
 				'fieldname': 'batch',
 				'fieldtype': 'Select',
 				'label': __('Batch No'),
 				'reqd': 1,
-				'options': this.batch_no_data[this.items[0].item_code]
+				'options': batch_options,
+				'description': __('Select batch with available quantity')
 			}],
 			function(values){
 				me.item_batch_no[me.items[0].item_code] = values.batch;

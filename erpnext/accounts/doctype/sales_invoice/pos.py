@@ -40,7 +40,7 @@ def get_pos_data():
 		'address': get_customers_address(customers),
 		'contacts': get_contacts(customers),
 		'serial_no_data': get_serial_no_data(pos_profile, doc.company),
-		'batch_no_data': get_batch_no_data(),
+		'batch_no_data': get_batch_no_data(pos_profile),
 		'tax_data': get_item_tax_data(),
 		'price_list_data': get_price_list_data(doc.selling_price_list),
 		'bin_data': get_bin_data(pos_profile),
@@ -238,20 +238,47 @@ def get_serial_no_data(pos_profile, company):
 
 	return itemwise_serial_no
 
-def get_batch_no_data():
-	# get itemwise batch no data
-	# exmaple: {'LED-GRE': [Batch001, Batch002]}
-	# where LED-GRE is item code, SN0001 is serial no and Pune is warehouse
-
+def get_batch_no_data(pos_profile=None):
+	"""Get itemwise batch data with quantities
+	Returns: {
+		'ITEM-A': [
+			{'batch_no': 'BATCH-001', 'qty': 50, 'expiry_date': '2025-12-31'},
+			{'batch_no': 'BATCH-002', 'qty': 0, 'expiry_date': '2025-11-30'}
+		]
+	}
+	"""
+	from erpnext.stock.doctype.batch.batch import get_batch_qty
+	
 	itemwise_batch = {}
-	batches = frappe.db.sql("""select name, item from `tabBatch`
-		where ifnull(expiry_date, '4000-10-10') >= curdate()""", as_dict=1)
-
+	warehouse = pos_profile.get('warehouse') if pos_profile else None
+	
+	# Get all non-expired batches, sorted by expiry date (FEFO)
+	batches = frappe.db.sql("""
+		select name, item, expiry_date 
+		from `tabBatch`
+		where ifnull(expiry_date, '4000-10-10') >= curdate()
+		order by expiry_date asc
+	""", as_dict=1)
+	
 	for batch in batches:
 		if batch.item not in itemwise_batch:
 			itemwise_batch.setdefault(batch.item, [])
-		itemwise_batch[batch.item].append(batch.name)
-
+		
+		# Get quantity for this batch
+		if warehouse:
+			# Get qty for specific warehouse (POS profile warehouse)
+			qty = get_batch_qty(batch_no=batch.name, warehouse=warehouse) or 0
+		else:
+			# Get total qty across all warehouses
+			batch_qtys = get_batch_qty(batch_no=batch.name)
+			qty = sum([d.qty for d in batch_qtys]) if batch_qtys else 0
+		
+		itemwise_batch[batch.item].append({
+			'batch_no': batch.name,
+			'qty': qty,
+			'expiry_date': batch.expiry_date
+		})
+	
 	return itemwise_batch
 
 def get_item_tax_data():
