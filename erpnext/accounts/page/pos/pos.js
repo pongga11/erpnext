@@ -1605,6 +1605,9 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
         this.validate_serial_no();
         this.validate_warehouse();
 
+        // Store the selected batch before checking
+        var selected_batch = this.item_batch_no[this.items[0].item_code];
+
         if (no_of_items != 0) {
             $.each(this.frm.doc["items"] || [], function (i, d) {
                 // Check BOTH item_code AND batch_no match
@@ -1612,8 +1615,8 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
                 var same_batch = false;
                 
                 // For batch items, check if batch matches
-                if (me.items[0].has_batch_no && me.item_batch_no[d.item_code]) {
-                    same_batch = (d.batch_no == me.item_batch_no[d.item_code]);
+                if (me.items[0].has_batch_no && selected_batch) {
+                    same_batch = (d.batch_no == selected_batch);
                 } else if (!me.items[0].has_batch_no) {
                     // For non-batch items, always consider same
                     same_batch = true;
@@ -1637,9 +1640,9 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
         if (!caught)
             this.add_new_item_to_grid();
 
-        // IMPORTANT: Clear batch selection after adding to cart
-        // This allows selecting different batch for same item next time
-        if (this.items[0].has_batch_no && this.item_batch_no[this.items[0].item_code]) {
+        // IMPORTANT: Clear batch selection IMMEDIATELY after adding
+        // This ensures dialog shows next time
+        if (this.items[0].has_batch_no) {
             delete this.item_batch_no[this.items[0].item_code];
         }
 
