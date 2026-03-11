@@ -2387,7 +2387,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	mandatory_batch_no: function () {
 		var me = this;
-		if (this.items[0].has_batch_no && !this.item_batch_no[this.items[0].item_code]) {
+		if (this.items[0].has_batch_no) {
 			var batch_list = this.batch_no_data[this.items[0].item_code] || [];
 			
 			// Filter out zero-quantity batches
@@ -2410,7 +2410,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 				};
 			});
 			
-			// Show dialog with formatted options
+			// Show dialog with formatted options - always prompt
 			frappe.prompt([{
 				'fieldname': 'batch',
 				'fieldtype': 'Select',
