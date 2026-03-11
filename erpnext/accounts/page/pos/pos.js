@@ -1640,6 +1640,11 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
         if (!caught)
             this.add_new_item_to_grid();
 
+        // Clear batch selection AFTER item is added to grid
+        if (this.items[0].has_batch_no) {
+            delete this.item_batch_no[this.items[0].item_code];
+        }
+
         this.update_paid_amount_status(false)
         this.wrapper.find(".item-cart-items").scrollTop(1000);
 
@@ -2382,10 +2387,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	mandatory_batch_no: function () {
 		var me = this;
-		// Always clear previous batch selection to force dialog every time
-		if (this.items[0].has_batch_no) {
-			delete this.item_batch_no[this.items[0].item_code];
-			
+		if (this.items[0].has_batch_no && !this.item_batch_no[this.items[0].item_code]) {
 			var batch_list = this.batch_no_data[this.items[0].item_code] || [];
 			
 			// Filter out zero-quantity batches
