@@ -32,6 +32,8 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.freeze = false;
 		this.page = wrapper.page;
 		this.wrapper = $(wrapper).find('.page-content');
+		this.item_batch_no = {};  // Initialize batch selection tracker
+		this.item_serial_no = {};  // Initialize serial selection tracker
 		this.set_indicator();
 		this.onload();
 		this.make_menu_list();
@@ -1141,8 +1143,10 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		// To search item as per the key enter
 
 		var me = this;
-		this.item_serial_no = {};
-		this.item_batch_no = {};
+		// DON'T reset these here - they need to persist for comparison
+		// Initialized in init() function instead
+		// this.item_serial_no = {};
+		// this.item_batch_no = {};
 
 		if (item_code) {
 			return $.grep(this.item_data, function (item) {
