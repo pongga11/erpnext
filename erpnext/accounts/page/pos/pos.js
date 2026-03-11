@@ -1610,19 +1610,15 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
         if (no_of_items != 0) {
             $.each(this.frm.doc["items"] || [], function (i, d) {
-                // Check BOTH item_code AND batch_no match
                 var same_item = d.item_code == me.items[0].item_code;
-                var same_batch = false;
+                var same_batch = true;
                 
-                // For batch items, check if batch matches
-                if (me.items[0].has_batch_no && selected_batch) {
+                // For batch items, must match batch_no
+                if (me.items[0].has_batch_no) {
                     same_batch = (d.batch_no == selected_batch);
-                } else if (!me.items[0].has_batch_no) {
-                    // For non-batch items, always consider same
-                    same_batch = true;
                 }
                 
-                // Only increment if BOTH item AND batch match
+                // Group if both item AND batch match
                 if (same_item && same_batch) {
                     caught = true;
                     d.qty += 1;
@@ -1636,7 +1632,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
             });
         }
 
-        // Add new line if item not found OR different batch
+        // Add new line if not found
         if (!caught)
             this.add_new_item_to_grid();
 
@@ -1744,6 +1740,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 				projected_qty: d.projected_qty,
 				rate: format_currency(d.rate, me.frm.doc.currency),
 				amount: format_currency(d.amount, me.frm.doc.currency),
+				batch_no: d.batch_no || "",
 				selected_class: (me.item_code == d.item_code) ? "active" : ""
 			})).appendTo($items);
 		});

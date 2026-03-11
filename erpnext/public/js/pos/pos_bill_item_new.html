@@ -2,7 +2,7 @@
 	<div class="cell subject">
 		<!--<input class="list-row-checkbox" type="checkbox" data-name="{{item_code}}">-->
 		<a class="grey list-id" title="{{ item_name }}">{{ strip_html(__(item_name)) || item_code }}</a>
-		<p style="margin-top:1px;">(ActQty: {%= actual_qty || 0.0 %} )</p>
+		<p style="margin-top:1px;">(ActQty: {%= actual_qty || 0.0 %}{% if (batch_no) { %} | Batch: {%= batch_no %}{% } %})</p>
 	</div>
 	<div class="cell text-right">{%= qty %}</div>
 	<div class="cell text-right">{%= format_currency(rate) %}</div>
