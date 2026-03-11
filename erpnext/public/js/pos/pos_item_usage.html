@@ -1,9 +1,23 @@
-<button class="btn btn-secondary btn-default btn-sm" id="print-usage"><i class="visible-xs fa fa-plus"></i><span class="hidden-xs">พิมพ์ฉลาก</span></button>
+<div style="width: 100%;">
+        <div  style="width: 50%; float: left">
+                <button class="btn btn-secondary btn-default btn-sm" id="print-usage"><i class="visible-xs fa fa-plus"></i><span class="hidden-xs">พิมพ์ฉลาก</span></button>
+        </div>
+        
+        <div style="width: 50%; float: left">
+                <button class="btn btn-secondary btn-default btn-sm" id="print-price"><i class="visible-xs fa fa-plus"></i><span class="hidden-xs">พิมพ์ป้ายราคา</span></button>
+        </div>
+</div>
+
 <form id="usage-data-form">
 	<div class="form-group col-md-12">
                 <label for="indication">ชื่อยา</label>
-		<input type="text" class="form-control" id="medicine" name="medicine" value="{%= description %}" >
+		<input type="text" class="form-control" id="medicine" name="medicine" value="{%= item_code %}" >
         </div>
+        <div class="form-group col-md-12">
+                <label for="indication">Generic name</label>
+		<input type="text" class="form-control" id="generic_name" name="generic_name" value="{%= generic_name %}" >
+        </div>
+
         <div class="form-group col-md-12">
                 <label for="indication">ข้อบ่งใช้</label>
                 <textarea class="form-control" id="indication" name="indication" rows="1">{%= indication %}</textarea>
@@ -16,9 +30,13 @@
 			<select class="form-control" id="apply_by" name="apply_by" data-fieldtype="Select">
 				<option value="รับประทาน" {% if applyby == "รับประทาน" %} selected {%endif%}  >รับประทาน</option>
 				<option value="ทาบริเวณที่เป็น" {% if applyby == "ทาบริเวณที่เป็น" %} selected {%endif%}>ทาบริเวณที่เป็น</option>
-                                <option value="หยอด" {% if applyby == "หยอด" %} selected {%endif%}>หยอด</option>
-                                <option value="หยด" {% if applyby == "หยด" %} selected {%endif%}>หยด</option>
-                                <option value="พ่น" {% if applyby == "พ่น" %} selected {%endif%}>พ่น</option>
+                <option value="ทาบางๆบริเวณที่เป็น" {% if applyby == "ทาบางๆบริเวณที่เป็น" %} selected {%endif%}>ทาบางๆบริเวณที่เป็น</option>
+                <option value="สอดยาทางช่องคลอด" {% if applyby == "สอดยาทางช่องคลอด" %} selected {%endif%}>สอดยาทางช่องคลอด</option>
+                <option value="หยอด" {% if applyby == "หยอด" %} selected {%endif%}>หยอด</option>
+                <option value="หยอด" {% if applyby == "หยอดตา" %} selected {%endif%}>หยอดตา</option>
+                <option value="หยอด" {% if applyby == "หยอดหู" %} selected {%endif%}>หยอดหู</option>
+                <option value="หยด" {% if applyby == "หยด" %} selected {%endif%}>หยด</option>
+                <option value="พ่น" {% if applyby == "พ่น" %} selected {%endif%}>พ่น</option>
 			</select>
                 </div>
 		<div class="form-group col-md-4">
@@ -60,7 +78,7 @@
                         <label class="form-check-label" for="lunch">กลางวัน</label>
                 </div>
                 <div class="form-check form-check-inline col-md-3">
-                        <input class="form-check-input" type="checkbox" id="dinner" name="diner" value="1" {% if dinner == 1 %} checked="checked" {% endif %}>
+                        <input class="form-check-input" type="checkbox" id="dinner" name="dinner" value="1" {% if dinner == 1 %} checked="checked" {% endif %}>
                         <label class="form-check-label" for="dinner">เย็น</label>
                 </div>
                 <div class="form-check form-check-inline col-md-3">

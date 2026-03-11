@@ -395,6 +395,12 @@ def get_serial_nos_by_fifo(args):
 
 @frappe.whitelist()
 def get_conversion_factor(item_code, uom):
+	
+	if uom == "Pack":
+		return {"conversion_factor": 10}
+	elif uom == "Dozen":
+		return {"conversion_factor": 12}
+
 	variant_of = frappe.db.get_value("Item", item_code, "variant_of")
 	filters = {"parent": item_code, "uom": uom}
 	if variant_of:

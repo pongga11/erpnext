@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0, 
+ "apply_user_permissions": 1, 
+ "creation": "2022-05-20 16:30:05.848849", 
+ "disabled": 0, 
+ "docstatus": 0, 
+ "doctype": "Report", 
+ "idx": 0, 
+ "is_standard": "Yes", 
+ "letter_head": "BYMHead", 
+ "modified": "2022-05-20 16:30:09.284262", 
+ "modified_by": "Administrator", 
+ "module": "Selling", 
+ "name": "KorYor11_bak", 
+ "owner": "Administrator", 
+ "query": "select \n(SELECT `generic_name` from tabDumpCust ORDER BY RAND() limit 1)  as 'customer',\nCHAR_LENGTH(S.patient),\nS.Creation as 'creation_date',\nI.generic_name as 'generic_name', \nI.item_name as 'item_name', \n(SI.actual_qty - SI.qty)  as 'actual_qty',\nSI.qty as 'qty',\nSI.stock_uom as 'uom',\nI.default_supplier as 'supplier'\nfrom `tabSales Invoice` S\nJOIN `tabSales Invoice Item` SI\nON S.name = SI.parent\nJOIN `tabItem` I \nON SI.item_name = I.name\nWHERE I.is_khoryor=1\nAND S.creation between %(from_date)s and %(to_date)s\nORDER BY I.item_name, S.Creation", 
+ "ref_doctype": "Sales Invoice", 
+ "report_name": "KorYor11_bak", 
+ "report_type": "Query Report", 
+ "roles": [
+  {
+   "role": "Administrator"
+  }, 
+  {
+   "role": "Sales User"
+  }, 
+  {
+   "role": "Stock User"
+  }
+ ]
+}

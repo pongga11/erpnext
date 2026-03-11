@@ -371,6 +371,8 @@ def make_customer_and_address(customers):
 			cust_id = add_customer(data)
 		else:
 			frappe.db.set_value("Customer", cust_id, "customer_name", data.get('full_name'))
+			frappe.db.set_value("Customer", cust_id, "is_drug_allergy", data.get('is_drug_allergy'))
+			frappe.db.set_value("Customer", cust_id, "drug_allergy_detail", data.get('drug_allergy_detail'))
 
 		make_contact(data, cust_id)
 		make_address(data, cust_id)
@@ -382,7 +384,7 @@ def add_customer(data):
 	customer_doc = frappe.new_doc('Customer')
 	customer_doc.customer_name = data.get('full_name') or data.get('customer')
 	customer_doc.customer_pos_id = data.get('customer_pos_id')
-	customer_doc.customer_type = 'Company'
+	customer_doc.customer_type = 'Individual'
 	customer_doc.customer_group = get_customer_group(data)
 	customer_doc.territory = get_territory(data)
 	customer_doc.flags.ignore_mandatory = True

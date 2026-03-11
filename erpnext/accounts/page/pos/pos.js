@@ -322,9 +322,13 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.frm = {}
 		this.load_data(true);
 		this.setup();
-		this.set_default_customer()
-		var socket = io('http://erpnext.baanyayim.com:3000');
-                socket.emit('pos-cart', 'new');
+		this.set_default_customer();
+
+        //if( this.pos_profile_data['print_receipt'] ) {
+            var socket = io('http://erpnext.baanyayim.com:3000');
+            socket.emit('pos-cart', 'new');
+        //}
+		
 	},
 
 	load_data: function (load_doc) {
@@ -594,9 +598,35 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 		$(this.numeric_keypad).find('.pos-pay').click(function(){
 			me.validate();
-			me.update_paid_amount_status(true);
-			me.create_invoice();
-			me.make_payment();
+			var has_khoryor = 0;
+			for(var i=0; i < me.frm.doc.items.length; i++ ) {
+				if( me.frm.doc.items[i].is_khoryor) {
+					has_khoryor = 1;
+				}
+			}
+			if(has_khoryor) {
+				me.khoryor_dialog = new frappe.ui.Dialog({
+                        		title: "บันทึก ขย.",
+                        		fields: [{label: "ชื่อคนไข้", fieldtype:"Link", reqd: 0, fieldname:"patient", options:"Koryor Patient" },
+						//{fieldtype:'Link', fieldname:'account_currency', label:__('Currency'), options:"Item"}
+						],
+                        		primary_action_label: __("OK"),
+                        		primary_action: function() {
+						me.khoryor_dialog.hide();
+						me.frm.doc.patient = me.khoryor_dialog.get_value('patient');
+						me.update_paid_amount_status(true);
+                        			me.create_invoice();
+                        			me.make_payment();
+                       		 	}
+                		});
+
+                		me.khoryor_dialog.show()
+			}
+			else {
+				me.update_paid_amount_status(true);
+				me.create_invoice();
+				me.make_payment();
+			}
 		})
 	},
 
@@ -606,9 +636,13 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.remove_item.push(idx)
 		this.remove_zero_qty_item()
 		this.update_paid_amount_status(false)
-		var socket = io('http://erpnext.baanyayim.com:3000');
+
+        //if( this.pos_profile_data['print_receipt'] ) {
+            var socket = io('http://erpnext.baanyayim.com:3000');
         	var itemsJson = JSON.stringify(this.frm.doc);
         	socket.emit('pos-cart', itemsJson);
+        //}
+		
 	},
 
 	render_list_customers: function () {
@@ -891,6 +925,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.numeric_keypad.show();
 	},
 
+    //TODO: insert or update new customer
 	update_customer: function (new_customer) {
 		var me = this;
 
@@ -903,15 +938,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 					"fieldtype": "Data",
 					"reqd": 1
 				},
-				{
-					"fieldtype": "Section Break"
-				},
-				{
-					"label": __("Email Id"),
-					"fieldname": "email_id",
-					"fieldtype": "Data"
-				},
-				{
+                {
 					"fieldtype": "Column Break"
 				},
 				{
@@ -922,40 +949,59 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 				{
 					"fieldtype": "Section Break"
 				},
-				{
-					"label": __("Address Name"),
-					"read_only": 1,
-					"fieldname": "name",
-					"fieldtype": "Data"
+                {
+					"label": __("Has Drug Allergy"),
+					"fieldname": "is_drug_allergy",
+					"fieldtype": "Check"
 				},
-				{
-					"label": __("Address Line 1"),
-					"fieldname": "address_line1",
-					"fieldtype": "Data"
+                {
+					"label": __("Drug Allergy Detail"),
+					"fieldname": "drug_allergy_detail",
+					"fieldtype": "Text",
+                    "depends_on": "is_drug_allergy"
 				},
-				{
-					"label": __("Address Line 2"),
-					"fieldname": "address_line2",
-					"fieldtype": "Data"
-				},
-				{
-					"fieldtype": "Column Break"
-				},
-				{
-					"label": __("City"),
-					"fieldname": "city",
-					"fieldtype": "Data"
-				},
-				{
-					"label": __("State"),
-					"fieldname": "state",
-					"fieldtype": "Data"
-				},
-				{
-					"label": __("ZIP Code"),
-					"fieldname": "pincode",
-					"fieldtype": "Data"
-				},
+				// {
+				// 	"label": __("Email Id"),
+				// 	"fieldname": "email_id",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"fieldtype": "Section Break"
+				// },
+				// {
+				// 	"label": __("Address Name"),
+				// 	"read_only": 1,
+				// 	"fieldname": "name",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"label": __("Address Line 1"),
+				// 	"fieldname": "address_line1",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"label": __("Address Line 2"),
+				// 	"fieldname": "address_line2",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"fieldtype": "Column Break"
+				// },
+				// {
+				// 	"label": __("City"),
+				// 	"fieldname": "city",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"label": __("State"),
+				// 	"fieldname": "state",
+				// 	"fieldtype": "Data"
+				// },
+				// {
+				// 	"label": __("ZIP Code"),
+				// 	"fieldname": "pincode",
+				// 	"fieldtype": "Data"
+				// },
 				{
 					"label": __("Customer POS Id"),
 					"fieldname": "customer_pos_id",
@@ -1163,7 +1209,82 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			me.bind_qty_event()
 			me.update_rate()
 			$(me.wrapper).find(".selected-item").scrollTop(1000);
-		})
+		});
+		
+
+
+		$(this.wrapper).on('keypress', '.pos-bill-item', function(e) {
+			if(e.which == 13) {
+				var child_docs = me.get_child_item(me.item_code);
+				var selectedItem = child_docs[0];
+				me.dosage = new frappe.ui.Dialog({
+						title: "Print Label",
+						fields: [
+							{label: "Dosage", fieldtype:"Data", reqd: 0, fieldname:"dosage", default: selectedItem.dosage },
+							{
+								"fieldtype": "Column Break"
+							},
+							{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "เม็ด\nซีซี\nช้อนชา\nช้อนโต๊ะ\nซอง\nหยด\nครั้ง"}
+				
+						],
+								primary_action_label: __("Print"),
+								primary_action: function() {
+										me.dosage.hide();
+										var dosageInput = me.dosage.get_value('dosage');
+										var dosageUnitInput = me.dosage.get_value('dosage_unit');
+										$('#dosage').val(dosageInput);
+										$('#dosage_unit').val(dosageUnitInput);
+										me.print_label();
+								}
+						});
+
+				me.dosage.show()
+			}
+		});
+
+		// $('body').on('keypress', function(e) {
+		// 	//TODO: payment
+		// 	if(e.which == 32) {
+		// 		console.log('trigger_primary_action');
+		// 		$( ".primary-action" ).trigger( "click" );
+		// 		e.preventDefault();
+		// 		return false;
+		// 	}
+		// });
+
+
+		// document.body.addEventListener('keydown', function (e) {
+		// 	alert('hello world');
+		// });​​​​​​​
+
+		//DoubleClick
+		$(this.wrapper).on('dblclick', '.pos-bill-item', function() {
+
+			var child_docs = me.get_child_item(me.item_code);
+			var selectedItem = child_docs[0];
+			me.dosage = new frappe.ui.Dialog({
+					title: "Print Label",
+					fields: [
+						{label: "Dosage", fieldtype:"Data", reqd: 0, fieldname:"dosage", default: selectedItem.dosage },
+						{
+							"fieldtype": "Column Break"
+						},
+						{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "เม็ด\nซีซี\nช้อนชา\nช้อนโต๊ะ\nซอง\nหยด\nครั้ง"}
+			
+					],
+							primary_action_label: __("Print"),
+							primary_action: function() {
+									me.dosage.hide();
+									var dosageInput = me.dosage.get_value('dosage');
+									var dosageUnitInput = me.dosage.get_value('dosage_unit');
+									$('#dosage').val(dosageInput);
+									$('#dosage_unit').val(dosageUnitInput);
+									me.print_label();
+							}
+					});
+
+			me.dosage.show()
+		});
 	},
 
 	bind_qty_event: function () {
@@ -1275,15 +1396,47 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 		$('#print-usage').click(function () {
 			//var html = '<h1>Hello world</h1>';
+			me.print_label();
+
+
+		})
+
+		$('#print-price').click(function () {
+
 			var paramObj = {};
 			$.each($('#usage-data-form').serializeArray(), function(_, kv) {
-  				paramObj[kv.name] = kv.value;
+				  paramObj[kv.name] = kv.value;
 			});
-			var html = frappe.render(me.print_usage_label_data, paramObj);
-			//console.log(html);
-			me.print_document(html)
+
+			var itemCode = paramObj['medicine'];
+			window.open("http://erpnext.baanyayim.com/barcode2/index.html?itemCode=" + itemCode);
+
+
 		})
 	},
+
+	print_label : function() {
+		var paramObj = {};
+		$.each($('#usage-data-form').serializeArray(), function(_, kv) {
+			  paramObj[kv.name] = kv.value;
+		});
+
+		var settings = {
+			"url": "http://baanyayim.thddns.net:5354/print-label",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+			  "Content-Type": "application/json"
+			},
+			"data": JSON.stringify(paramObj),
+		};
+
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+		});
+
+	},
+	
 
 	get_child_item: function(item_code) {
 		var me = this;
@@ -1325,9 +1478,12 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		}
 
 		this.update_paid_amount_status(false);
-		var socket = io('http://erpnext.baanyayim.com:3000');
-                var itemsJson = JSON.stringify(this.frm.doc);
-                socket.emit('pos-cart', itemsJson);
+       // if( this.pos_profile_data['print_receipt'] ) {
+            var socket = io('http://erpnext.baanyayim.com:3000');
+            var itemsJson = JSON.stringify(this.frm.doc);
+            socket.emit('pos-cart', itemsJson);
+        //}
+		
 	},
 
 	remove_zero_qty_item: function () {
@@ -1418,9 +1574,12 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.update_paid_amount_status(false)
 		this.wrapper.find(".item-cart-items").scrollTop(1000);
 
-		var socket = io('http://erpnext.baanyayim.com:3000');
+        //if( this.pos_profile_data['print_receipt'] ) {
+            var socket = io('http://erpnext.baanyayim.com:3000');
        		var itemsJson = JSON.stringify(me.frm.doc);
         	socket.emit('pos-cart', itemsJson);
+       // }
+		
 	},
 
 	add_new_item_to_grid: function () {
@@ -1460,7 +1619,8 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		this.child.or_every = this.items[0].or_every;
 		this.child.every_unit = this.items[0].every_unit;
 		this.child.symptom = this.items[0].symptom;
-		this.child.is_khoryor = this.items[0].is_khoryor	
+		this.child.is_khoryor = this.items[0].is_khoryor;
+		this.child.generic_name = this.items[0].generic_name		
 
 	
 	},
@@ -1644,7 +1804,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		var me = this;
 
 		this.msgprint = frappe.msgprint(
-			`<div class="row amount-row">
+			`   <div class="row amount-row">
                 		<div class="col-xs-6 col-sm-4 text-center">
                         		<p class="amount-label">Total<h2 style="color:red; font-weight: bold;">` + me.frm.doc.grand_total + `</h2></p>
                 		</div>
@@ -1654,11 +1814,18 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
                 		<div class="col-xs-6 col-sm-4 text-center">
                         		<p class="amount-label">Change<h2 style="color:blue; font-weight: bold;" class="paid_amount">` + me.frm.doc.change_amount + `</h2></p>
                 		</div>
-        		</div> <a class="btn btn-primary new_doc">${__('New')}</a>`);
+        		</div>
+                <div style="text-align: right;">
+                    <button class="btn btn-secondary btn-default print_doc">${__('Print ใบเสร็จ!')}</button>
+                    <button class="btn btn-primary new_doc">${__('New')}</button>
+                </div>
+                
+                `);
 		
 		$('.print_doc').click(function () {
-			var html = frappe.render(me.print_template_data, me.frm.doc)
-			me.print_document(html)
+			// var html = frappe.render(me.print_template_data, me.frm.doc)
+            // me.print_document(html)
+            me.print_manual();
 		})
 
 		$('.new_doc').click(function () {
@@ -1713,16 +1880,21 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		if(this.pos_profile_data['print_now']) {
 			//var html = frappe.render(me.print_template_data, me.frm.doc)
 	                //console.log(me.frm.doc);
-			// me.print_document(html)
-			var data = "                 BaanYaYim \n";
-			var posdata = me.frm.doc;
-			data = data + "        Tel. 097-356-5915, 087-963-5676 \n";
-			data = data + "       LINE: @baanyayim.rx, FB: BaanYaYim \n";
-		        data = data + '  POS No: ' + posdata.offline_pos_name + " Date: " + posdata.posting_date  + "\n";
-                        data = data + '  Staff: ' + posdata.owner + "\n";
-                        data = data + "\n";
+            // me.print_document(html)
 
-                        data = data + "Item                      Qty    Price   Amount\n";
+            var data = "     บริษัท บ้านยายิ้ม เมดดิคัล จำกัด (สำนักงานใหญ่)\n";
+            var posdata = me.frm.doc;
+            
+            data = data + "   146 ม.22 ต.นอกเมือง อ.เมือง จ.สุรินทร์ 32000 \n";
+            data = data + "        Tel. 097-356-5915, 087-963-5676 \n";
+            data = data + "       LINE: @baanyayim.rx, FB: BaanYaYim \n";
+            data = data + "        เลขผู้เสียภาษี: 0325567002022 \n";
+            data = data + "ใบกำกับภาษีอย่างย่อ: " + posdata.offline_pos_name + " วันที่: " + posdata.posting_date  + "\n";
+            // data = data + "วันที่: " + posdata.posting_date  + "\n";
+            // data = data + '  Staff: ' + posdata.owner + "\n";  + " \n";
+            // data = data + "\n";
+
+            data = data + "Item                      Qty    Price   Amount\n";
 			data = data + "-----------------------------------------------\n";
 			for(i=0; i < posdata.items.length; i++) {
 				item = posdata.items[i];
@@ -1741,15 +1913,22 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 				data = data + item_code + ' ' + qty + price + item.amount + "\n";			
 			}
 
-			data = data + "-----------------------------------------------\n";
+		    data = data + "-----------------------------------------------\n";
 			if (posdata.discount_amount > 0) {
-				data = data + "                          Total: " + posdata.total + " บาท \n";
-				data = data + "                       Discount: " + posdata.discount_amount + " บาท \n";
+			data = data + "                   รวมเป็นเงิน: " + posdata.total + " บาท \n";
+			data = data + "                       ส่วนลด: " + posdata.discount_amount + " บาท \n";
 			}
-			data = data + "                    Grand Total: " + posdata.grand_total + " บาท \n";
-			data = data + "                    Paid Amount: " + posdata.paid_amount + " บาท \n";
+            
+            let netTotal = (posdata.grand_total - (posdata.grand_total * 7 / 107));
+            let vat = (posdata.grand_total * 7 / 107)
+            
+            data = data + "                 รวมมูลค่าสินค้า: " + (Math.round(netTotal * 100) / 100) + " บาท \n";
+            data = data + "               ภาษีมูลค่าเพิ่ม 7%: " + (Math.round(vat * 100) / 100) + " บาท \n";
+
+            data = data + "                     รวมทั้งสิ้น: " + posdata.grand_total + " บาท \n";
+			data = data + "                        ชำระ: " + posdata.paid_amount + " บาท \n";
 			if( posdata.change_amount > 0) {
-				data = data + "                  Change Amount: " + posdata.change_amount + " บาท \n";
+			data = data + "                      เงินทอน: " + posdata.change_amount + " บาท \n";
 			}
 			data= data + "              แพ้ยากรุณาแจ้งเภสัชกร \n";
 			data= data + "               บ้านยายิ้มขอบคุณค่ะ \n";
@@ -1765,6 +1944,77 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		
 
 		}	
+
+	},
+
+	print_manual: function() {
+		var me = this;
+        //var html = frappe.render(me.print_template_data, me.frm.doc)
+                //console.log(me.frm.doc);
+        // me.print_document(html)
+
+        var data = "     บริษัท บ้านยายิ้ม เมดดิคัล จำกัด (สำนักงานใหญ่)\n";
+        var posdata = me.frm.doc;
+        
+        data = data + "   146 ม.22 ต.นอกเมือง อ.เมือง จ.สุรินทร์ 32000 \n";
+        data = data + "        Tel. 097-356-5915, 087-963-5676 \n";
+        data = data + "       LINE: @baanyayim.rx, FB: BaanYaYim \n";
+        data = data + "        เลขผู้เสียภาษี: 0325567002022 \n";
+        data = data + "ใบกำกับภาษีอย่างย่อ: " + posdata.offline_pos_name + " วันที่: " + posdata.posting_date  + "\n";
+        // data = data + "วันที่: " + posdata.posting_date  + "\n";
+        // data = data + '  Staff: ' + posdata.owner + "\n";  + " \n";
+        // data = data + "\n";
+
+        data = data + "Item                      Qty    Price   Amount\n";
+        data = data + "-----------------------------------------------\n";
+        for(i=0; i < posdata.items.length; i++) {
+            item = posdata.items[i];
+            item_code = this.subStringTH(item.item_code, 26);
+
+            qty = item.qty.toString();
+            for(j=qty.length; j< 7; j++) {
+                qty = qty + " ";
+            } 
+
+            price = item.rate.toString();
+            for(j=price.length; j< 8; j++) {
+                                    price = price + " ";
+                            }
+            
+            data = data + item_code + ' ' + qty + price + item.amount + "\n";			
+        }
+
+        data = data + "-----------------------------------------------\n";
+        if (posdata.discount_amount > 0) {
+        data = data + "                   รวมเป็นเงิน: " + posdata.total + " บาท \n";
+        data = data + "                       ส่วนลด: " + posdata.discount_amount + " บาท \n";
+        }
+        
+        let netTotal = (posdata.grand_total - (posdata.grand_total * 7 / 107));
+        let vat = (posdata.grand_total * 7 / 107)
+        
+        data = data + "                 รวมมูลค่าสินค้า: " + (Math.round(netTotal * 100) / 100) + " บาท \n";
+        data = data + "               ภาษีมูลค่าเพิ่ม 7%: " + (Math.round(vat * 100) / 100) + " บาท \n";
+
+        data = data + "                     รวมทั้งสิ้น: " + posdata.grand_total + " บาท \n";
+        data = data + "                        ชำระ: " + posdata.paid_amount + " บาท \n";
+        if( posdata.change_amount > 0) {
+        data = data + "                      เงินทอน: " + posdata.change_amount + " บาท \n";
+        }
+        data= data + "              แพ้ยากรุณาแจ้งเภสัชกร \n";
+        data= data + "               บ้านยายิ้มขอบคุณค่ะ \n";
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: this.pos_profile_data['print_now_ip'],
+            data: JSON.stringify({'html': data, 'openCashDrawer': this.pos_profile_data['open_cash_drawer'], 'printReceipt': 1 }),
+            dataType: "json"
+                
+        });
+    
+
+
 
 	},
 
@@ -2220,4 +2470,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			frappe.throw(__("LocalStorage is full , did not save"))
 		}
 	}
-})
+});
+
+
+

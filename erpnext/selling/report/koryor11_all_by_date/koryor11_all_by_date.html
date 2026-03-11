@@ -21,7 +21,7 @@
 {% for(var i=0, l=data.length; i<l; i++) { %}
 
 
-	{% if (i==0 || ( data[i][__("item_name")] != data[i-1][__("item_name")]) || ( data[i][__("lot")] != data[i-1][__("lot")] )  || ( data[i][__("receive_date")] != data[i-1][__("receive_date")] ) ) %}
+	{% if (i==0 || (data[i][__("item_name")] != data[i-1][__("item_name")]) || ( data[i][__("lot")] != data[i-1][__("lot")] ) ) %}
 
          {% var c=1; %}
 
@@ -64,7 +64,7 @@
                 {% var c=c+1; %}
 
 	
-	{% if i != data.length-1  && ( data[i][__("item_name")] != data[i+1][__("item_name")] || data[i][__("lot")] != data[i+1][__("lot")] || data[i][__("receive_date")] != data[i+1][__("receive_date")] ) %} 
+	{% if i != data.length-1  && ( data[i][__("item_name")] != data[i+1][__("item_name")] || data[i][__("lot")] != data[i+1][__("lot")]) %}
                     </tbody>
 
             </table>

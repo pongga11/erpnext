@@ -1,4 +1,4 @@
-frappe.query_reports["KorYor11"] = {
+frappe.query_reports["Finance Report"] = {
     "filters": [
         {
             "fieldname": "from_date",
@@ -11,14 +11,7 @@ frappe.query_reports["KorYor11"] = {
             "label": "To",
             "fieldtype": "Date",
             "reqd": 1,
-        },
-        {
-            "fieldname": "item_code",
-            "label": "Item",
-            "fieldtype": "Link",
-            "options": "Item",
-            "reqd": 1,
-        },
+        }
     ]
 }
 

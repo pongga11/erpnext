@@ -7,13 +7,24 @@
  "doctype": "Report", 
  "idx": 0, 
  "is_standard": "Yes", 
- "modified": "2017-08-22 14:25:11.466400", 
+ "modified": "2024-06-23 16:25:02.904521", 
  "modified_by": "Administrator", 
  "module": "Selling", 
  "name": "KorYor9", 
  "owner": "Administrator", 
- "query": "SELECT \nP.transaction_date as 'creation_date',\nP.supplier_name as 'supplier', \nPI.item_code as 'item_name', \nPI.lot_no as 'lot_no',\nPI.received_qty as 'qty',\nPI.stock_uom as 'uom'\nFROM `tabPurchase Order` P\nJOIN `tabPurchase Order Item` PI\nON P.name = PI.parent\nWHERE P.per_received = 100 and P.status = 'Completed'\nAND P.creation between %(from_date)s and %(to_date)s\n", 
+ "query": "SELECT \nP.transaction_date as 'creation_date',\nP.supplier_name as 'supplier', \nPI.item_code as 'item_name', \nPI.lot_no as 'lot_no',\nPI.stock_qty as 'qty',\nPI.stock_uom as 'uom'\nFROM `tabPurchase Order` P\nJOIN `tabPurchase Order Item` PI\nON P.name = PI.parent\nWHERE P.per_received = 100 and P.status = 'Completed'\nAND P.creation between %(from_date)s and %(to_date)s\nAND PI.lot_no is not null\nand P.supplier_name not in ('\u0e23\u0e49\u0e32\u0e19\u0e22\u0e32\u0e2d\u0e37\u0e48\u0e19\u0e46', '\u0e23\u0e49\u0e32\u0e19\u0e04\u0e49\u0e32\u0e2d\u0e37\u0e48\u0e19\u0e46 Shopee LZD etc.', 'Shopee')\n", 
  "ref_doctype": "Customer", 
  "report_name": "KorYor9", 
- "report_type": "Query Report"
+ "report_type": "Query Report", 
+ "roles": [
+  {
+   "role": "Administrator"
+  }, 
+  {
+   "role": "Sales Master Manager"
+  }, 
+  {
+   "role": "Sales User"
+  }
+ ]
 }
