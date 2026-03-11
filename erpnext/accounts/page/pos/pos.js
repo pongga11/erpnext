@@ -1539,49 +1539,101 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	},
 
-	add_to_cart: function () {
-		var me = this;
-		var caught = false;
-		var no_of_items = me.wrapper.find(".pos-bill-item").length;
+	// add_to_cart: function () {
+	// 	var me = this;
+	// 	var caught = false;
+	// 	var no_of_items = me.wrapper.find(".pos-bill-item").length;
 
-		this.customer_validate();
-		this.mandatory_batch_no();
-		this.validate_serial_no();
-		this.validate_warehouse();
+	// 	this.customer_validate();
+	// 	this.mandatory_batch_no();
+	// 	this.validate_serial_no();
+	// 	this.validate_warehouse();
 
-		if (no_of_items != 0) {
-			$.each(this.frm.doc["items"] || [], function (i, d) {
-				if (d.item_code == me.items[0].item_code) {
-					caught = true;
-					d.qty += 1;
-					d.amount = flt(d.rate) * flt(d.qty);
-					if (me.item_serial_no[d.item_code]) {
-						d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
-						d.warehouse = me.item_serial_no[d.item_code][1]
-					}
+	// 	if (no_of_items != 0) {
+	// 		$.each(this.frm.doc["items"] || [], function (i, d) {
+	// 			if (d.item_code == me.items[0].item_code) {
+	// 				caught = true;
+	// 				d.qty += 1;
+	// 				d.amount = flt(d.rate) * flt(d.qty);
+	// 				if (me.item_serial_no[d.item_code]) {
+	// 					d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
+	// 					d.warehouse = me.item_serial_no[d.item_code][1]
+	// 				}
 
-					if (me.item_batch_no.length) {
-						d.batch_no = me.item_batch_no[d.item_code]
-					}
-				}
-			});
-		}
+	// 				if (me.item_batch_no.length) {
+	// 					d.batch_no = me.item_batch_no[d.item_code]
+	// 				}
+	// 			}
+	// 		});
+	// 	}
 
-		// if item not found then add new item
-		if (!caught)
-			this.add_new_item_to_grid();
+	// 	// if item not found then add new item
+	// 	if (!caught)
+	// 		this.add_new_item_to_grid();
 
-		this.update_paid_amount_status(false)
-		this.wrapper.find(".item-cart-items").scrollTop(1000);
+	// 	this.update_paid_amount_status(false)
+	// 	this.wrapper.find(".item-cart-items").scrollTop(1000);
 
-        //if( this.pos_profile_data['print_receipt'] ) {
-            var socket = io('http://erpnext.baanyayim.com:3000');
-       		var itemsJson = JSON.stringify(me.frm.doc);
-        	socket.emit('pos-cart', itemsJson);
-       // }
+    //     //if( this.pos_profile_data['print_receipt'] ) {
+    //         var socket = io('http://erpnext.baanyayim.com:3000');
+    //    		var itemsJson = JSON.stringify(me.frm.doc);
+    //     	socket.emit('pos-cart', itemsJson);
+    //    // }
 		
-	},
+	// },
 
+
+    add_to_cart: function () {
+        var me = this;
+        var caught = false;
+        var no_of_items = me.wrapper.find(".pos-bill-item").length;
+
+        this.customer_validate();
+        this.mandatory_batch_no();
+        this.validate_serial_no();
+        this.validate_warehouse();
+
+        if (no_of_items != 0) {
+            $.each(this.frm.doc["items"] || [], function (i, d) {
+                // Check BOTH item_code AND batch_no match
+                var same_item = d.item_code == me.items[0].item_code;
+                var same_batch = false;
+                
+                // For batch items, check if batch matches
+                if (me.items[0].has_batch_no && me.item_batch_no[d.item_code]) {
+                    same_batch = (d.batch_no == me.item_batch_no[d.item_code]);
+                } else if (!me.items[0].has_batch_no) {
+                    // For non-batch items, always consider same
+                    same_batch = true;
+                }
+                
+                // Only increment if BOTH item AND batch match
+                if (same_item && same_batch) {
+                    caught = true;
+                    d.qty += 1;
+                    d.amount = flt(d.rate) * flt(d.qty);
+                    
+                    if (me.item_serial_no[d.item_code]) {
+                        d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
+                        d.warehouse = me.item_serial_no[d.item_code][1]
+                    }
+                }
+            });
+        }
+
+        // Add new line if item not found OR different batch
+        if (!caught)
+            this.add_new_item_to_grid();
+
+        this.update_paid_amount_status(false)
+        this.wrapper.find(".item-cart-items").scrollTop(1000);
+
+        var socket = io('http://erpnext.baanyayim.com:3000');
+        var itemsJson = JSON.stringify(me.frm.doc);
+        socket.emit('pos-cart', itemsJson);
+    },
+
+    
 	add_new_item_to_grid: function () {
 		var me = this;
 		this.child = frappe.model.add_child(this.frm.doc, this.frm.doc.doctype + " Item", "items");
