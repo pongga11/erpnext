@@ -1,0 +1,106 @@
+<!-- Pharmacy POS V2 - Main Layout -->
+<div class="pos-v2-container">
+    
+    <!-- Header -->
+    <div class="pos-v2-header">
+        <div class="pos-v2-header-left">
+            <h3>🏥 บ้านยายิ้ม POS V2</h3>
+        </div>
+        <div class="pos-v2-header-center">
+            <div class="pos-v2-customer-info">
+                <!-- Customer info will be rendered here -->
+            </div>
+        </div>
+        <div class="pos-v2-header-right">
+            <span class="pos-v2-connection-status">
+                <span class="pos-v2-status-dot"></span>
+                <span class="pos-v2-status-text">Checking...</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Alert Banner -->
+    <div class="pos-v2-alert-banner display-none">
+        <strong>⚠️ คำเตือน:</strong>
+        <span class="pos-v2-alert-message"></span>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="pos-v2-main">
+        
+        <!-- Left Panel - Items -->
+        <div class="pos-v2-items-panel">
+            <!-- Search Bar -->
+            <div class="pos-v2-search-bar">
+                <input type="text" 
+                       class="pos-v2-search-input" 
+                       placeholder="🔍 ค้นหายา: ชื่อยา, Generic, Barcode, Batch No">
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="pos-v2-category-filter">
+                <!-- Categories will be rendered here -->
+            </div>
+            
+            <!-- Item Grid -->
+            <div class="pos-v2-item-grid">
+                <!-- Items will be rendered here -->
+            </div>
+        </div>
+        
+        <!-- Right Panel - Cart -->
+        <div class="pos-v2-cart-panel">
+            <!-- Cart Header -->
+            <div class="pos-v2-cart-header">
+                <h4>🛒 รายการยา (<span class="pos-v2-cart-count">0</span>)</h4>
+                <button class="pos-v2-btn pos-v2-btn-text pos-v2-btn-sm">
+                    🗑️ Clear All
+                </button>
+            </div>
+            
+            <!-- Cart Items -->
+            <div class="pos-v2-cart-items">
+                <div class="pos-v2-empty-cart">
+                    <i class="fa fa-shopping-cart fa-3x"></i>
+                    <p>ไม่มีรายการยา</p>
+                </div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="pos-v2-cart-summary">
+                <div class="pos-v2-summary-row">
+                    <span>รวมราคาสินค้า</span>
+                    <span class="pos-v2-summary-value">฿ 0.00</span>
+                </div>
+                <div class="pos-v2-summary-row">
+                    <span>ส่วนลด</span>
+                    <span class="pos-v2-summary-value">฿ 0.00</span>
+                </div>
+                <div class="pos-v2-summary-row">
+                    <span>ภาษีมูลค่าเพิ่ม 7%</span>
+                    <span class="pos-v2-summary-value">฿ 0.00</span>
+                </div>
+                <div class="pos-v2-summary-row pos-v2-summary-total">
+                    <span>รวมทั้งสิ้น</span>
+                    <span class="pos-v2-summary-value">฿ 0.00</span>
+                </div>
+            </div>
+            
+            <!-- Payment Button -->
+            <div class="pos-v2-cart-footer">
+                <button class="pos-v2-btn pos-v2-btn-primary pos-v2-btn-lg pos-v2-btn-block">
+                    💳 ชำระเงิน
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Footer -->
+    <div class="pos-v2-footer">
+        <div>🔄 Synced</div>
+        <div>📋 <span class="pos-v2-offline-count">0</span> Offline Invoices</div>
+        <div>⚙️ Settings</div>
+    </div>
+    
+</div>

@@ -1,0 +1,222 @@
+/* Pharmacy POS V2 - Layout */
+
+/* Main Container */
+.pos-v2-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--pos-background);
+  font-family: 'Sarabun', 'Inter', -apple-system, sans-serif;
+  color: var(--pos-text-primary);
+}
+
+/* Header */
+.pos-v2-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--pos-space-4);
+  background: var(--pos-primary-white);
+  border-bottom: 1px solid var(--pos-border);
+  box-shadow: var(--pos-shadow-sm);
+  z-index: 100;
+}
+
+.pos-v2-header-left,
+.pos-v2-header-center,
+.pos-v2-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.pos-v2-header h3 {
+  margin: 0;
+  font-size: var(--pos-text-lg);
+}
+
+/* Alert Banner */
+.pos-v2-alert-banner {
+  padding: var(--pos-space-4);
+  background: #fee2e2;
+  border-left: 4px solid var(--pos-danger);
+  animation: slideDown 0.3s ease;
+}
+
+.pos-v2-alert-banner.display-none {
+  display: none;
+}
+
+/* Main Content */
+.pos-v2-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Left Panel - Items (60%) */
+.pos-v2-items-panel {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--pos-space-4);
+  overflow-y: auto;
+}
+
+/* Right Panel - Cart (40%) */
+.pos-v2-cart-panel {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  background: var(--pos-primary-white);
+  border-left: 1px solid var(--pos-border);
+  box-shadow: var(--pos-shadow-md);
+}
+
+/* Cart Header */
+.pos-v2-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--pos-space-4);
+  border-bottom: 1px solid var(--pos-border);
+}
+
+.pos-v2-cart-header h4 {
+  margin: 0;
+}
+
+/* Cart Items */
+.pos-v2-cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--pos-space-2);
+}
+
+.pos-v2-empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--pos-text-muted);
+}
+
+.pos-v2-empty-cart p {
+  margin-top: var(--pos-space-2);
+}
+
+/* Cart Summary */
+.pos-v2-cart-summary {
+  padding: var(--pos-space-4);
+  border-top: 1px solid var(--pos-border);
+  background: var(--pos-hover);
+}
+
+.pos-v2-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--pos-space-2) 0;
+}
+
+.pos-v2-summary-row.pos-v2-summary-total {
+  border-top: 2px solid var(--pos-border);
+  margin-top: var(--pos-space-2);
+  padding-top: var(--pos-space-3);
+  font-weight: var(--pos-font-bold);
+  font-size: var(--pos-text-lg);
+}
+
+/* Cart Footer */
+.pos-v2-cart-footer {
+  padding: var(--pos-space-4);
+  border-top: 1px solid var(--pos-border);
+}
+
+/* Footer */
+.pos-v2-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--pos-space-3) var(--pos-space-4);
+  background: var(--pos-primary-white);
+  border-top: 1px solid var(--pos-border);
+  font-size: var(--pos-text-sm);
+  color: var(--pos-text-secondary);
+}
+
+/* Search Bar */
+.pos-v2-search-bar {
+  margin-bottom: var(--pos-space-4);
+}
+
+.pos-v2-search-input {
+  width: 100%;
+  padding: var(--pos-space-3) var(--pos-space-4);
+  border: 1px solid var(--pos-border);
+  border-radius: var(--pos-radius-md);
+  font-size: var(--pos-text-base);
+  transition: var(--pos-transition);
+}
+
+.pos-v2-search-input:focus {
+  outline: none;
+  border-color: var(--pos-primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Category Filter */
+.pos-v2-category-filter {
+  display: flex;
+  gap: var(--pos-space-2);
+  margin-bottom: var(--pos-space-4);
+  flex-wrap: wrap;
+}
+
+.pos-v2-category-btn {
+  padding: var(--pos-space-2) var(--pos-space-3);
+  border: 1px solid var(--pos-border);
+  border-radius: var(--pos-radius-full);
+  background: var(--pos-primary-white);
+  cursor: pointer;
+  transition: var(--pos-transition);
+  font-size: var(--pos-text-sm);
+}
+
+.pos-v2-category-btn:hover {
+  border-color: var(--pos-primary-blue);
+}
+
+.pos-v2-category-btn.active {
+  background: var(--pos-primary-blue);
+  color: white;
+  border-color: var(--pos-primary-blue);
+}
+
+/* Item Grid */
+.pos-v2-item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--pos-space-4);
+}
+
+/* Connection Status */
+.pos-v2-connection-status {
+  display: flex;
+  align-items: center;
+  gap: var(--pos-space-2);
+}
+
+.pos-v2-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pos-text-muted);
+}
+
+.pos-v2-status-dot.online {
+  background: var(--pos-success);
+}
+
+.pos-v2-status-dot.offline {
+  background: var(--pos-danger);
+}

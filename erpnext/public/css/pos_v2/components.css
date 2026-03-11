@@ -1,0 +1,343 @@
+/* Pharmacy POS V2 - Components */
+
+/* Buttons */
+.pos-v2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pos-space-3) var(--pos-space-4);
+  border: none;
+  border-radius: var(--pos-radius-md);
+  font-size: var(--pos-text-base);
+  font-weight: var(--pos-font-medium);
+  cursor: pointer;
+  transition: var(--pos-transition);
+  gap: var(--pos-space-2);
+}
+
+.pos-v2-btn-primary {
+  background: var(--pos-primary-blue);
+  color: white;
+}
+
+.pos-v2-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.pos-v2-btn-secondary {
+  background: var(--pos-hover);
+  color: var(--pos-text-primary);
+  border: 1px solid var(--pos-border);
+}
+
+.pos-v2-btn-secondary:hover {
+  background: var(--pos-selected);
+}
+
+.pos-v2-btn-text {
+  background: transparent;
+  color: var(--pos-text-secondary);
+}
+
+.pos-v2-btn-text:hover {
+  color: var(--pos-danger);
+}
+
+.pos-v2-btn-sm {
+  padding: var(--pos-space-2) var(--pos-space-3);
+  font-size: var(--pos-text-sm);
+}
+
+.pos-v2-btn-lg {
+  padding: var(--pos-space-4) var(--pos-space-6);
+  font-size: var(--pos-text-lg);
+}
+
+.pos-v2-btn-block {
+  width: 100%;
+}
+
+/* Badges */
+.pos-v2-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--pos-radius-full);
+  font-size: var(--pos-text-xs);
+  font-weight: var(--pos-font-bold);
+}
+
+.pos-v2-badge-danger {
+  background: var(--pos-danger);
+  color: white;
+}
+
+.pos-v2-badge-warning {
+  background: var(--pos-warning);
+  color: white;
+}
+
+.pos-v2-badge-success {
+  background: var(--pos-success);
+  color: white;
+}
+
+.pos-v2-badge-info {
+  background: var(--pos-info);
+  color: white;
+}
+
+/* Item Card */
+.pos-v2-item-card {
+  background: var(--pos-primary-white);
+  border: 1px solid var(--pos-border);
+  border-radius: var(--pos-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--pos-transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-v2-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pos-shadow-md);
+  border-color: var(--pos-primary-blue);
+}
+
+.pos-v2-item-image {
+  height: 150px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pos-v2-item-image img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.pos-v2-item-placeholder {
+  font-size: 48px;
+  color: #cbd5e1;
+  font-weight: bold;
+}
+
+.pos-v2-item-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.pos-v2-item-info {
+  padding: var(--pos-space-3);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-v2-item-name {
+  font-size: var(--pos-text-lg);
+  font-weight: var(--pos-font-semibold);
+  margin: 0 0 4px 0;
+  color: var(--pos-text-primary);
+  line-height: 1.3;
+}
+
+.pos-v2-item-generic {
+  font-size: var(--pos-text-sm);
+  color: var(--pos-text-secondary);
+  font-style: italic;
+  margin: 0 0 8px 0;
+}
+
+.pos-v2-item-meta {
+  display: flex;
+  gap: var(--pos-space-2);
+  margin-bottom: 8px;
+  font-size: var(--pos-text-xs);
+  color: var(--pos-text-muted);
+}
+
+.pos-v2-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.pos-v2-item-price {
+  font-size: var(--pos-text-xl);
+  font-weight: var(--pos-font-bold);
+  color: var(--pos-primary-blue);
+}
+
+.pos-v2-item-stock {
+  font-size: var(--pos-text-sm);
+  padding: 2px 8px;
+  border-radius: var(--pos-radius-sm);
+}
+
+/* Stock Status Colors */
+.pos-v2-stock-high {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.pos-v2-stock-medium {
+  background: #fed7aa;
+  color: #92400e;
+}
+
+.pos-v2-stock-low {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pos-v2-stock-out {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* Cart Item */
+.pos-v2-cart-item {
+  padding: var(--pos-space-4);
+  border-bottom: 1px solid var(--pos-border);
+  cursor: pointer;
+  transition: var(--pos-transition);
+}
+
+.pos-v2-cart-item:hover {
+  background: var(--pos-hover);
+}
+
+.pos-v2-cart-item.active {
+  background: var(--pos-selected);
+  border-left: 3px solid var(--pos-primary-blue);
+}
+
+.pos-v2-cart-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--pos-space-2);
+}
+
+.pos-v2-cart-item-name {
+  font-weight: var(--pos-font-semibold);
+  font-size: var(--pos-text-base);
+  margin: 0;
+}
+
+.pos-v2-cart-item-generic {
+  font-size: var(--pos-text-sm);
+  color: var(--pos-text-secondary);
+  font-style: italic;
+}
+
+.pos-v2-cart-item-meta {
+  display: flex;
+  gap: var(--pos-space-3);
+  margin: var(--pos-space-2) 0;
+  font-size: var(--pos-text-sm);
+  color: var(--pos-text-muted);
+}
+
+.pos-v2-cart-item-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--pos-space-3);
+}
+
+.pos-v2-qty-control {
+  display: flex;
+  align-items: center;
+  gap: var(--pos-space-2);
+}
+
+.pos-v2-qty-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--pos-border);
+  border-radius: var(--pos-radius-sm);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--pos-transition);
+}
+
+.pos-v2-qty-btn:hover {
+  background: var(--pos-hover);
+  border-color: var(--pos-primary-blue);
+}
+
+.pos-v2-qty-input {
+  width: 60px;
+  text-align: center;
+  border: 1px solid var(--pos-border);
+  border-radius: var(--pos-radius-sm);
+  padding: 4px;
+  font-size: var(--pos-text-base);
+  font-weight: var(--pos-font-semibold);
+}
+
+.pos-v2-cart-item-amount {
+  font-size: var(--pos-text-lg);
+  font-weight: var(--pos-font-bold);
+  color: var(--pos-primary-blue);
+}
+
+.pos-v2-cart-item-remove {
+  color: var(--pos-danger);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.pos-v2-cart-item-remove:hover {
+  background: #fee2e2;
+  border-radius: var(--pos-radius-sm);
+}
+
+/* Customer Info */
+.pos-v2-customer-info {
+  display: flex;
+  align-items: center;
+  gap: var(--pos-space-3);
+}
+
+.pos-v2-customer-name {
+  font-weight: var(--pos-font-semibold);
+}
+
+/* Dosage Panel */
+.pos-v2-dosage-panel {
+  background: #f8fafc;
+  padding: var(--pos-space-3);
+  margin-top: var(--pos-space-3);
+  border-radius: var(--pos-radius-sm);
+  border: 1px solid var(--pos-border);
+}
+
+.pos-v2-dosage-label {
+  font-size: var(--pos-text-sm);
+  color: var(--pos-text-secondary);
+  margin-bottom: 4px;
+}
+
+.pos-v2-dosage-value {
+  font-size: var(--pos-text-base);
+  color: var(--pos-text-primary);
+  padding: 4px 0;
+}
+
+.pos-v2-dosage-actions {
+  display: flex;
+  gap: var(--pos-space-2);
+  margin-top: var(--pos-space-2);
+}
