@@ -1633,6 +1633,12 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
         if (!caught)
             this.add_new_item_to_grid();
 
+        // IMPORTANT: Clear batch selection after adding to cart
+        // This allows selecting different batch for same item next time
+        if (this.items[0].has_batch_no && this.item_batch_no[this.items[0].item_code]) {
+            delete this.item_batch_no[this.items[0].item_code];
+        }
+
         this.update_paid_amount_status(false)
         this.wrapper.find(".item-cart-items").scrollTop(1000);
 
