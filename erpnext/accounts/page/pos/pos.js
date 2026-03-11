@@ -1597,56 +1597,58 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
     add_to_cart: function () {
         var me = this;
-        var caught = false;
-        var no_of_items = me.wrapper.find(".pos-bill-item").length;
 
         this.customer_validate();
-        this.mandatory_batch_no();
-        this.validate_serial_no();
         this.validate_warehouse();
 
-        // Store the selected batch before checking
-        var selected_batch = this.item_batch_no[this.items[0].item_code];
+        // Wait for batch selection before proceeding
+        this.mandatory_batch_no(function() {
+            me.validate_serial_no();
+            
+            var caught = false;
+            var no_of_items = me.wrapper.find(".pos-bill-item").length;
+            var selected_batch = me.item_batch_no[me.items[0].item_code];
 
-        if (no_of_items != 0) {
-            $.each(this.frm.doc["items"] || [], function (i, d) {
-                var same_item = d.item_code == me.items[0].item_code;
-                var same_batch = true;
-                
-                // For batch items, must match batch_no
-                if (me.items[0].has_batch_no) {
-                    same_batch = (d.batch_no == selected_batch);
-                }
-                
-                // Group if both item AND batch match
-                if (same_item && same_batch) {
-                    caught = true;
-                    d.qty += 1;
-                    d.amount = flt(d.rate) * flt(d.qty);
+            if (no_of_items != 0) {
+                $.each(me.frm.doc["items"] || [], function (i, d) {
+                    var same_item = d.item_code == me.items[0].item_code;
+                    var same_batch = true;
                     
-                    if (me.item_serial_no[d.item_code]) {
-                        d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
-                        d.warehouse = me.item_serial_no[d.item_code][1]
+                    // For batch items, must match batch_no
+                    if (me.items[0].has_batch_no) {
+                        same_batch = (d.batch_no == selected_batch);
                     }
-                }
-            });
-        }
+                    
+                    // Group if both item AND batch match
+                    if (same_item && same_batch) {
+                        caught = true;
+                        d.qty += 1;
+                        d.amount = flt(d.rate) * flt(d.qty);
+                        
+                        if (me.item_serial_no[d.item_code]) {
+                            d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
+                            d.warehouse = me.item_serial_no[d.item_code][1]
+                        }
+                    }
+                });
+            }
 
-        // Add new line if not found
-        if (!caught)
-            this.add_new_item_to_grid();
+            // Add new line if not found
+            if (!caught)
+                me.add_new_item_to_grid();
 
-        // Clear batch selection AFTER item is added to grid
-        if (this.items[0].has_batch_no) {
-            delete this.item_batch_no[this.items[0].item_code];
-        }
+            // Clear batch selection AFTER item is added to grid
+            if (me.items[0].has_batch_no) {
+                delete me.item_batch_no[me.items[0].item_code];
+            }
 
-        this.update_paid_amount_status(false)
-        this.wrapper.find(".item-cart-items").scrollTop(1000);
+            me.update_paid_amount_status(false)
+            me.wrapper.find(".item-cart-items").scrollTop(1000);
 
-        var socket = io('http://erpnext.baanyayim.com:3000');
-        var itemsJson = JSON.stringify(me.frm.doc);
-        socket.emit('pos-cart', itemsJson);
+            var socket = io('http://erpnext.baanyayim.com:3000');
+            var itemsJson = JSON.stringify(me.frm.doc);
+            socket.emit('pos-cart', itemsJson);
+        });
     },
 
 	add_new_item_to_grid: function () {
@@ -2382,7 +2384,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 		}
 	},
 
-	mandatory_batch_no: function () {
+	mandatory_batch_no: function (callback) {
 		var me = this;
 		if (this.items[0].has_batch_no) {
 			var batch_list = this.batch_no_data[this.items[0].item_code] || [];
@@ -2418,8 +2420,11 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			}],
 			function(values){
 				me.item_batch_no[me.items[0].item_code] = values.batch;
+				if (callback) callback();
 			},
 			__('Select Batch No'))
+		} else {
+			if (callback) callback();
 		}
 	},
 
