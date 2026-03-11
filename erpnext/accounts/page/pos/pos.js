@@ -1633,7 +1633,6 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
         socket.emit('pos-cart', itemsJson);
     },
 
-    
 	add_new_item_to_grid: function () {
 		var me = this;
 		this.child = frappe.model.add_child(this.frm.doc, this.frm.doc.doctype + " Item", "items");
