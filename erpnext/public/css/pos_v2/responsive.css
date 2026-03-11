@@ -1,0 +1,156 @@
+/* Pharmacy POS V2 - Responsive Design */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .pos-v2-items-panel {
+    flex: 0 0 50%;
+  }
+  
+  .pos-v2-cart-panel {
+    flex: 0 0 50%;
+  }
+  
+  .pos-v2-item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .pos-v2-item-image {
+    height: 120px;
+  }
+  
+  .pos-v2-item-name {
+    font-size: var(--pos-text-base);
+  }
+  
+  .pos-v2-item-price {
+    font-size: var(--pos-text-lg);
+  }
+}
+
+/* Tablet Portrait (768px and below) */
+@media (max-width: 768px) {
+  .pos-v2-main {
+    flex-direction: column;
+  }
+  
+  .pos-v2-items-panel,
+  .pos-v2-cart-panel {
+    flex: 1;
+    max-height: 50vh;
+  }
+  
+  .pos-v2-item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .pos-v2-header {
+    flex-wrap: wrap;
+    gap: var(--pos-space-2);
+  }
+  
+  .pos-v2-header-left,
+  .pos-v2-header-center,
+  .pos-v2-header-right {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .pos-v2-header-left {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: var(--pos-space-2);
+  }
+  
+  .pos-v2-cart-header h4 {
+    font-size: var(--pos-text-base);
+  }
+  
+  .pos-v2-summary-row {
+    font-size: var(--pos-text-sm);
+  }
+  
+  .pos-v2-summary-row.pos-v2-summary-total {
+    font-size: var(--pos-text-base);
+  }
+  
+  .pos-v2-footer {
+    flex-wrap: wrap;
+    gap: var(--pos-space-2);
+    justify-content: center;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .pos-v2-items-panel {
+    padding: var(--pos-space-2);
+  }
+  
+  .pos-v2-cart-panel {
+    padding: var(--pos-space-2);
+  }
+  
+  .pos-v2-item-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--pos-space-2);
+  }
+  
+  .pos-v2-item-image {
+    height: 100px;
+  }
+  
+  .pos-v2-item-info {
+    padding: var(--pos-space-2);
+  }
+  
+  .pos-v2-item-name {
+    font-size: var(--pos-text-sm);
+  }
+  
+  .pos-v2-item-price {
+    font-size: var(--pos-text-base);
+  }
+  
+  .pos-v2-item-stock {
+    font-size: var(--pos-text-xs);
+  }
+  
+  .pos-v2-search-input {
+    padding: var(--pos-space-2) var(--pos-space-3);
+    font-size: var(--pos-text-sm);
+  }
+  
+  .pos-v2-category-btn {
+    padding: var(--pos-space-1) var(--pos-space-2);
+    font-size: var(--pos-text-xs);
+  }
+  
+  .pos-v2-qty-input {
+    width: 50px;
+    font-size: var(--pos-text-sm);
+  }
+  
+  .pos-v2-qty-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Large Desktop (1440px and above) */
+@media (min-width: 1440px) {
+  .pos-v2-items-panel {
+    flex: 0 0 65%;
+  }
+  
+  .pos-v2-cart-panel {
+    flex: 0 0 35%;
+  }
+  
+  .pos-v2-item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  
+  .pos-v2-item-image {
+    height: 180px;
+  }
+}

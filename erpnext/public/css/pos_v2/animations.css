@@ -1,0 +1,86 @@
+/* Pharmacy POS V2 - Animations */
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Apply animations */
+.pos-v2-alert-banner {
+  animation: slideDown 0.3s ease;
+}
+
+.pos-v2-cart-item {
+  animation: fadeIn 0.2s ease;
+}
+
+.pos-v2-item-card {
+  animation: fadeIn 0.3s ease;
+}
+
+.pos-v2-badge-danger {
+  animation: pulse 2s infinite;
+}
+
+/* Loading spinner */
+.pos-v2-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pos-space-8);
+}
+
+.pos-v2-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--pos-border);
+  border-top-color: var(--pos-primary-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Item add animation */
+.pos-v2-item-card.just-added {
+  animation: bounce 0.3s ease;
+}

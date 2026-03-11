@@ -1,0 +1,70 @@
+<!-- Pharmacy POS V2 - Cart Item -->
+<div class="pos-v2-cart-item {{ selected_class }}" data-item-code="{{ item_code }}" data-idx="{{ idx }}">
+    
+    <!-- Header -->
+    <div class="pos-v2-cart-item-header">
+        <div>
+            <h5 class="pos-v2-cart-item-name">
+                {{ item_name || item_code }}
+                {% if (is_khoryor) { %}
+                <span class="pos-v2-badge pos-v2-badge-warning" style="font-size: 10px; padding: 2px 6px;">ขย.</span>
+                {% } %}
+            </h5>
+            {% if (generic_name) { %}
+            <p class="pos-v2-cart-item-generic">({{ generic_name }})</p>
+            {% } %}
+        </div>
+        <span class="pos-v2-cart-item-remove" data-action="remove">
+            ❌
+        </span>
+    </div>
+    
+    <!-- Meta Info -->
+    <div class="pos-v2-cart-item-meta">
+        {% if (batch_no) { %}
+        <span>📦 Batch: {{ batch_no }}</span>
+        {% } %}
+        {% if (expiry_date) { %}
+        <span>📅 Exp: {{ expiry_date }}</span>
+        {% } %}
+    </div>
+    
+    <!-- Controls -->
+    <div class="pos-v2-cart-item-controls">
+        <div class="pos-v2-qty-control">
+            <button class="pos-v2-qty-btn" data-action="decrease">−</button>
+            <input type="number" 
+                   class="pos-v2-qty-input" 
+                   value="{{ qty }}" 
+                   min="1">
+            <button class="pos-v2-qty-btn" data-action="increase">+</button>
+        </div>
+        <div>
+            <div style="font-size: 12px; color: #64748b;">
+                @ {{ format_currency(rate) }}
+            </div>
+            <div class="pos-v2-cart-item-amount">
+                {{ format_currency(amount) }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dosage Info (if selected) -->
+    {% if (show_dosage && indication) { %}
+    <div class="pos-v2-dosage-panel">
+        <div class="pos-v2-dosage-label">📋 วิธีใช้:</div>
+        <div class="pos-v2-dosage-value">
+            {{ indication }} - {{ applyby }} {{ dosage }} {{ dosage_unit }}
+        </div>
+        <div class="pos-v2-dosage-actions">
+            <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="edit-dosage">
+                ✏️ แก้ไข
+            </button>
+            <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="print-label">
+                🖨️ พิมพ์ฉลาก
+            </button>
+        </div>
+    </div>
+    {% } %}
+    
+</div>
