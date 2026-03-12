@@ -15,17 +15,17 @@
             {% } %}
         </div>
         <span class="pos-v2-cart-item-remove" data-action="remove">
-            ❌
+            &#10060;
         </span>
     </div>
     
     <!-- Meta Info -->
     <div class="pos-v2-cart-item-meta">
         {% if (batch_no) { %}
-        <span>📦 Batch: {{ batch_no }}</span>
+        <span>&#128230; Batch: {{ batch_no }}</span>
         {% } %}
         {% if (expiry_date) { %}
-        <span>📅 Exp: {{ expiry_date }}</span>
+        <span>&#128197; Exp: {{ expiry_date }}</span>
         {% } %}
     </div>
     
@@ -52,16 +52,16 @@
     <!-- Dosage Info (if selected) -->
     {% if (show_dosage && indication) { %}
     <div class="pos-v2-dosage-panel">
-        <div class="pos-v2-dosage-label">📋 วิธีใช้:</div>
+        <div class="pos-v2-dosage-label">&#128203; วิธีใช้:</div>
         <div class="pos-v2-dosage-value">
             {{ indication }} - {{ applyby }} {{ dosage }} {{ dosage_unit }}
         </div>
         <div class="pos-v2-dosage-actions">
             <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="edit-dosage">
-                ✏️ แก้ไข
+                &#9999;&#65039; แก้ไข
             </button>
             <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="print-label">
-                🖨️ พิมพ์ฉลาก
+                &#128424;&#65039; พิมพ์ฉลาก
             </button>
         </div>
     </div>
