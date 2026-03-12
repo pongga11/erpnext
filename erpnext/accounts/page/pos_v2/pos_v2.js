@@ -380,3 +380,32 @@ erpnext.pos.PointOfSale.prototype.update_v2_cart_summary = function() {
 		);
 	}
 };
+
+// Phase 4: Override update_customer_data for allergy check
+erpnext.pos.PointOfSale.prototype.update_customer_data = function (doc) {
+	var me = this;
+	this.frm.doc.customer = doc.label || doc.name;
+	this.frm.doc.customer_name = doc.customer_name;
+	this.frm.doc.customer_group = doc.customer_group;
+	this.frm.doc.territory = doc.territory;
+	this.pos_bill.show();
+	this.numeric_keypad.show();
+	
+	// Check for drug allergies
+	this.check_drug_allergies(doc);
+};
+
+// Phase 4: Drug allergy check
+erpnext.pos.PointOfSale.prototype.check_drug_allergies = function(customer) {
+	var $alert = this.wrapper.find('.pos-v2-alert-banner');
+	var $message = this.wrapper.find('.pos-v2-alert-message');
+	
+	if (customer && customer.is_drug_allergy && customer.drug_allergy_detail) {
+		$message.html('คนไข้แพ้ยา: <strong>' + customer.drug_allergy_detail + '</strong>');
+		$alert.removeClass('display-none');
+		this.customer_allergies = customer.drug_allergy_detail.toLowerCase();
+	} else {
+		$alert.addClass('display-none');
+		this.customer_allergies = null;
+	}
+};

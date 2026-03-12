@@ -220,3 +220,20 @@
 .pos-v2-status-dot.offline {
   background: var(--pos-danger);
 }
+
+/* Allergy Alert */
+.pos-v2-allergy-banner {
+  padding: var(--pos-space-4);
+  background: #fee2e2;
+  border-left: 4px solid var(--pos-danger);
+  animation: slideDown 0.3s ease;
+}
+
+.pos-v2-allergy-banner.display-none {
+  display: none;
+}
+
+.pos-v2-allergy-text {
+  color: #991b1b;
+  font-weight: var(--pos-font-semibold);
+}
