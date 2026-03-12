@@ -1,106 +1,14 @@
-<!-- Pharmacy POS V2 - Main Layout -->
 <div class="pos-v2-container">
-    
-    <!-- Header -->
     <div class="pos-v2-header">
-        <div class="pos-v2-header-left">
-            <h3 style="margin: 0;">POS V2</h3>
-        </div>
-        <div class="pos-v2-header-center">
-            <div class="pos-v2-customer-info">
-                <span class="pos-v2-customer-name">Select Customer...</span>
-            </div>
-        </div>
-        <div class="pos-v2-header-right">
-            <span class="pos-v2-connection-status">
-                <span class="pos-v2-status-dot"></span>
-                <span class="pos-v2-status-text">Checking...</span>
-            </span>
-        </div>
+        <h3>POS V2</h3>
     </div>
-    
-    <!-- Alert Banner -->
-    <div class="pos-v2-alert-banner display-none">
-        <strong>Warning:</strong>
-        <span class="pos-v2-alert-message"></span>
-    </div>
-    
-    <!-- Main Content -->
     <div class="pos-v2-main">
-        
-        <!-- Left Panel - Items -->
         <div class="pos-v2-items-panel">
-            <!-- Search Bar -->
-            <div class="pos-v2-search-bar">
-                <input type="text" 
-                       class="pos-v2-search-input" 
-                       placeholder="Search: Name, Generic, Barcode, Batch">
-            </div>
-            
-            <!-- Category Filter -->
-            <div class="pos-v2-category-filter">
-                <!-- Categories will be rendered here -->
-            </div>
-            
-            <!-- Item Grid -->
-            <div class="pos-v2-item-grid">
-                <!-- Items will be rendered here -->
-            </div>
+            <input type="text" class="pos-v2-search-input" placeholder="Search">
+            <div class="pos-v2-item-grid"></div>
         </div>
-        
-        <!-- Right Panel - Cart -->
         <div class="pos-v2-cart-panel">
-            <!-- Cart Header -->
-            <div class="pos-v2-cart-header">
-                <h4>Cart (<span class="pos-v2-cart-count">0</span>)</h4>
-                <button class="pos-v2-btn pos-v2-btn-text pos-v2-btn-sm">
-                    Clear All
-                </button>
-            </div>
-            
-            <!-- Cart Items -->
-            <div class="pos-v2-cart-items">
-                <div class="pos-v2-empty-cart">
-                    <i class="fa fa-shopping-cart fa-3x"></i>
-                    <p>No items</p>
-                </div>
-            </div>
-            
-            <!-- Cart Summary -->
-            <div class="pos-v2-cart-summary">
-                <div class="pos-v2-summary-row">
-                    <span>Subtotal</span>
-                    <span class="pos-v2-summary-value">0.00</span>
-                </div>
-                <div class="pos-v2-summary-row">
-                    <span>Discount</span>
-                    <span class="pos-v2-summary-value">0.00</span>
-                </div>
-                <div class="pos-v2-summary-row">
-                    <span>Tax 7%</span>
-                    <span class="pos-v2-summary-value">0.00</span>
-                </div>
-                <div class="pos-v2-summary-row pos-v2-summary-total">
-                    <span>Total</span>
-                    <span class="pos-v2-summary-value">0.00</span>
-                </div>
-            </div>
-            
-            <!-- Payment Button -->
-            <div class="pos-v2-cart-footer">
-                <button class="pos-v2-btn pos-v2-btn-primary pos-v2-btn-lg pos-v2-btn-block">
-                    Pay
-                </button>
-            </div>
+            <div class="pos-v2-cart-items"></div>
         </div>
-        
     </div>
-    
-    <!-- Footer -->
-    <div class="pos-v2-footer">
-        <div>Synced</div>
-        <div><span class="pos-v2-offline-count">0</span> Offline Invoices</div>
-        <div>Settings</div>
-    </div>
-    
 </div>

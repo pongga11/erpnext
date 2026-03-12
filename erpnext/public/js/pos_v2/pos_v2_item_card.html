@@ -1,54 +1,6 @@
-<!-- Pharmacy POS V2 - Item Card -->
 <div class="pos-v2-item-card" data-item-code="{{ item_code }}">
-    
-    <!-- Image -->
-    <div class="pos-v2-item-image">
-        {% if (item_image) { %}
-        <img src="{{ item_image }}" alt="{{ item_name }}">
-        {% } else { %}
-        <div class="pos-v2-item-placeholder">
-            {%= frappe.get_abbr(item_name || item_code) %}
-        </div>
-        {% } %}
-        
-        <!-- Expiry Badge -->
-        {% if (expiry_warning) { %}
-        <span class="pos-v2-item-badge pos-v2-badge-{{ expiry_warning }}">
-            Expiring Soon
-        </span>
-        {% } %}
-        
-        <!-- Controlled Drug Badge -->
-        {% if (is_khoryor) { %}
-        <span class="pos-v2-item-badge pos-v2-badge-warning">
-            ขย.
-        </span>
-        {% } %}
-    </div>
-    
-    <!-- Info -->
     <div class="pos-v2-item-info">
-        <h4 class="pos-v2-item-name">{{ item_name || item_code }}</h4>
-        
-        {% if (generic_name) { %}
-        <p class="pos-v2-item-generic">({{ generic_name }})</p>
-        {% } %}
-        
-        <div class="pos-v2-item-meta">
-            {% if (brand) { %}
-            <span>{{ brand }}</span>
-            {% } %}
-            {% if (batch_no) { %}
-            <span>Batch: {{ batch_no }}</span>
-            {% } %}
-        </div>
-        
-        <div class="pos-v2-item-footer">
-            <span class="pos-v2-item-price">{{ item_price }}</span>
-            <span class="pos-v2-item-stock pos-v2-stock-{{ stock_status }}">
-                {{ stock_text }}
-            </span>
-        </div>
+        <h4>{{ item_name }}</h4>
+        <span>{{ item_price }}</span>
     </div>
-    
 </div>
