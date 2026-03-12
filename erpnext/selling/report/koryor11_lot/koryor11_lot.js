@@ -16,8 +16,10 @@ frappe.query_reports["KorYor11-LOT"] = {
                 };
             },
             on_change: function() {
-                // เมื่อเปลี่ยน item ให้ clear batch
-                frappe.query_report.set_filter_value("batch_no", "");
+                let batch_filter = frappe.query_report.get_filter("batch_no");
+                if (batch_filter) {
+                    batch_filter.set_value("");
+                }
             }
         },
         {
