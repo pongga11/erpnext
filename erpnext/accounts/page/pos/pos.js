@@ -2403,8 +2403,9 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 			// Format options with quantity and expiry date
 			var batch_options = available_batches.map(function(b) {
 				var expiry = b.expiry_date ? ' (Exp: ' + frappe.datetime.str_to_user(b.expiry_date) + ')' : '';
+				var batch_display = b.batch_no.split('[')[0].trim();
 				return {
-					label: b.batch_no + ' - Qty: ' + b.qty + expiry,
+					label: batch_display + ' - Qty: ' + b.qty + expiry,
 					value: b.batch_no
 				};
 			});
