@@ -1551,49 +1551,6 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 
 	},
 
-	// add_to_cart: function () {
-	// 	var me = this;
-	// 	var caught = false;
-	// 	var no_of_items = me.wrapper.find(".pos-bill-item").length;
-
-	// 	this.customer_validate();
-	// 	this.mandatory_batch_no();
-	// 	this.validate_serial_no();
-	// 	this.validate_warehouse();
-
-	// 	if (no_of_items != 0) {
-	// 		$.each(this.frm.doc["items"] || [], function (i, d) {
-	// 			if (d.item_code == me.items[0].item_code) {
-	// 				caught = true;
-	// 				d.qty += 1;
-	// 				d.amount = flt(d.rate) * flt(d.qty);
-	// 				if (me.item_serial_no[d.item_code]) {
-	// 					d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
-	// 					d.warehouse = me.item_serial_no[d.item_code][1]
-	// 				}
-
-	// 				if (me.item_batch_no.length) {
-	// 					d.batch_no = me.item_batch_no[d.item_code]
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-
-	// 	// if item not found then add new item
-	// 	if (!caught)
-	// 		this.add_new_item_to_grid();
-
-	// 	this.update_paid_amount_status(false)
-	// 	this.wrapper.find(".item-cart-items").scrollTop(1000);
-
-    //     //if( this.pos_profile_data['print_receipt'] ) {
-    //         var socket = io('http://erpnext.baanyayim.com:3000');
-    //    		var itemsJson = JSON.stringify(me.frm.doc);
-    //     	socket.emit('pos-cart', itemsJson);
-    //    // }
-		
-	// },
-
 
     add_to_cart: function () {
         var me = this;
