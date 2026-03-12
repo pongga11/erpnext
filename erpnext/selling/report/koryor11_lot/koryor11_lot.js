@@ -43,9 +43,9 @@ frappe.query_reports["KorYor11-LOT"] = {
                 }
                 return {
                     filters: [
-                        ["Batch", "item", "=", item_code],
-                        ["Batch", "disabled", "=", 0]
-                    ]
+                        ["Batch", "item", "=", item_code]
+                    ],
+                    order_by: "expiry_date DESC"
                 };
             }
         }
