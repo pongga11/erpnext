@@ -1583,7 +1583,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
                         d.amount = flt(d.rate) * flt(d.qty);
                         
                         if (me.item_serial_no[d.item_code]) {
-                            d.serial_no += '\n' + me.item_serial_no[d.item_code][0]
+                            d.serial_no +=  me.item_serial_no[d.item_code][0]
                             d.warehouse = me.item_serial_no[d.item_code][1]
                         }
                     }
