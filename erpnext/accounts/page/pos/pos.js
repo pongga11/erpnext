@@ -1236,7 +1236,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 							{
 								"fieldtype": "Column Break"
 							},
-							{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "เม็ด\nซีซี\nช้อนชา\nช้อนโต๊ะ\nซอง\nหยด\nครั้ง"}
+							{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "dd"}
 				
 						],
 								primary_action_label: __("Print"),
@@ -1281,7 +1281,7 @@ erpnext.pos.PointOfSale = erpnext.taxes_and_totals.extend({
 						{
 							"fieldtype": "Column Break"
 						},
-						{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "เม็ด\nซีซี\nช้อนชา\nช้อนโต๊ะ\nซอง\nหยด\nครั้ง"}
+						{label: "Unit", fieldname:"dosage_unit", fieldtype:"Select", default: selectedItem.dosage_unit, options: "aa"}
 			
 					],
 							primary_action_label: __("Print"),
