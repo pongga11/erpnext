@@ -177,7 +177,7 @@ def get_customers_list(pos_profile={}):
 		cond = "customer_group in (%s)"%(', '.join(['%s']*len(customer_groups)))
 
 	return frappe.db.sql(""" select name, customer_name, customer_group,
-		territory, customer_pos_id from tabCustomer where disabled = 0
+		territory, customer_pos_id, is_drug_allergy, drug_allergy_detail from tabCustomer where disabled = 0
 		and {cond}""".format(cond=cond), tuple(customer_groups), as_dict=1) or {}
 
 def get_customers_address(customers):

@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0, 
+ "apply_user_permissions": 1, 
+ "creation": "2026-03-12 13:06:05.596494", 
+ "disabled": 0, 
+ "docstatus": 0, 
+ "doctype": "Report", 
+ "idx": 0, 
+ "is_standard": "Yes", 
+ "letter_head": "BYMHead", 
+ "modified": "2026-03-12 22:26:08.650877", 
+ "modified_by": "Administrator", 
+ "module": "Selling", 
+ "name": "KorYor11-LOT", 
+ "owner": "Administrator", 
+ "query": "select DATE(SII.creation) as 'creation_date', \nCASE \n    \tWHEN SI.customer = '\u0e25\u0e39\u0e01\u0e04\u0e49\u0e32\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b' then SI.patient\n\tELSE SI.customer\nEND as 'patient', SII.item_code as 'item_name', I.generic_name as 'generic_name',  SII.qty, SII.uom, \nB.batch_id as 'lot2',\nTRIM(REPLACE(B.batch_id, SUBSTRING(B.batch_id, LOCATE('[', B.batch_id), LOCATE(']', B.batch_id) - LOCATE('[', B.batch_id) + 1), '')) AS lot,\n B.expiry_date as 'exp', PII.qty as 'purchase_qty', PO.supplier, PO.transaction_date as 'receive_date'\nfrom `tabItem` I \njoin `tabSales Invoice Item` SII on I.item_code = SII.item_code \njoin `tabSales Invoice` SI on SI.name = SII.parent\njoin `tabPurchase Invoice Item` PII on PII.item_code = SII.item_code and PII.batch_no = PII.batch_no\njoin `tabPurchase Order Item` POI on POI.name = PII.po_detail\njoin `tabPurchase Order` PO on PO.name = POI.parent\njoin `tabBatch` B on B.name = SII.batch_no\nwhere I.item_code = %(item_code)s \nand B.batch_id = %(batch_no)s", 
+ "ref_doctype": "Sales Invoice", 
+ "report_name": "KorYor11-LOT", 
+ "report_type": "Query Report", 
+ "roles": [
+  {
+   "role": "Administrator"
+  }, 
+  {
+   "role": "Sales User"
+  }, 
+  {
+   "role": "Stock User"
+  }
+ ]
+}

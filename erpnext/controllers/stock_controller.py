@@ -185,7 +185,7 @@ class StockController(AccountsController):
 						doctype='Batch',
 						item=d.item_code,
 						expiry_date=d.exp,
-						batch_id=d.lot_no,
+						batch_id=(d.lot_no or "")+ " [" + self.name + "]",
 						supplier=getattr(self, 'supplier', None),
 						reference_doctype=self.doctype,
 						reference_name=self.name)).insert().name
