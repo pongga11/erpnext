@@ -399,6 +399,15 @@ erpnext.pos.PointOfSale.prototype.update_customer_data = function (doc) {
 erpnext.pos.PointOfSale.prototype.check_drug_allergies = function(customer) {
 	var $alert = this.wrapper.find('.pos-v2-alert-banner');
 	var $message = this.wrapper.find('.pos-v2-alert-message');
+	var $customerName = this.wrapper.find('.pos-v2-customer-name');
+	
+	// Update customer name in header
+	if (customer && customer.customer_name) {
+		$customerName.text(customer.customer_name);
+		if (customer.is_drug_allergy && customer.drug_allergy_detail) {
+			$customerName.after('<span class="pos-v2-badge pos-v2-badge-danger" style="margin-left: 8px;">🔴 แพ้ยา</span>');
+		}
+	}
 	
 	if (customer && customer.is_drug_allergy && customer.drug_allergy_detail) {
 		$message.html('คนไข้แพ้ยา: <strong>' + customer.drug_allergy_detail + '</strong>');
@@ -409,3 +418,36 @@ erpnext.pos.PointOfSale.prototype.check_drug_allergies = function(customer) {
 		this.customer_allergies = null;
 	}
 };
+
+// Phase 5: Add keyboard shortcuts
+erpnext.pos.PointOfSale.prototype.bind_keyboard_shortcuts = function() {
+	var me = this;
+	
+	$(document).on('keydown.pos_v2', function(e) {
+		// Only handle if POS V2 is active
+		if (frappe.get_route()[0] !== 'pos-v2') return;
+		
+		// F1 - Focus search
+		if (e.key === 'F1') {
+			e.preventDefault();
+			me.wrapper.find('.pos-v2-search-input').focus();
+		}
+		
+		// F8 - Payment
+		if (e.key === 'F8') {
+			e.preventDefault();
+			me.page.btn_primary && me.page.btn_primary.click();
+		}
+		
+		// Escape - Clear selection
+		if (e.key === 'Escape') {
+			me.item_code = null;
+			me.wrapper.find('.pos-v2-cart-item').removeClass('active');
+		}
+	});
+};
+
+// Initialize keyboard shortcuts
+$(document).ready(function() {
+	// Will be called when POS V2 loads
+});
