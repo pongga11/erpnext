@@ -15,7 +15,7 @@
             {% } %}
         </div>
         <span class="pos-v2-cart-item-remove" data-action="remove">
-            &#10060;
+            &times;
         </span>
     </div>
     
@@ -52,16 +52,16 @@
     <!-- Dosage Info (if selected) -->
     {% if (show_dosage && indication) { %}
     <div class="pos-v2-dosage-panel">
-        <div class="pos-v2-dosage-label">&#128203; วิธีใช้:</div>
+        <div class="pos-v2-dosage-label">Dosage:</div>
         <div class="pos-v2-dosage-value">
             {{ indication }} - {{ applyby }} {{ dosage }} {{ dosage_unit }}
         </div>
         <div class="pos-v2-dosage-actions">
             <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="edit-dosage">
-                &#9999;&#65039; แก้ไข
+                Edit
             </button>
             <button class="pos-v2-btn pos-v2-btn-sm pos-v2-btn-secondary" data-action="print-label">
-                &#128424;&#65039; พิมพ์ฉลาก
+                Print Label
             </button>
         </div>
     </div>

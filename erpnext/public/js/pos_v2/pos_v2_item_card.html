@@ -14,7 +14,7 @@
         <!-- Expiry Badge -->
         {% if (expiry_warning) { %}
         <span class="pos-v2-item-badge pos-v2-badge-{{ expiry_warning }}">
-            &#9888;&#65039; หมดอายุเร็ว
+            Expiring Soon
         </span>
         {% } %}
         
@@ -36,10 +36,10 @@
         
         <div class="pos-v2-item-meta">
             {% if (brand) { %}
-            <span>&#127991;&#65039; {{ brand }}</span>
+            <span>{{ brand }}</span>
             {% } %}
             {% if (batch_no) { %}
-            <span>&#128230; {{ batch_no }}</span>
+            <span>Batch: {{ batch_no }}</span>
             {% } %}
         </div>
         
