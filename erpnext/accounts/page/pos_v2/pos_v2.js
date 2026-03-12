@@ -224,3 +224,159 @@ erpnext.pos.PointOfSale.prototype.make_search = function () {
 		}
 	});
 };
+
+// Phase 3: Override show_items_in_item_cart for V2 cart
+erpnext.pos.PointOfSale.prototype.show_items_in_item_cart = function () {
+	var me = this;
+	var $items = this.wrapper.find(".pos-v2-cart-items");
+	var $empty = this.wrapper.find(".pos-v2-empty-cart");
+	
+	// Update cart count
+	this.wrapper.find(".pos-v2-cart-count").text(this.frm.doc.items.length);
+	
+	if (this.frm.doc.items.length === 0) {
+		$empty.show();
+		$items.find('.pos-v2-cart-item').remove();
+		return;
+	}
+	
+	$empty.hide();
+	$items.find('.pos-v2-cart-item').remove();
+	
+	$.each(this.frm.doc.items || [], function (i, d) {
+		// Get batch info
+		var batch_info = me.batch_no_data[d.item_code];
+		var expiry_date = '';
+		if (batch_info && d.batch_no) {
+			var batch = batch_info.find(b => b.batch_no === d.batch_no);
+			if (batch && batch.expiry_date) {
+				expiry_date = frappe.datetime.str_to_user(batch.expiry_date);
+			}
+		}
+		
+		// Get item data for generic name
+		var item_data = me.items.find(item => item.item_code === d.item_code);
+		
+		$(frappe.render_template("pos_v2_cart_item", {
+			item_code: d.item_code,
+			item_name: d.item_name,
+			generic_name: item_data ? item_data.generic_name : '',
+			idx: d.idx,
+			qty: d.qty,
+			rate: d.rate,
+			amount: d.amount,
+			batch_no: d.batch_no || '',
+			expiry_date: expiry_date,
+			selected_class: (me.item_code == d.item_code) ? "active" : "",
+			show_dosage: (me.item_code == d.item_code),
+			indication: d.indication || '',
+			applyby: d.applyby || '',
+			dosage: d.dosage || '',
+			dosage_unit: d.dosage_unit || '',
+			is_khoryor: d.is_khoryor || 0
+		})).appendTo($items);
+	});
+	
+	// Bind cart item events
+	this.bind_cart_item_events();
+};
+
+// Phase 3: Bind cart item events (quantity, remove)
+erpnext.pos.PointOfSale.prototype.bind_cart_item_events = function() {
+	var me = this;
+	
+	// Quantity controls
+	this.wrapper.on('click', '.pos-v2-qty-btn', function(e) {
+		e.stopPropagation();
+		var $item = $(this).closest('.pos-v2-cart-item');
+		var item_code = $item.attr('data-item-code');
+		var $input = $item.find('.pos-v2-qty-input');
+		var qty = parseFloat($input.val()) || 1;
+		var action = $(this).attr('data-action');
+		
+		if (action === 'increase') {
+			qty += 1;
+		} else if (action === 'decrease' && qty > 1) {
+			qty -= 1;
+		}
+		
+		$input.val(qty);
+		me.update_qty(item_code, qty);
+	});
+	
+	// Quantity input change
+	this.wrapper.on('change', '.pos-v2-qty-input', function(e) {
+		var $item = $(this).closest('.pos-v2-cart-item');
+		var item_code = $item.attr('data-item-code');
+		var qty = parseFloat($(this).val()) || 1;
+		me.update_qty(item_code, qty);
+	});
+	
+	// Remove item
+	this.wrapper.on('click', '.pos-v2-cart-item-remove', function(e) {
+		e.stopPropagation();
+		var $item = $(this).closest('.pos-v2-cart-item');
+		var idx = $item.attr('data-idx');
+		me.remove_item = [idx];
+		me.remove_zero_qty_item();
+		me.update_paid_amount_status(false);
+	});
+	
+	// Select item
+	this.wrapper.on('click', '.pos-v2-cart-item', function() {
+		me.item_code = $(this).attr('data-item-code');
+		me.wrapper.find('.pos-v2-cart-item').removeClass('active');
+		$(this).addClass('active');
+		me.show_items_in_item_cart(); // Refresh to show dosage
+	});
+};
+
+// Phase 3: Override update_paid_amount_status to update V2 cart summary
+erpnext.pos.PointOfSale.prototype.update_paid_amount_status = function (update_paid_amount) {
+	// Call original
+	if (this.update_paid_amount_status_original) {
+		this.update_paid_amount_status_original.call(this, update_paid_amount);
+	} else {
+		this.update_paid_amount_status_original = erpnext.pos.PointOfSale.prototype.update_paid_amount_status;
+		this.update_paid_amount_status_original.call(this, update_paid_amount);
+	}
+	
+	// Update V2 cart summary
+	this.update_v2_cart_summary();
+};
+
+// Update V2 cart summary totals
+erpnext.pos.PointOfSale.prototype.update_v2_cart_summary = function() {
+	var me = this;
+	
+	// Get values from frm.doc
+	var total = this.frm.doc.total || 0;
+	var discount = this.frm.doc.discount_amount || 0;
+	var taxes = this.frm.doc.total_taxes_and_charges || 0;
+	var grand_total = this.frm.doc.grand_total || 0;
+	var currency = this.frm.doc.currency || 'THB';
+	
+	// Update V2 summary elements
+	var $summary = this.wrapper.find('.pos-v2-cart-summary');
+	if ($summary.length) {
+		// Subtotal (before discount and tax)
+		$summary.find('.pos-v2-summary-row').eq(0).find('.pos-v2-summary-value').text(
+			format_currency(total, currency)
+		);
+		
+		// Discount
+		$summary.find('.pos-v2-summary-row').eq(1).find('.pos-v2-summary-value').text(
+			format_currency(-discount, currency)
+		);
+		
+		// Tax
+		$summary.find('.pos-v2-summary-row').eq(2).find('.pos-v2-summary-value').text(
+			format_currency(taxes, currency)
+		);
+		
+		// Grand Total
+		$summary.find('.pos-v2-summary-row.pos-v2-summary-total').find('.pos-v2-summary-value').text(
+			format_currency(grand_total, currency)
+		);
+	}
+};
