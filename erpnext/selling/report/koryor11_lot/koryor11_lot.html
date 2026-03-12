@@ -1,0 +1,87 @@
+
+<style>
+    .print-format table, .print-format tr,
+    .print-format td, .print-format div, .print-format p {
+        font-family: Monospace;
+        line-height: 200%;
+        vertical-align: middle;
+    }
+
+    @media screen {
+        .print-format {
+            max-width: 13in;
+            padding: 0.25in;
+            min-height: 8.5in;
+        }
+    }
+</style>
+
+
+
+{% for(var i=0, l=data.length; i<l; i++) { %}
+
+
+	{% if (i==0 || ( data[i][__("item_name")] != data[i-1][__("item_name")]) || ( data[i][__("lot")] != data[i-1][__("lot")] )  || ( data[i][__("receive_date")] != data[i-1][__("receive_date")] ) ) %}
+
+         {% var c=1; %}
+
+            <h5 class="text-right" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">แบบ ข.ย. ๑๑</h5>
+            <h3 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บัญชีการขายยาอันตราย เฉพาะรายการยาที่เลขาธิการคณะกรรมการอาหารและยากำหนด</h3>
+            <h4 class="text-center" style="font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; color: rgb(54, 65, 76);">บ้านยายิ้ม</h4>
+
+             <div style="margin-left: 20mm">
+
+                <p>ชื่อยา.....................{%= data[i][__("item_name")]  %} - {%= data[i][__("generic_name")] %} .........................................</p>
+                <p>ชื่อผู้ผลิต / ผู้นำเข้า...................................เลขที่หรืออักษรของครั้งที่ผลิต......{%= data[i][__("lot")]  %}.......ขนาดบรรจุ..........{%= data[i][__("uom")] %}..........</p>
+                <p>ได้มาจาก..........{%= data[i][__("supplier")] %}..........จำนวนรับ.......{%= data[i][__("purchase_qty")] %}..........วันที่รับ.......{%=  dateutil.str_to_user( data[i][__("receive_date")] )  %} .........</p>
+            </div>
+            <hr>
+            <table class="table table-bordered">
+                    <thead>
+                            <tr>
+                                    <th style="width: 5%; text-align: center;">ลำดับที่</th>
+                                    <th style="width: 15%; text-align: center;">วันที่</th>
+                                    <th style="width: 20%; text-align: center;">จำนวน/ปริมาณที่ขาย</th>
+                                    <th style="width: 20%; text-align: center;">ชื่อ สกุล ผู้ซื้อ</th>
+                                    <th style="width: 20%; text-align: center;">ลายมือชื่อผู้มีหน้าที่ปฏิบัติการ</th>
+                                    <th style="width: 20%; text-align: center;">หมายเหตุ</th>
+                                    
+                            </tr>
+                    </thead>
+                    <tbody>
+	{% endif %}
+
+            	<tr>
+            		<td style="text-align: center;"> {%= c %} </td>
+            		<td style="text-align: center;"> {%=  data[i][__("creation_date")]  %} </td>
+            		<td style="text-align: center;"> {%= data[i][__("qty")] %} {%= data[i][__("uom")] %}</td>
+            		<td style="text-align: center;"> {%= data[i][__("patient")] %} </td>
+            		<td style="text-align: center;"> </td>
+            		<td style="text-align: center;"> </td>
+            		
+            		
+            	</tr>
+                {% var c=c+1; %}
+
+	
+	{% if i != data.length-1  && ( data[i][__("item_name")] != data[i+1][__("item_name")] || data[i][__("lot")] != data[i+1][__("lot")] || data[i][__("receive_date")] != data[i+1][__("receive_date")] ) %} 
+                    </tbody>
+
+            </table>
+
+        <p style="page-break-before: always">
+	{% endif %}
+
+    {% if i == data.length-1  %}
+                    </tbody>
+
+            </table>
+
+        <p style="page-break-before: always">
+    {% endif %}
+        
+{% } %}
+
+
+
+
