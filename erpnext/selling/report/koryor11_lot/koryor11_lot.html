@@ -64,21 +64,11 @@
                 {% var c=c+1; %}
 
 	
-	{% if i != data.length-1  && ( data[i][__("item_name")] != data[i+1][__("item_name")] || data[i][__("lot")] != data[i+1][__("lot")] || data[i][__("receive_date")] != data[i+1][__("receive_date")] ) %} 
+	{% if i == data.length-1 || ( data[i][__("item_name")] != data[i+1][__("item_name")] || data[i][__("lot")] != data[i+1][__("lot")] || data[i][__("receive_date")] != data[i+1][__("receive_date")] ) %} 
                     </tbody>
-
             </table>
-
-        <p style="page-break-before: always">
+        {% if i != data.length-1 %}<p style="page-break-before: always">{% endif %}
 	{% endif %}
-
-    {% if i == data.length-1  %}
-                    </tbody>
-
-            </table>
-
-        <p style="page-break-before: always">
-    {% endif %}
         
 {% } %}
 
